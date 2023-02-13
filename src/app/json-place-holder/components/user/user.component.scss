@@ -1,19 +1,19 @@
-div {
-    margin : 0;
-    padding : 0;
-}
-
 .box{
     background-color: rgb(200,200,200);
     margin: 0.5em;
-    padding: 1em;
+    // padding: 1em;
     border-radius: 5px;
 }
 
 .name{
-    font-size : 1.5rem;
+    display: block;
+    font-size : 0.9em;
+    margin: 0 0 0 0.3em;
 }
 
 .details{
-    font-size : 0.9rem;
+    display: block;
+    font-size : 0.6em;
+    height : 1.5em;
+    margin: 0 0 0em 0.5em;
 }
