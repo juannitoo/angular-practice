@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { RouterModule } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
+  providers: [HttpClient],
   exports: [
     HeaderComponent
   ]
