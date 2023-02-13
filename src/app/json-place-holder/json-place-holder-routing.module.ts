@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JsonLandingComponent } from './components/json-landing/json-landing.component';
+import { UserComponent } from './components/user/user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes: Routes = [
-    { path : '', component: JsonLandingComponent },
-    { path: 'users', component: UsersListComponent }
+  { path: 'users/:id', component: UserComponent },
+  { path: 'users', component: UsersListComponent },
+  { path : '', component: JsonLandingComponent }
 ];
 
 @NgModule({

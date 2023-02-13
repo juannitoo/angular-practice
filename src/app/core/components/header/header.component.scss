@@ -2,6 +2,15 @@ h1{
     display: block;
 }
 
+a {
+    margin: 0 10px;
+    color: #3d3de9;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .active {
     color: #a7a7db;
     text-decoration: underline;
