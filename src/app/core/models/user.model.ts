@@ -1,5 +1,5 @@
-import { Address } from "../interfaces/adress.interface";
-import { Company } from "../interfaces/company.inteface"; 
+import { Address } from "../interfaces/user-adress.interface";
+import { Company } from "../interfaces/user-company.inteface"; 
 
 export class User {
     id!: number;

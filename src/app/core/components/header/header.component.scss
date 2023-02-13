@@ -1,8 +1,15 @@
-h1{
-    display: block;
+header { 
+    width: 80%;
+    margin: 0 auto;
 }
 
-a {
+h1{
+    display: block;
+    text-align: center; 
+    
+}
+
+a{
     margin: 0 10px;
     color: #3d3de9;
     text-decoration: none;

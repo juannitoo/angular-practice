@@ -1,4 +1,6 @@
 <section>
-    <p>Les users de JsonPlaceholder fonctionnent!</p>
-    <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+    <p>Les users de JsonPlaceholder :</p>
+    <article>
+        <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+    </article>
 </section>

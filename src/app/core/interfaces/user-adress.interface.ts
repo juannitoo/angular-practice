@@ -1,5 +1,5 @@
 // utilisé par jsonplaceholder users
-import { Geo } from "./geo.interface";
+import { Geo } from "./user-geo.interface";
 
 export interface Address {
     street: string;
