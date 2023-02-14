@@ -3,7 +3,7 @@
   <p class="details">Id : {{ user.id }} -- pseudo : <b>{{ user.username }}</b></p>
   <button (click)="showUser(user.id)">{{buttonText}}</button>
 </article>
-<article *ngIf="user$ | async as u" class="box">
+<article *ngIf="user$ | async as u" class="box-user">
   <p class="name">{{ u.name }}</p>
   <p class="details">Id : {{ u.id }}</p>
   <p class="details">pseudo : {{ u.username }}</p>
@@ -12,5 +12,7 @@
   <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
   <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
   <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
-  <button (click)="backToList()">Retour à la liste</button>
+  <button>Modifier (bientôt)</button>
+  <button>Supprimer (bientôt)</button><br />
+  <button (click)="backToList()">Fermer</button>
 </article>

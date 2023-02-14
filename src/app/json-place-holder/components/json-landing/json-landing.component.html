@@ -1,6 +1,28 @@
 <p><a target="_blank" href="https://jsonplaceholder.typicode.com/">JsonPlaceHolder.typicode.com</a>
- est une api gratuite qui renvoie des datas lorsqu'on fait une requete 
- et ok/200 sinon. Les autres api proposées reposent sur 
- le même système, mais je ne peux pas réèllement insérer ou supprimer.
- Cliquez ci dessous pour visualiser ce test avec les datas de l'api.</p>
-<p><a routerLink="users">Users</a></p>
+ est une api gratuite qui permet de simuler le CRUD. 
+ Plusieurs sous-api sont disponibles, j'ai choisi celles des Users.
+ On ne ne peux pas rééllement insérer ou supprimer, mais elle renvoie renvoie 
+ l'objet soi disant créé, updaté et supprimé alors c'est suffisant pour 
+ m'exercer.</p>
+ <p>Voilà un exemple de routes possibles :</p>
+ <code>
+    https://jsonplaceholder.typicode.com/users<br />
+    https://jsonplaceholder.typicode.com/users/1<br />
+ </code>
+ <p>Un exemple d'appel en js natif avec l'api posts</p>
+ <code>
+    fetch('https://jsonplaceholder.typicode.com/posts/1')<br />
+    .then((response) => response.json())<br />
+    .then((json) => console.log(json));<br />
+</code>
+<code>Renvoie :
+    {{ '{' }}
+        id: 1,
+        title: '...',
+        body: '...',
+        userId: 1
+        {{ '}' }}
+</code>
+ 
+ <p>Cliquez ci dessous pour visualiser ce test avec les datas de l'api.</p>
+<p><a routerLink="users">Accéder à la démo des Users</a></p>
