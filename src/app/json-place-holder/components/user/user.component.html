@@ -1,18 +1,18 @@
 <article *ngIf="user" class="box">
   <p class="name">{{ user.name }}</p>
-  <p class="details">Id : {{ user.id }} -- pseudo : <b>{{ user.username }}</b></p>
-  <button (click)="showUser(user.id)">{{buttonText}}</button>
+  <p class="details">Id : {{ user.id }} -- pseudo : <b><span id="pseudo">{{ user.username }}</span></b></p>
+  <button (click)="showUser(user.id)">Afficher</button>
 </article>
 <article *ngIf="user$ | async as u" class="box-user">
-  <p class="name">{{ u.name }}</p>
-  <p class="details">Id : {{ u.id }}</p>
+  <p id="name">{{ u.name }}</p>
+  <p class="details maj">Id : {{ u.id }}</p>
   <p class="details">pseudo : {{ u.username }}</p>
   <p *ngIf="u.email" class="details">Email : {{ u.email }}</p>
   <p *ngIf="u.address" class="details">Ville : {{ u.address.city }}</p>
   <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
   <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
   <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
-  <button>Modifier (bientôt)</button>
-  <button>Supprimer (bientôt)</button><br />
+  <button (click)="updateUser(u.id)">Modifier</button>
+  <button (click)="delUser(u.id)">Supprimer</button><br />
   <button (click)="backToList()">Fermer</button>
 </article>
