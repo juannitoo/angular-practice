@@ -18,4 +18,8 @@ export class UsersListComponent implements OnInit {
     this.users = this.usersServ.getUsers()
   }
 
+  onAddUser(){
+    this.usersServ.addUser()
+  }
+
 }

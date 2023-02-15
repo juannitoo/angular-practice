@@ -4,6 +4,7 @@ import { JsonLandingComponent } from './components/json-landing/json-landing.com
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { JsonPlaceHoldeRoutingModule } from './json-place-holder-routing.module';
 import { UserComponent } from './components/user/user.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
 
 
 
@@ -11,7 +12,8 @@ import { UserComponent } from './components/user/user.component';
   declarations: [
     JsonLandingComponent,
     UsersListComponent,
-    UserComponent
+    UserComponent,
+    UserCreateComponent
   ],
   imports: [
     CommonModule,
