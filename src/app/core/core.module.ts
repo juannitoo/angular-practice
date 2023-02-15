@@ -13,11 +13,11 @@ import { HttpClient } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [HttpClient],
   exports: [
-    HeaderComponent
+    HeaderComponent,
   ]
 })
 export class CoreModule { }

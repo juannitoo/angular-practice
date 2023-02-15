@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-create',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCreateComponent implements OnInit {
 
-  constructor() { }
+  userCreateForm!: FormGroup;
+
+  constructor( private formBuider: FormBuilder ) { }
 
   ngOnInit(): void {
+    this.userCreateForm = this.formBuider.group({
+      name: [null],
+      username: [null],
+      email: [null],
+      city: [null],
+      phone: [null],
+      website: [null],
+      company: [null],
+    })
+  }
+
+  onSubmitForm() {
+    console.log(this.userCreateForm.value);
   }
 
 }

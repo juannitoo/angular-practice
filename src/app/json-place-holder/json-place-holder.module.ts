@@ -5,6 +5,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { JsonPlaceHoldeRoutingModule } from './json-place-holder-routing.module';
 import { UserComponent } from './components/user/user.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
   ],
   imports: [
     CommonModule,
-    JsonPlaceHoldeRoutingModule
+    JsonPlaceHoldeRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class JsonPlaceHolderModule { }
