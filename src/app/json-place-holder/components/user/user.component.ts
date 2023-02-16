@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,8 +16,10 @@ export class UserComponent implements OnInit {
 
   // enfant de la liste de user-list
   @Input() user!: User;
+
   // lorsque url par ex user/1
   user$! : Observable<User>;
+
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
@@ -49,32 +51,34 @@ export class UserComponent implements OnInit {
     .pipe(
       //au retour de l'observable, je loggue
       tap(() => console.log("user supprimé !")),
-      // je redirige
-      map( (util) => this.router.navigateByUrl('jsonplaceholder/users'))
+
+    //   // je redirige
+      map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
 
-      // ca je garde pour batailler un peu.
-      // map((user) => { 
-      //   const index = this.usersService.getUsers().pipe(
-      //     map( util => [...util]),
-      //     map( (util) => { 
-      //       const index = util.findIndex((u)=> u.id === userId);
-      //       util.splice(index,1);
-      //       return util
-      //     }),
-      //     tap( util =>  console.log('les users modifiés', util)),
-      //     map( (util) => this.router.navigateByUrl('jsonplaceholder/users'))
-      //   ).subscribe();
-      // })
+    //   // ca je garde pour batailler un peu.
+    //   map((user) => { 
+    //     const index = this.usersService.getUsers().pipe(
+    //       map( util => [...util]),
+    //       map( (util) => { 
+    //         const index = util.findIndex((u)=> u.id === userId);
+    //         util.splice(index,1);
+    //         return util
+    //       }),
+    //       tap( util =>  console.log('les users modifiés', util)),
+    //       map( (util) => this.router.navigateByUrl('jsonplaceholder/users'))
+    //     //   map( (util) => this.router.navigate(['jsonplaceholder', 'users'], {
+    //     //     "params" : util,
+    //     //   }))
+    //     ).subscribe();
+    //   })
+    // ).subscribe()
+
   }
 
-  addUser(user: User){
-    console.log(user)
-  }
 
   updateUser(userId:number){
-    // formModule ou reactive formmodule. A voir demain ...
-    console.log(userId)
+      console.log(userId)
   }
 
 

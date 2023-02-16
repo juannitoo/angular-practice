@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, map } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -23,47 +24,36 @@ export class UsersService {
     }
     
     deleteUser(userId: number): Observable<User>{
+        console.log('service delete')
         return this.http.delete<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
     }
 
-    // addUser(formValue: User): Observable<User>{
-    //     return this.http.post<User>(`https://jsonplaceholder.typicode.com/users`,
-    //     formValue);
-    // }
-
-    addUser(): Observable<User>{
-        const formValue = {
-            "id": 11,
-            "name": "Jean Balangué",
-            "username": "Bret",
-            "email": "Sincere@april.biz",
-            "address": {
-              "street": "Kulas Light",
-              "suite": "Apt. 556",
-              "city": "St Jean de Luz",
-              "zipcode": "64500",
-              "geo": {
-                "lat": "-37.3159",
-                "lng": "81.1496"
-              }
-            },
-            "phone": "",
-            "website": "hildegard.org",
-            "company": {
-              "name": "Romaguera-Crona",
-              "catchPhrase": "Multi-layered client-server neural-net",
-              "bs": "harness real-time e-markets"
-            }
-        }
-        console.log(formValue)
+    addUser(formValue: FormData ): Observable<User>{
         return this.http.post<User>(`https://jsonplaceholder.typicode.com/users`,
-        formValue);
+        formValue)
     }
 
-    updateUser(userId: number, formValue: User ){
-        return this.http.put<User>(`https://jsonplaceholder.typicode.com/users`,
+    updateUser(userId: number, formValue: FormData ): Observable<User>{
+        return this.http.put<User>(`https://jsonplaceholder.typicode.com/users/${userId}`,
         formValue);
     }
     
 }
 
+
+// l'api retourne exatement ce qu'on lui envoie 
+// qd on est sur la bonne route avec la bonne méthode
+// const formValue = {
+//     "name": "Jean Balangué",
+//     "username": "Bret",
+//     "adress": "String !"
+// }
+// fetch('https://jsonplaceholder.typicode.com/users', {
+//     method: 'POST',
+//     body: JSON.stringify( formValue ),
+//     headers: {
+//       'Content-type': 'application/json; charset=UTF-8',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((json) => console.log(json));
