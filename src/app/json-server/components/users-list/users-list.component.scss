@@ -1,6 +1,16 @@
+h1{
+    font-size: 18px;
+    text-align: center;
+}
+
+section{
+    padding: 0 5% 0 5%;
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 0px;
+    grid-auto-rows: minmax(70px, auto);
+
 }

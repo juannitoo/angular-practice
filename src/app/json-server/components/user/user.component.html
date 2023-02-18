@@ -12,7 +12,7 @@
     <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
     <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
     <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
-    <button (click)="updateUser(u.id)">Modifier</button>
-    <button (click)="delUser(u.id)">Supprimer</button><br />
-    <button (click)="backToList()">Fermer</button>
+    <button (click)="updateUser(u.id)"class="user-button">Modifier</button>
+    <button (click)="delUser(u.id)" class="user-button"id="suppression">Supprimer</button>
+    <button (click)="backToList()" class="user-button" id="fermer">Fermer</button>
   </article>

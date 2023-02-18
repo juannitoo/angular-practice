@@ -1,3 +1,7 @@
-<section class="wrapper">
-    <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+<h1>Les users du serveur local</h1>
+<section>
+    <div class="wrapper">
+        <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+
+    </div>
 </section>
