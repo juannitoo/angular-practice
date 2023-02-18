@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
-import { UsersService } from 'src/app/core/services/users.services';
+import { JsUsersService } from 'src/app/core/services/js-users.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   user$! : Observable<User>;
 
 
-  constructor(private usersService: UsersService,
+  constructor(private jsUsersService: JsUsersService,
               private route : ActivatedRoute,
               private router : Router,
               private http: HttpClient) { }
@@ -43,22 +43,20 @@ export class UserComponent implements OnInit {
 
   //CRUD
   getUser(userId:number): Observable<User> {
-    return this.usersService.getUser(userId);
+    return this.jsUsersService.getUser(userId);
   }
 
   updateUser(userId:number){
   }
 
   delUser(userId: number){
-    return this.usersService.deleteUser(userId)
+    return this.jsUsersService.deleteUser(userId)
     .pipe(
       tap(() => console.log("user supprimé !") ),
-      // map( () => this.router.navigateByUrl('json-server/users'))
+      map( () => this.router.navigateByUrl('json-server/users'))
     ).subscribe();
 
   }
-
-
 
 }
 
