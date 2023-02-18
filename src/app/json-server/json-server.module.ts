@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { JsonServerRoutingModule } from './json-server-routing.module';
 import { JsonServerLandingComponent } from './components/json-server-landing/json-server-landing.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { UserComponent } from './components/user/user.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
 
 
 @NgModule({
   declarations: [
-    JsonServerLandingComponent
+    JsonServerLandingComponent,
+    UsersListComponent,
+    UserComponent,
+    UserCreateComponent
   ],
   imports: [
     CommonModule,

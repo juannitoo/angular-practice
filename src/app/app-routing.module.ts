@@ -9,7 +9,8 @@ const routes: Routes = [
                                            .then( m => JsonPlaceHolderModule) },
   { path: 'json-server', loadChildren: () => import('./json-server/json-server.module')
                                            .then( m => JsonServerModule) },
-  { path: '', component: LandingPageComponent }                                        
+  { path: '', component: LandingPageComponent },
+  { path: '**', component: LandingPageComponent }                                        
 ];
 
 @NgModule({
