@@ -15,5 +15,6 @@
   <button (click)="updateUser(u.id)">Modifier</button>
   <button (click)="delUser(u.id)">Supprimer</button><br />
   <button (click)="backToList()">Fermer</button>
+  <p *ngIf="modifUser">Pour la modification il faut voir du côté json-server</p>
 </article>
 

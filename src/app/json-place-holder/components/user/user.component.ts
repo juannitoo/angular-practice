@@ -20,6 +20,9 @@ export class UserComponent implements OnInit {
   // lorsque url par ex user/1
   user$! : Observable<User>;
 
+  // pour palier à l'update manquant
+  modifUser! : boolean
+
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
@@ -31,6 +34,7 @@ export class UserComponent implements OnInit {
     if (userId) {
       this.user$ = this.getUser(userId);
     }
+    this.modifUser = false
   }
   
   showUser(userId : number){
@@ -46,14 +50,16 @@ export class UserComponent implements OnInit {
     return this.usersService.getUser(userId);
   }
 
+  updateUser(userId:number){
+      this.modifUser = true;
+  }
+
   delUser(userId: number){
     return this.usersService.deleteUser(userId)
     .pipe(
-      //au retour de l'observable, je loggue
-      tap(() => console.log("user supprimé !")),
-
-    //   // je redirige
-      map( () => this.router.navigateByUrl('jsonplaceholder/users'))
+      tap(() => console.log("user supprimé !") ),
+      tap(() =>  this.modifUser = true ),
+      // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
 
     //   // ca je garde pour batailler un peu.
@@ -76,10 +82,6 @@ export class UserComponent implements OnInit {
 
   }
 
-
-  updateUser(userId:number){
-      console.log(userId)
-  }
 
 
 }
