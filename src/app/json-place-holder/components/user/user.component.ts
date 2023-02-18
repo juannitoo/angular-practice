@@ -23,6 +23,9 @@ export class UserComponent implements OnInit {
   // pour palier à l'update manquant
   modifUser! : boolean
 
+  // hack update
+  formvalue!: string;
+
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
@@ -35,6 +38,7 @@ export class UserComponent implements OnInit {
       this.user$ = this.getUser(userId);
     }
     this.modifUser = false
+    this.formvalue =""; 
   }
   
   showUser(userId : number){
@@ -50,15 +54,20 @@ export class UserComponent implements OnInit {
     return this.usersService.getUser(userId);
   }
 
-  updateUser(userId:number){
-      this.modifUser = true;
+  updateUser(userId:number, formValue: string){
+    return this.usersService.updateUser(userId, formValue)
+    .pipe(
+      tap(() =>  this.modifUser = true ),
+      tap(() => console.log("user supprimé !") ),
+      // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
+    ).subscribe();
   }
 
   delUser(userId: number){
     return this.usersService.deleteUser(userId)
     .pipe(
-      tap(() => console.log("user supprimé !") ),
       tap(() =>  this.modifUser = true ),
+      tap(() => console.log("user supprimé !") ),
       // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
 

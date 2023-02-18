@@ -1,1 +1,3 @@
-<p>users-list works!</p>
+<section class="wrapper">
+    <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+</section>

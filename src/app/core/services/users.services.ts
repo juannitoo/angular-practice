@@ -32,7 +32,7 @@ export class UsersService {
         formValue)
     }
 
-    updateUser(userId: number, formValue: FormData ): Observable<User>{
+    updateUser(userId: number, formValue: string ): Observable<User>{
         return this.http.put<User>(`https://jsonplaceholder.typicode.com/users/${userId}`,
         formValue);
     }

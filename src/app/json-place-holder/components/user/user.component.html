@@ -12,9 +12,9 @@
   <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
   <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
   <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
-  <button (click)="updateUser(u.id)">Modifier</button>
+  <button (click)="updateUser(u.id, formvalue)">Modifier</button>
   <button (click)="delUser(u.id)">Supprimer</button><br />
   <button (click)="backToList()">Fermer</button>
-  <p *ngIf="modifUser">Pour la modification il faut voir du côté json-server</p>
+  <p *ngIf="modifUser">Pour la modification / suppression il faut voir du côté json-server</p>
 </article>
 
