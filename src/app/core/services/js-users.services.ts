@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 
 
@@ -26,8 +26,22 @@ export class JsUsersService {
     }
 
     addUser(formValue: FormData ): Observable<User>{
-        return this.http.post<User>(`http://localhost:3000/users`,
-        formValue)
+        return this.getUsers().pipe(
+            map(users => [...users].sort((a,b) => a.id - b.id)),
+            map(sortedUsers => sortedUsers[sortedUsers.length - 1]),
+            map(previousUser => ({
+                ...formValue,
+                id: previousUser.id + 1
+           })),
+           switchMap(newUser => this.http.post<User>(
+                'http://localhost:3000/users',
+                newUser,{
+                headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+                })
+           )
+        )
+        // return this.http.post<User>(`http://localhost:3000/users`,
+        // formValue)
     }
 
     updateUser(userId: number, formValue: string): Observable<User>{

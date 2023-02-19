@@ -7,8 +7,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
 
 const routes: Routes = [
   { path: 'users/create', component: UserCreateComponent},
-  { path: 'users', component: UsersListComponent},
   { path: 'users/:id', component: UserComponent},
+  { path: 'users', component: UsersListComponent},
   { path: '', component: JsonServerLandingComponent}
 ];
 
