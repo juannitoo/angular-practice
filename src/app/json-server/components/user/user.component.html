@@ -1,7 +1,9 @@
-<article *ngIf="user" class="box">
-    <p class="name">{{ user.name }}</p>
-    <p class="details">Id : {{ user.id }} -- pseudo : <b><span id="pseudo">{{ user.username }}</span></b></p>
-    <button (click)="showUser(user.id)">Afficher</button>
+
+<article *ngIf="user" class="box" (click)="showUser(user.id)">
+    <p class="name" title="nom">{{ user.name }}</p>
+    <p class="details">Id : {{ user.id }}  
+      <span id="pseudo" title="pseudo">{{ user.username }}</span>
+    </p>
   </article>
   <article *ngIf="user$ | async as u" class="box-user">
     <p id="name">{{ u.name }}</p>

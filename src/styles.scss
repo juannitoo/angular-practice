@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-html, body { min-height: 100%; }
+html, body { min-height: 100vh; }
 
 body {
   margin: 0;
@@ -10,4 +10,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+
+p{
+  font-size: 0.8em;
 }

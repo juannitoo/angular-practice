@@ -7,6 +7,18 @@ section{
     padding: 0 5% 0 5%;
 }
 
+.adduser{
+    text-align: center;
+    display: block;
+    margin: 1em;
+    color: #3d3de9;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
