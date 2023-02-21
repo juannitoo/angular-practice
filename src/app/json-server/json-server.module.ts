@@ -7,6 +7,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UserComponent } from './components/user/user.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     JsonServerLandingComponent,
     UsersListComponent,
     UserComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
     CommonModule,

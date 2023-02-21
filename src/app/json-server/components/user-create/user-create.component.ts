@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
 @Component({

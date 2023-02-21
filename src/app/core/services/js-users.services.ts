@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 
 
@@ -40,13 +40,21 @@ export class JsUsersService {
                 })
            )
         )
-        // return this.http.post<User>(`http://localhost:3000/users`,
-        // formValue)
     }
 
-    updateUser(userId: number, formValue: string): Observable<User>{
-        return this.http.put<User>(`http://localhost:3000/users${userId}`,
-        formValue);
+    updateUser(userId: number, formValue: FormData): Observable<User>{
+        return this.getUser(userId).pipe(
+            map( user => ({
+                ...formValue,
+                id: user.id 
+                })),
+            switchMap(updatedUser => this.http.put<User>(
+                `http://localhost:3000/users/${userId}`,
+                updatedUser,{
+                headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+                })
+            )
+        )
     }
     
 }

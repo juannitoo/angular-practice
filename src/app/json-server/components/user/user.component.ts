@@ -47,6 +47,7 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(userId:number){
+    return this.router.navigateByUrl(`json-server/users/update/${userId}`);
   }
 
   delUser(userId: number){

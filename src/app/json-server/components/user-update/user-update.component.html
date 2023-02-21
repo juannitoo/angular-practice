@@ -1,5 +1,5 @@
 <section>
-    <p><a routerLink="/json-server/users" class="retour">Retour</a></p>
+    <p><a routerLink="users" class="retour" >Retour</a></p>
     <form [formGroup]="userForm" class="box-user">
         <div class="form-group">
             <label for="name">Nom :</label>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="action-buttons">
-            <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+            <button type="submit" (click)="onSubmitForm(userId)">Enregistrer</button>
         </div>
     </form>
 </section>
