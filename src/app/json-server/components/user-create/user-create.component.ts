@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
 @Component({
@@ -30,8 +31,29 @@ export class UserCreateComponent implements OnInit {
   }
 
   onSubmitForm(): any {
-    // console.log(this.userForm.value);
-    this.jsUsersService.addUser(this.userForm.value).pipe(
+    // comme j'ai pas mis les champs de form qui correspondent 
+    // au modèle des users complets, je triche ...
+    const userFormValues = this.userForm.value
+    const userValues: any = {
+      address : { 
+        city : userFormValues.addressCity,
+        geo: {lat:"",lng:""},
+        street:"",
+        suite:"",
+        zipcode:""
+      },
+      company : {
+        name : userFormValues.companyName,
+        catchPhrase:"",
+        bs:""
+      },
+      email: userFormValues.email,
+      name: userFormValues.name,
+      phone: userFormValues.phone,
+      username: userFormValues.username,
+      website: userFormValues.website
+    }
+    this.jsUsersService.addUser(userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
     ).subscribe()
   }

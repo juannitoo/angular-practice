@@ -42,12 +42,13 @@ export class JsUsersService {
         )
     }
 
-    updateUser(userId: number, formValue: FormData): Observable<User>{
+    updateUser(userId: number, formValue: any): Observable<User>{
         return this.getUser(userId).pipe(
-            map( user => ({
+            map( () => ({
                 ...formValue,
-                id: user.id 
-                })),
+                id: userId 
+                })
+            ),
             switchMap(updatedUser => this.http.put<User>(
                 `http://localhost:3000/users/${userId}`,
                 updatedUser,{

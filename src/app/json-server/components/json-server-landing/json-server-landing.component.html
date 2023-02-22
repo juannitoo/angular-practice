@@ -1,15 +1,19 @@
 <article>
 <p><a href="https://www.npmjs.com/package/json-server#getting-started" target="_blank" alt="lien vers npm json-server">
-    Json-server</a> est module concu par les mêmes que ceux qui 
+    Json-server</a> est module node concu par les mêmes personnes qui 
     ont fait jsonplaceholder et qui permet d'interagir avec une API REST de test.
 </p>
 <p>J'ai choisi de continuer avec les users de jsonplaceholder que vous pouvez visualiser
     <a href="https://jsonplaceholder.typicode.com/users/" alt="lien" target="_blank">ici</a>.
     Ce sera mon fichier de départ pour le serveur. Le CRUD sera complet ici à terme.
 </p>
-<p>Pour l'instant, l'update des users ne fonctionnent pas totalement du fait que l'API
-    ne met pas à jour certains champs liés à des iterfaces (address.city et company.name). 
-    Il faut parait-il créer d'autres routes au niveau de l'api serveur. Je suis dessus.
+<p>Pour l'instant, le CRUD fonctionne mais aucune gestion d'erreur n'est faite, nulle part, pas un
+    petit catch ni rien :) Ca viendra quand j'aurais regardé comment Angular propose de gérer ça. 
+    je dois aussi implémenter onDestroy. Le plan ici, c'était de manipuler un peu la 
+    machine Angular et d'éclaircir le fonctionnemnt avant d'aller plus loin dans l'apprentissage.
+    Je suis tombé sur le site angular.fr qui me permet de dégrossir beaucoup de choses,
+    mais pour le coup, ca fait vraiment beaucoup de choses à voir et comprendre !
+    Bref, beaucoup de routes avant la home !
 </p>
 <p>
     <a routerLink="/json-server/users">Accéder à la démo</a>

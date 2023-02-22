@@ -49,7 +49,29 @@ export class UserUpdateComponent implements OnInit {
   }
 
   onSubmitForm(userId: number): void {
-    this.jsUsersService.updateUser( userId, this.userForm.value).pipe(
+    // je triche à cause des intefaces 
+    // ds le model et pas ds le form
+    const userFormValues = this.userForm.value
+    const userValues: any = {
+      address : { 
+        city : userFormValues.addressCity,
+        geo: {lat:"",lng:""},
+        street:"",
+        suite:"",
+        zipcode:""
+      },
+      company : {
+        name : userFormValues.companyName,
+        catchPhrase:"",
+        bs:""
+      },
+      email: userFormValues.email,
+      name: userFormValues.name,
+      phone: userFormValues.phone,
+      username: userFormValues.username,
+      website: userFormValues.website
+    }
+    this.jsUsersService.updateUser( userId, userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
     ).subscribe()
   }
