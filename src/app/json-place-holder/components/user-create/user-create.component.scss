@@ -28,11 +28,12 @@ button {
 }
 
 .box-user{
-  background-color: rgb(200,200,200);
+  background-color: rgb(240, 240, 240);
   width : 50%;
-  margin: 0 auto;
+  margin: 2em auto;
   padding: 0.4em;
   border-radius: 5px;
+  box-shadow: 4px 4px 10px rgb(195,195,195);
 }
 
 #name{

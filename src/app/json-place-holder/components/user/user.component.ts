@@ -71,23 +71,30 @@ export class UserComponent implements OnInit {
       // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
 
-    //   // ca je garde pour batailler un peu.
-    //   map((user) => { 
-    //     const index = this.usersService.getUsers().pipe(
-    //       map( util => [...util]),
-    //       map( (util) => { 
-    //         const index = util.findIndex((u)=> u.id === userId);
-    //         util.splice(index,1);
-    //         return util
-    //       }),
-    //       tap( util =>  console.log('les users modifiés', util)),
-    //       map( (util) => this.router.navigateByUrl('jsonplaceholder/users'))
-    //     //   map( (util) => this.router.navigate(['jsonplaceholder', 'users'], {
-    //     //     "params" : util,
-    //     //   }))
-    //     ).subscribe();
-    //   })
+    // console.log("000 :")
+    // const usersEvent: any =  this.usersService.deleteUser(userId).pipe(
+    //   tap((e)=>console.log("111 :",e)),
+    //   switchMap( ():Observable<any> => { return this.usersService.getUsers().pipe(
+    //             map( utilisateurs => [...utilisateurs]),
+    //             map( (utilisateurs) => { 
+    //               const index = utilisateurs.findIndex((u)=> u.id === userId);
+    //               utilisateurs.splice(index,1);
+    //               return utilisateurs
+    //             })
+    //           )
+    //     }
+    //   ),
+    //   tap((e)=>console.log("222 :",e)),
+    //   tap((e)=>this.usersEvent.emit(usersEvent)),
+    //   // map((users) => {
+    //   //   this.http.post<User[]>('json-place-holder/users',
+    //   //     JSON.parse(users)
+    //   //   )
+    //   // }),
+    //   tap( () => this.router.navigateByUrl('jsonplaceholder/users'))       
     // ).subscribe()
+
+    // return usersEvent   
 
   }
 
