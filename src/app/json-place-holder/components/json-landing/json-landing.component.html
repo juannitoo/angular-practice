@@ -6,10 +6,14 @@
  l'objet soi disant créé, updaté et supprimé alors c'est suffisant pour 
  m'exercer.</p>
  <p><i>EDIT : Après moults batailles à essayer d'afficher mon user créé dans la liste de users affichés,
-   via @output() event emitter, http post, ou encore query params, j'abandone et je l'affiche 
-   sur la même page. Il y aurait l'option de passer par le module shared, ou encore subject
-   mais j'ai d'autres choses plus simples à voir et comprendre avant. Je fignole donc un peu et je vais dégainer 
-   le module node json-server qui me permettra de réellement me mettre en situation.
+    via @output() event emitter, http post, ou encore query params, j'abandone et je l'affiche 
+    sur la même page. Il y aurait l'option de passer par le module shared, ou encore subject
+    mais j'ai d'autres choses plus simples à voir et comprendre avant. Je fignole donc un peu et je vais dégainer 
+    le module node json-server qui me permettra de réellement me mettre en situation.
+    Bon finalement je suis passé par le service où je gère le simili CRUD sauf le update. 
+    Le hack, c'est que je shunte l'appel http du service pour retourner les nouveaux objets créés.
+    Donc j'ai un comportement qui ressemble à un comportement normal. meme si je ne peux pas afficher 
+    les nouveaux objets de façon uniques (/users/xx) sans continuer les modifs partout.
  </i></p>
  <p>Voilà un exemple de routes possibles :</p>
  <code>

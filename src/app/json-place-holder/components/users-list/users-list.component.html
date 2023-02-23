@@ -1,5 +1,7 @@
-<p>Les users de JsonPlaceholder :</p>
-<a routerLink="create">Ajouter un User</a>
-<article>
-    <app-user *ngFor="let x of users | async" (usersChange)="users=$event" [user]="x"></app-user>
-</article>
+<div class="container">
+    <p>Les users de JsonPlaceholder :</p>
+    <a routerLink="create">Ajouter un User</a>
+    <article>
+        <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+    </article>
+</div>

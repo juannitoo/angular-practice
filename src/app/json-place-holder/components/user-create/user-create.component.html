@@ -8,26 +8,6 @@
             <label for="username">Pseudo :</label>
             <input type="text" class="input-text" id="username" formControlName="username">
         </div>
-        <!-- <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="text" class="input-text" id="email" formControlName="email">
-        </div>
-        <div class="form-group">
-            <label for="city">Ville :</label>
-            <input type="text" class="input-text" id="city" formControlName="city">
-        </div>
-        <div class="form-group">
-            <label for="phone">Tel :</label>
-            <input type="text" class="input-text" id="phone" formControlName="phone">
-        </div>
-        <div class="form-group">
-            <label for="website">Site web :</label>
-            <input type="text" class="input-text" id="website" formControlName="website">
-        </div>
-        <div class="form-group">
-            <label for="company">Entreprise : </label>
-            <input type="text" class="input-text" id="company" formControlName="company">
-        </div> -->
 
         <div class="action-buttons">
             <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
@@ -35,11 +15,12 @@
     </form>
 </div>
 
-<div *ngIf="newUser">
+<!-- <div *ngIf="newUser">
     <p> Et voilà le nouveau User retourné par l'API avec un faux id</p>
     <article *ngIf="newUser as u" class="box-user">
         <p id="name">{{ u.name }}</p>
         <p class="details maj">Id : {{ u.id }}</p>
         <p class="details">pseudo : {{ u.username }}</p>
     </article>
-</div>
+    <p><a class="retour" routerLink="../">Retour</a></p>
+</div> -->
