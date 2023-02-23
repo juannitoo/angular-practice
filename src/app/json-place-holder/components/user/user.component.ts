@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { tap, map} from 'rxjs/operators';
+import { tap, map, switchMap, delay} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -16,6 +16,10 @@ export class UserComponent implements OnInit {
 
   // enfant de la liste de user-list
   @Input() user!: User;
+
+  // simulation delete
+  @Output()
+  usersChange : EventEmitter<Observable<User[]>> = new EventEmitter<Observable<User[]>>()
 
   // lorsque url par ex user/1
   user$! : Observable<User>;
@@ -74,7 +78,7 @@ export class UserComponent implements OnInit {
     // console.log("000 :")
     // const usersEvent: any =  this.usersService.deleteUser(userId).pipe(
     //   tap((e)=>console.log("111 :",e)),
-    //   switchMap( ():Observable<any> => { return this.usersService.getUsers().pipe(
+    //   switchMap( ():Observable<User[]> => { return this.usersService.getUsers().pipe(
     //             map( utilisateurs => [...utilisateurs]),
     //             map( (utilisateurs) => { 
     //               const index = utilisateurs.findIndex((u)=> u.id === userId);
@@ -84,14 +88,11 @@ export class UserComponent implements OnInit {
     //           )
     //     }
     //   ),
-    //   tap((e)=>console.log("222 :",e)),
-    //   tap((e)=>this.usersEvent.emit(usersEvent)),
-    //   // map((users) => {
-    //   //   this.http.post<User[]>('json-place-holder/users',
-    //   //     JSON.parse(users)
-    //   //   )
-    //   // }),
-    //   tap( () => this.router.navigateByUrl('jsonplaceholder/users'))       
+    //   tap( (utilisateurs)=>console.log("222 :",utilisateurs) ),
+    //   map( (utilisateurs)=>of(utilisateurs) ) ,
+    //   tap( () => this.router.navigateByUrl('jsonplaceholder/users')), 
+    //   delay(2000),      
+    //   map( (utilisateurs)=>this.usersChange.emit(utilisateurs)) ,
     // ).subscribe()
 
     // return usersEvent   
