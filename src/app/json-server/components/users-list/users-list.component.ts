@@ -12,11 +12,11 @@ export class UsersListComponent implements OnInit {
 
   constructor( private JsUsersService: JsUsersService) { }
 
-  users! : Observable<User[]>;
+  users$! : Observable<User[]>;
 
 
   ngOnInit(): void {
-    this.users = this.JsUsersService.getUsers()
+    this.users$ = this.JsUsersService.getUsers()
   }
 
 }

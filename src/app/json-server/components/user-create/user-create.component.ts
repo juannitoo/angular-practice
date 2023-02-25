@@ -55,7 +55,9 @@ export class UserCreateComponent implements OnInit {
     }
     this.jsUsersService.addUser(userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
-    ).subscribe()
+    ).subscribe({
+      error: (error) => console.error(`erreur dans onSubmitForm() json-server/users/create : ${error}`)
+    })
   }
 
 }

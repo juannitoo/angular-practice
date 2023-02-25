@@ -44,7 +44,9 @@ export class UserUpdateComponent implements OnInit {
           this.userForm.controls['companyName'].setValue(user.company?.name)
         }
       )
-    ).subscribe()
+    ).subscribe({
+      error: (error) => console.error(`erreur dans ngOnInit getUser() jsonserver/users/update : ${error}`)
+    })
     
   }
 
@@ -73,7 +75,9 @@ export class UserUpdateComponent implements OnInit {
     }
     this.jsUsersService.updateUser( userId, userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
-    ).subscribe()
+    ).subscribe({
+      error: (error) => console.error(`erreur dans onSubmitForm() jsonserver/users/update : ${error}`)
+    })
   }
 
 }

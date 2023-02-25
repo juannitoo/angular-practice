@@ -1,28 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap, catchError, timer, retry } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class JsUsersService {
 
     constructor( private http : HttpClient ) { }
 
     getUsers(): Observable<User[]> {
-        return this.http.get<User[]>('http://localhost:3000/users');
+        return this.http.get<User[]>('http://localhost:3000/users').pipe(
+            retry({
+                count: 2,
+                delay: () => {
+                  console.log('service getUsers() Fail, retest...');
+                  return timer(500);
+                },
+            }),
+            catchError( err => { throw `erreur service getUsers(): ${err}` })
+        )
     }
 
     getUser(userId: number): Observable<User> {
-        return this.http.get<User>(`http://localhost:3000/users/${userId}`);
+        return this.http.get<User>(`http://localhost:3000/users/${userId}`).pipe(
+            retry({
+                count: 2,
+                delay: () => {
+                  console.log('service getUser() Fail, retest...');
+                  return timer(500);
+                },
+            }),
+            catchError( err => { throw `erreur service getUser(): ${err}` })
+        );
     }
     
     deleteUser(userId: number): Observable<any>{
         return this.http.delete<User>(`http://localhost:3000/users/${userId}`,{
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        });
+        }).pipe(
+            retry({
+                count: 2,
+                delay: () => {
+                  console.log('service deleteUser() Fail, retest...');
+                  return timer(500);
+                },
+            }),
+            catchError( err => { throw `erreur service deleteUser(): ${err}` })
+        )
     }
 
     addUser(formValue: FormData ): Observable<User>{
@@ -38,7 +63,15 @@ export class JsUsersService {
                 newUser,{
                 headers: new HttpHeaders({ 'Content-Type': 'application/json' })
                 })
-           )
+           ),
+           retry({
+            count: 2,
+            delay: () => {
+              console.log('service addUser() Fail, retest...');
+              return timer(500);
+            },
+        }),
+           catchError( err => { throw `erreur service addUser(): ${err}` })
         )
     }
 
@@ -54,7 +87,15 @@ export class JsUsersService {
                 updatedUser,{
                 headers: new HttpHeaders({ 'Content-Type': 'application/json' })
                 })
-            )
+            ),
+            retry({
+                count: 2,
+                delay: () => {
+                  console.log('service updateUsers() Fail, retest...');
+                  return timer(500);
+                },
+            }),
+            catchError( err => { throw `erreur service updateUser(): ${err}` })
         )
     }
     

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -33,11 +33,11 @@ export class UserComponent implements OnInit {
     }
   }
   
-  showUser(userId : number){
+  showUser(userId : number): Promise<boolean>{
     return this.router.navigateByUrl(`json-server/users/${userId}`);
   }
 
-  backToList(){
+  backToList(): Promise<boolean>{
     return this.router.navigateByUrl('json-server/users');
   }
 
@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
     return this.jsUsersService.getUser(userId);
   }
 
-  updateUser(userId:number){
+  updateUser(userId:number): Promise<boolean>{
     return this.router.navigateByUrl(`json-server/users/update/${userId}`);
   }
 
@@ -54,8 +54,10 @@ export class UserComponent implements OnInit {
     return this.jsUsersService.deleteUser(userId)
     .pipe(
       tap(() => console.log("user supprimé !") ),
-      map( () => this.router.navigateByUrl('json-server/users'))
-    ).subscribe();
+      map( () => this.router.navigateByUrl('json-server/users')),
+    ).subscribe({
+      error: (error) => console.error(`erreur dans delUser() json-server/users/: ${error}`)
+    });
 
   }
 

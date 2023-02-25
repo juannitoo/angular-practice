@@ -4,6 +4,6 @@
 </section>
 <section>
     <div class="wrapper">
-        <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+        <app-user *ngFor="let x of users$ | async" [user]="x"></app-user>
     </div>
 </section>
