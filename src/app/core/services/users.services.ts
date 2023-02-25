@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, switchMap, of } from 'rxjs';
+import { Observable, tap, map, switchMap, of, filter, catchError } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})export class UsersService {
+@Injectable()
+export class UsersService {
 
     private users$! : any
 
@@ -20,7 +19,40 @@ import { Router } from '@angular/router';
     }
 
     getUser(userId: number): Observable<User> {
+        // console.log('000')
         return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
+
+        // if (!this.users$) return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
+        // else { 
+        //     console.log('111')
+        //     of(this.users$).pipe(
+        //         // tap( (val) => console.log('eee',val) ),
+        //         filter( (user:User) => user.id === userId ),
+        //         // tap( (val) => console.log('fff',val) ),
+        //         catchError(err => {
+        //             throw 'erreur getUser(): ' + err;
+        //         })
+        //     ).subscribe({
+        //         next: (val:any) => console.log('subscribe', val),
+        //         error: (err:any) => console.log('subscribe err',err)
+        //     })
+        //     console.log('222', this.users$)
+        //     return of(this.users$)
+        // }
+
+        ///  ------------------ autre tentative   
+        // const utilisateur = this.users$.subscribe((users:User[])=>{
+        //     console.log(users)
+        //     const user = (users.filter((user:User) => user.id === userId))[0]
+        //     console.log(user)
+        //     let util = of(user)
+        //     console.log(util)
+        //     return util
+        //     // et ca ne fonctionne pas ... object object avec | async ds template ... 
+        //     // type subscription en fait
+        // })
+        // return utilisateur
+        
     }
     
     deleteUser(userId: number): Observable<User[]>{

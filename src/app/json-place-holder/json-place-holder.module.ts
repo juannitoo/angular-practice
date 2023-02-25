@@ -6,6 +6,7 @@ import { JsonPlaceHoldeRoutingModule } from './json-place-holder-routing.module'
 import { UserComponent } from './components/user/user.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from '../core/services/users.services';
 
 
 
@@ -20,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     JsonPlaceHoldeRoutingModule,
     ReactiveFormsModule
+  ],
+  providers:[
+    UsersService
   ]
 })
 export class JsonPlaceHolderModule { }
