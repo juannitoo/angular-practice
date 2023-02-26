@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
@@ -15,6 +15,8 @@ export class UserUpdateComponent implements OnInit {
 
   userForm! : FormGroup
   userId! : number
+
+  private userFormUpdateObs!: Subscription
 
   constructor( private formBuilder: FormBuilder,
                 private jsUsersService: JsUsersService,
@@ -73,11 +75,15 @@ export class UserUpdateComponent implements OnInit {
       username: userFormValues.username,
       website: userFormValues.website
     }
-    this.jsUsersService.updateUser( userId, userValues).pipe(
+    this.userFormUpdateObs = this.jsUsersService.updateUser( userId, userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
     ).subscribe({
       error: (error) => console.error(`erreur dans onSubmitForm() jsonserver/users/update : ${error}`)
     })
+  }
+
+  ngOnDestroy(): void {
+    this.userFormUpdateObs.unsubscribe()
   }
 
 }

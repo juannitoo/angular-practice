@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
@@ -10,13 +11,16 @@ import { JsUsersService } from 'src/app/core/services/js-users.services';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.scss']
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit, OnDestroy {
 
   userForm! : FormGroup
+
+  private userCreateFormObs!: Subscription
 
   constructor( private formBuilder: FormBuilder,
                 private jsUsersService: JsUsersService,
                 private router: Router ) { }
+
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -27,9 +31,10 @@ export class UserCreateComponent implements OnInit {
       phone : [null],
       website : [null],
       companyName : [null]
-    });
+    })
   }
 
+  
   onSubmitForm(): any {
     // comme j'ai pas mis les champs de form qui correspondent 
     // au modèle des users complets, je triche ...
@@ -53,11 +58,18 @@ export class UserCreateComponent implements OnInit {
       username: userFormValues.username,
       website: userFormValues.website
     }
-    this.jsUsersService.addUser(userValues).pipe(
+    this.userCreateFormObs = this.jsUsersService.addUser(userValues).pipe(
       tap(() => this.router.navigateByUrl('json-server/users'))
     ).subscribe({
       error: (error) => console.error(`erreur dans onSubmitForm() json-server/users/create : ${error}`)
     })
   }
 
+  ngOnDestroy(): void {
+    this.userCreateFormObs.unsubscribe()
+  }
+    
 }
+  
+
+

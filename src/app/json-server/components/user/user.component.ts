@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,6 +19,8 @@ export class UserComponent implements OnInit {
 
   // lorsque url par ex user/1
   user$! : Observable<User>;
+
+  private delUserObs!: Subscription
 
 
   constructor(private jsUsersService: JsUsersService,
@@ -51,14 +53,18 @@ export class UserComponent implements OnInit {
   }
 
   delUser(userId: number){
-    return this.jsUsersService.deleteUser(userId)
+    return this.delUserObs = this.jsUsersService.deleteUser(userId)
     .pipe(
-      tap(() => console.log("user supprimé !") ),
       map( () => this.router.navigateByUrl('json-server/users')),
     ).subscribe({
       error: (error) => console.error(`erreur dans delUser() json-server/users/: ${error}`)
     });
+  }
 
+  ngOnDestroy(): void {
+    if (this.delUserObs !== undefined) {
+      this.delUserObs.unsubscribe()
+    }
   }
 
 }
