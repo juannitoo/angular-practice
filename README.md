@@ -18,6 +18,7 @@ Voilà synthétiquement où j'en suis :
 Ce que j'ai à faire :
 - [ ] State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
 - [ ] Material UI pour appréhender l'outil et avoir une finition professionnelle
+- [ ] TESTS !!!!!
 
 Et apreès selon votre bon vouloir :
 - [ ] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple, où
