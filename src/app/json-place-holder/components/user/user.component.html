@@ -1,8 +1,9 @@
-<article *ngIf="user" class="box">
+<!-- <article *ngIf="user" class="box">
   <p class="name">{{ user.name }}</p>
   <p class="details">Id : <b>{{ user.id }}</b> -- pseudo : <b><span id="pseudo">{{ user.username }}</span></b></p>
   <button (click)="showUser(user.id)" class="afficher">Afficher</button>
 </article>
+
 <article *ngIf="user$ | async as u" class="box-user">
   <p id="name">{{ u.name }}</p>
   <p class="details maj">Id : {{ u.id }}</p>
@@ -16,5 +17,43 @@
   <button (click)="delUser(u.id)">Supprimer</button><br />
   <button (click)="backToList()">Fermer</button>
   <p *ngIf="modifUser">Pour la modification / suppression il faut voir du côté json-server</p>
-</article>
+</article> -->
 
+<!-- <mat-icon>send</mat-icon> -->
+
+<mat-card *ngIf="user" class="box">
+  <mat-card-content class="user-list-item">
+    <h5 class="name" >{{ user.name }}</h5>
+    <p><b>{{ user.id }}</b> - <b><span title="pseudo">{{ user.username }}</span></b></p>
+  </mat-card-content>
+  <!-- <mat-card-actions>   
+    <button mat-icon-button color="primary" appearance="fill" (click)="showUser(user.id)" class="afficher">
+      <mat-icon>visibility</mat-icon>
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </mat-card-actions> -->
+  <svg (click)="showUser(user.id)" class="afficher" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+    <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+  </svg>
+</mat-card>
+
+
+<!-- <mat-icon [svgIcon]="'chevronRight'" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon> -->
+
+
+<mat-card *ngIf="user$ | async as u" class="box-user">
+  <p id="name">{{ u.name }}</p>
+  <p class="details maj">Id : {{ u.id }}</p>
+  <p class="details">pseudo : {{ u.username }}</p>
+  <p *ngIf="u.email" class="details">Email : {{ u.email }}</p>
+  <p *ngIf="u.address" class="details">Ville : {{ u.address.city }}</p>
+  <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
+  <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
+  <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
+  <mat-card-actions>
+    <button (click)="updateUser(u.id, formvalue)">Modifier</button>
+    <button (click)="delUser(u.id)">Supprimer</button><br />
+    <button (click)="backToList()">Fermer</button>
+  </mat-card-actions>
+  <p *ngIf="modifUser">Pour la modification / suppression il faut voir du côté json-server</p>
+</mat-card>

@@ -1,11 +1,12 @@
 .box{
     box-sizing: border-box;
     background-color: rgb(240, 240, 240);
-    margin: 2.5%;
-    padding: 0.2em;
-    display: inline-block;
-    width: 45%;
+    width: 520px;
     box-shadow: 4px 4px 10px rgb(195, 195, 195);
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -18,21 +19,20 @@
     box-shadow: 4px 4px 10px rgb(170, 170, 170);
 }
 
-#name{
-    display: block;
-    font-size : 0.9em;
-    margin: 0 0 0 0.3em;
+.name{
+    font-size : 1em;
 }
 
-.details{
-    display: block;
-    font-size : 0.7em;
-    height : 1.5em;
-    margin: 0 0 0em 0.5em;
+.user-list-item{
+    font-size : 1em;
 }
 
-button {
-    width : 100px;
-    font-size : 0.8em;
-    margin : 0.2em;
+.afficher{
+    border: none;
+    width: 20px;
+    // scale: 3;
+    margin-right: 2em;
+    &:hover{
+        cursor: pointer;
+    }
 }
