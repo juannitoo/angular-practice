@@ -7,6 +7,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../core/services/users.services';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -20,7 +21,8 @@ import { UsersService } from '../core/services/users.services';
   imports: [
     CommonModule,
     JsonPlaceHoldeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers:[
     UsersService
