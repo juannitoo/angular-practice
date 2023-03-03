@@ -27,11 +27,9 @@
     font-size : 1em;
 }
 
-.afficher{
+.show{
     border: none;
-    width: 20px;
-    // scale: 3;
-    margin-right: 2em;
+    scale: 2;
     &:hover{
         cursor: pointer;
     }
