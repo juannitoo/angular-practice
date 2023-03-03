@@ -30,6 +30,9 @@ export class UserComponent implements OnInit {
   // hack update
   formvalue!: string;
 
+  //material accordion
+  panelOpenState = false;
+
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
@@ -49,9 +52,9 @@ export class UserComponent implements OnInit {
     return this.router.navigateByUrl(`jsonplaceholder/users/${userId}`);
   }
 
-  backToList(){
-    return this.router.navigateByUrl('jsonplaceholder/users');
-  }
+  // backToList(){
+  //   return this.router.navigateByUrl('jsonplaceholder/users');
+  // }
 
   //CRUD
   getUser(userId:number): Observable<User> {
@@ -63,13 +66,18 @@ export class UserComponent implements OnInit {
     .pipe(
       tap(() =>  this.modifUser = true ),
       tap(() => console.log("user updaté !") ),
+      delay(6000),
+      tap(() =>  this.modifUser = false ),
       // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
   }
 
   delUser(userId: number){
     return this.usersService.deleteUser(userId).pipe(
-      map( () => this.router.navigateByUrl('jsonplaceholder/users'))
+      tap(() =>  this.modifUser = true ),
+      delay(6000),
+      tap(() =>  this.modifUser = false ),
+      // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     ).subscribe();
   }
 

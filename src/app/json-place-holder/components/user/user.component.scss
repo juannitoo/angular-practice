@@ -1,36 +1,49 @@
-.box{
+mat-accordion{
+    margin-bottom : 10px;
+}
+
+mat-expansion-panel{
+    width: 100%;
+    margin-top : 20px;
+    margin-bottom : 20px;
+}
+
+mat-panel-title{
+    margin-left: 8px;
+}
+
+mat-panel-description{
+    width: 35%
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.details{
+    width: 100%;
+    height: 100%;
+    font-size: 1.3em;
+}
+
+.opened{
+    background-color: rgb(245, 245, 235);
+}
+
+.intitule{
     box-sizing: border-box;
-    background-color: rgb(240, 240, 240);
-    width: 520px;
-    box-shadow: 4px 4px 10px rgb(195, 195, 195);
-    margin-top: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: inline-block;
+    width: 45%;
+    margin-left: 10%;
 }
 
-
-.box-user{
-    background-color: rgb(240,240,240);
-    width : 50%;
-    margin: 2em auto;
-    padding: 0.4em;
-    border-radius: 5px;
-    box-shadow: 4px 4px 10px rgb(170, 170, 170);
+.margin-left{
+    margin-left: 10%;
 }
 
-.name{
-    font-size : 1em;
-}
-
-.user-list-item{
-    font-size : 1em;
-}
-
-.show{
-    border: none;
-    scale: 2;
-    &:hover{
-        cursor: pointer;
-    }
+.actions{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 45%;
 }

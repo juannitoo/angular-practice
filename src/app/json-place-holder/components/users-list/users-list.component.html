@@ -1,6 +1,6 @@
 <div class="container">
-    <p>Les users de JsonPlaceholder :</p>
-    <a routerLink="create">Ajouter un User</a>
+    <p class="align-center">Les users de JsonPlaceholder :</p>
+    <a class="align-center" routerLink="create">Ajouter un User</a>
     <article>
         <app-user *ngFor="let x of users | async" [user]="x"></app-user>
     </article>

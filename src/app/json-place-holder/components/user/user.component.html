@@ -1,33 +1,63 @@
-<!-- <article *ngIf="user" class="box">
-  <p class="name">{{ user.name }}</p>
-  <p class="details">Id : <b>{{ user.id }}</b> -- pseudo : <b><span id="pseudo">{{ user.username }}</span></b></p>
-  <button (click)="showUser(user.id)" class="afficher">Afficher</button>
-</article> -->
+<mat-accordion>
 
-<mat-card *ngIf="user" class="box" (click)="showUser(user.id)">
-  <mat-card-content class="user-list-item">
-    <h5 class="name" >{{ user.name }}</h5>
-    <p><b>{{ user.id }}</b> - <b><span title="pseudo">{{ user.username }}</span></b></p>
-  </mat-card-content>
-  <mat-card-actions>   
-    <mat-icon class="show">chevron_right</mat-icon>
-  </mat-card-actions>
-</mat-card>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false"
+                       *ngIf="user"
+                       [ngClass]="{ 'opened': panelOpenState === true}">
 
+    <mat-expansion-panel-header>
+        <mat-panel-title class="bold">
+          {{ user.id }}
+        </mat-panel-title>
+        <mat-panel-description class="bold">
+          {{ user.name }}       
+        </mat-panel-description>
+        <mat-panel-description class="bold">
+          {{ user.username }}       
+        </mat-panel-description>
+    </mat-expansion-panel-header>
 
-<mat-card *ngIf="user$ | async as u" class="box-user">
-  <p id="name">{{ u.name }}</p>
-  <p class="details maj">Id : {{ u.id }}</p>
-  <p class="details">pseudo : {{ u.username }}</p>
-  <p *ngIf="u.email" class="details">Email : {{ u.email }}</p>
-  <p *ngIf="u.address" class="details">Ville : {{ u.address.city }}</p>
-  <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
-  <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
-  <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
-  <mat-card-actions>
-    <button (click)="updateUser(u.id, formvalue)">Modifier</button>
-    <button (click)="delUser(u.id)">Supprimer</button><br />
-    <button (click)="backToList()">Fermer</button>
-  </mat-card-actions>
-  <p *ngIf="modifUser">Pour la modification / suppression il faut voir du côté json-server</p>
-</mat-card>
+    <!-- I'm visible because I am open -->
+    <article class="details">
+      <p *ngIf="user.email" class="box">   
+        <span class="intitule">Email :</span>          
+        {{ user.email }}
+      </p>
+      <p *ngIf="user.address" class="box"> 
+        <span class="intitule">Ville :</span>          
+        {{ user.address.city }}
+      </p>
+      <p *ngIf="user.phone" class="box">   
+        <span class="intitule">Tel :</span>            
+        {{ user.phone }}
+      </p>
+      <p *ngIf="user.website" class="box"> 
+        <span class="intitule">Site Internet :</span>  
+        {{ user.website }}
+      </p>
+      <p *ngIf="user.company" class="box"> 
+        <span class="intitule">Entreprise :</span>     
+        {{ user.company.name }}
+      </p>
+      <p>
+        <span class="margin-left actions" >
+          <button mat-raised-button color="primary" (click)="updateUser(user.id, formvalue)">
+            <mat-icon>edit</mat-icon> Modifier
+          </button>
+        </span>
+
+        <span class="actions">
+          <button mat-raised-button color="warn" (click)="delUser(user.id)">
+            <mat-icon>delete</mat-icon> Supprimer
+          </button>
+        </span>
+        
+      </p>
+      <p *ngIf="modifUser">Pour la modification / suppression il faut voir du côté json-server, 
+        en attendant behaviorSubject et le state management reactif qui arrivent.
+      </p>
+    </article>
+    <!-- <button (click)="backToList()">Fermer</button> -->
+  </mat-expansion-panel>
+
+</mat-accordion>

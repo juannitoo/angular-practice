@@ -4,14 +4,11 @@
     padding-top: 2em;
 }
 
-p, a {
+.align-center {
     display: block;
-    text-align:center;
+    text-align: center;
 }
+
 article{
     margin-top:2em;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: space-around;
 }
