@@ -3,7 +3,7 @@ import { Company } from "../interfaces/user-company.inteface";
 
 export class User {
     id!: number;
-    name!: string;
+    name?: string;
     username?: string;
     email?: string;
     address?: Address;

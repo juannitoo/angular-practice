@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserComponent implements OnInit {
 
@@ -73,12 +74,12 @@ export class UserComponent implements OnInit {
   }
 
   delUser(userId: number){
-    return this.usersService.deleteUser(userId).pipe(
-      tap(() =>  this.modifUser = true ),
-      delay(6000),
-      tap(() =>  this.modifUser = false ),
-      // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
-    ).subscribe();
+    // return this.usersService.deleteUser(userId).pipe(
+    //   tap(() =>  this.modifUser = true ),
+    //   delay(6000),
+    //   tap(() =>  this.modifUser = false ),
+    //   // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
+    // ).subscribe();
   }
 
 
