@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/core/services/users.services';
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserCreateComponent implements OnInit {
 

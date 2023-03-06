@@ -26,7 +26,8 @@ export class UsersService {
                 tap(users=>{
                     this._users$.next(users)
                     console.log("userrService getUsers() via http get")
-                })
+                }),
+                catchError(err => { throw 'erreur getUsers(): ' + err })
             ).subscribe()
         } else {
             console.log("userrService getUsers() sans http get, vive le BehaviorSubject !")
@@ -34,45 +35,27 @@ export class UsersService {
     }
 
     
-    getUser(userId: number): Observable<User> {
-        // console.log('000')
-        return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
-
-        // if (!this.users$) return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
-        // else { 
-        //     console.log('111')
-        //     of(this.users$).pipe(
-        //         // tap( (val) => console.log('eee',val) ),
-        //         filter( (user:User) => user.id === userId ),
-        //         // tap( (val) => console.log('fff',val) ),
-        //         catchError(err => {
-        //             throw 'erreur getUser(): ' + err;
-        //         })
-        //     ).subscribe({
-        //         next: (val:any) => console.log('subscribe', val),
-        //         error: (err:any) => console.log('subscribe err',err)
-        //     })
-        //     console.log('222', this.users$)
-        //     return of(this.users$)
-        // }
-        
+    getUser(userId: Number): Observable<User>{
+        if (this._users$.value.length === 0 ) return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
+        else { 
+            return this.users$.pipe(
+                map( users => users.filter(user => user.id === userId )[0]),
+                catchError(err => {
+                    throw 'erreur getUser(): ' + err;
+                })
+            )          
+        }       
     }
     
-    deleteUser(userId: number){  //: Observable<User[]>
-        // return this.http.delete<User>(`https://jsonplaceholder.typicode.com/users/${userId}`).pipe(
-        //     switchMap( () => { 
-        //                 return this.getUsers().pipe(
-        //                 map( utilisateurs => [...utilisateurs]),
-        //                 map( (utilisateurs) => { 
-        //                     const index = utilisateurs.findIndex((u)=> u.id === userId);
-        //                     utilisateurs.splice(index,1);
-        //                     this.users$ = of(utilisateurs)
-        //                     return this.users$
-        //                 })
-        //             )
-        //         }
-        //     ),
-        // );
+    deleteUser(userId: number){  
+        this.users$.pipe(
+            map( (users) => { 
+                const index = users.findIndex((u)=> u.id === userId);
+                users.splice(index,1);
+                return of(users)
+            }),
+            catchError(err => { throw 'erreur deleteUser(): ' + err })
+        ).subscribe()   
     }
 
 
@@ -88,15 +71,31 @@ export class UsersService {
                 return of(users.push(user))
             }),
             map( () => this.router.navigateByUrl('jsonplaceholder/users')),
+            catchError(err => { throw 'erreur addUser(): ' + err })
         ).subscribe()
-
     }
 
-
-
-    updateUser(userId: number, formValue: string ): Observable<User>{
-        return this.http.put<User>(`https://jsonplaceholder.typicode.com/users/${userId}`,
-        formValue);
+    updateUser(userId: Number, formValue: any){
+        // this.getUser(userId).pipe(
+        //     map( user => {
+        //         user.name = formValue.name
+        //         user.username = formValue.username
+        //         user.email = formValue.email
+        //         user.address = formValue.addressCity
+        //         user.phone = formValue.phone
+        //         user.website = formValue.website
+        //         user.company = formValue.companyName
+        //     }),
+        //     switchMap()
+        // ).subscribe()
+        
+        // return this.http.put<User>(`https://jsonplaceholder.typicode.com/users/${userId}`,
+        // formValue);
     }
     
+
+
+
+
+
 }

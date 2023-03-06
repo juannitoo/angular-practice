@@ -8,6 +8,7 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../core/services/users.services';
 import { SharedModule } from '../shared/shared.module';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 
 
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     JsonLandingComponent,
     UsersListComponent,
     UserComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
     CommonModule,

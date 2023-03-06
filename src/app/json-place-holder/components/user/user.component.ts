@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   usersChange : EventEmitter<Observable<User[]>> = new EventEmitter<Observable<User[]>>()
 
   // lorsque url par ex user/1
-  user$! : Observable<User>;
+  user$! : Observable<User | undefined>;
 
   // pour palier à l'update manquant
   modifUser! : boolean
@@ -43,14 +43,14 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     const userId = +this.route.snapshot.params['id'];
     if (userId) {
-      this.user$ = this.getUser(userId);
+      this.user$ = this.onGetUser(userId);
     }
     this.modifUser = false
     this.formvalue =""; 
   }
   
   showUser(userId : number){
-    return this.router.navigateByUrl(`jsonplaceholder/users/${userId}`);
+    return this.router.navigateByUrl(`jsonplaceholder/users/update/${userId}`)
   }
 
   // backToList(){
@@ -58,28 +58,23 @@ export class UserComponent implements OnInit {
   // }
 
   //CRUD
-  getUser(userId:number): Observable<User> {
-    return this.usersService.getUser(userId);
+  onGetUser(userId:number): Observable<User> {
+    return this.usersService.getUser(userId)
   }
 
-  updateUser(userId:number, formValue: string){
-    return this.usersService.updateUser(userId, formValue)
-    .pipe(
-      tap(() =>  this.modifUser = true ),
-      tap(() => console.log("user updaté !") ),
-      delay(6000),
-      tap(() =>  this.modifUser = false ),
-      // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
-    ).subscribe();
-  }
-
-  delUser(userId: number){
-    // return this.usersService.deleteUser(userId).pipe(
+  // updateUser(userId:number, formValue: string){
+    // return this.usersService.updateUser(userId, formValue)
+    // .pipe(
     //   tap(() =>  this.modifUser = true ),
+    //   tap(() => console.log("user updaté !") ),
     //   delay(6000),
     //   tap(() =>  this.modifUser = false ),
     //   // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
     // ).subscribe();
+  // }
+
+  onDelUser(userId: number){
+    return this.usersService.deleteUser(userId)
   }
 
 

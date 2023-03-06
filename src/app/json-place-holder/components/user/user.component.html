@@ -41,13 +41,13 @@
       </p>
       <p>
         <span class="margin-left actions" >
-          <button mat-raised-button color="primary" (click)="updateUser(user.id, formvalue)">
+          <button mat-raised-button color="primary" (click)="showUser(user.id)">
             <mat-icon>edit</mat-icon> Modifier
           </button>
         </span>
 
         <span class="actions">
-          <button mat-raised-button color="warn" (click)="delUser(user.id)">
+          <button mat-raised-button color="warn" (click)="onDelUser(user.id)">
             <mat-icon>delete</mat-icon> Supprimer
           </button>
         </span>
