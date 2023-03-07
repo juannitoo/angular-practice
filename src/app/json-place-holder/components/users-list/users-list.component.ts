@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { Observable } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.services';
@@ -6,7 +6,8 @@ import { UsersService } from 'src/app/core/services/users.services';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent implements OnInit { 
 
@@ -15,7 +16,6 @@ export class UsersListComponent implements OnInit {
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
-    // this.users = this.usersServ.getUsers()
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
   }

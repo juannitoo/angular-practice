@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, switchMap, of, filter, catchError, BehaviorSubject } from 'rxjs';
+import { Observable, tap, map, of, catchError, BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 
@@ -75,22 +75,38 @@ export class UsersService {
         ).subscribe()
     }
 
+
     updateUser(userId: Number, formValue: any){
-        // this.getUser(userId).pipe(
-        //     map( user => {
-        //         user.name = formValue.name
-        //         user.username = formValue.username
-        //         user.email = formValue.email
-        //         user.address = formValue.addressCity
-        //         user.phone = formValue.phone
-        //         user.website = formValue.website
-        //         user.company = formValue.companyName
-        //     }),
-        //     switchMap()
-        // ).subscribe()
+        this.getUser(userId).pipe(
+            map( user => {
+                user.name = formValue.name
+                user.username = formValue.username
+                user.email = formValue.email
+                if (user.address?.city) 
+                    user.address.city = formValue.address.city
+                else
+                    // Ah il a pas, il m'embête, je vais lui expliquer
+                    Object.defineProperty(user, 'address',{
+                        value : {
+                            "city" : formValue.address.city
+                        }
+                    })                  
+                user.phone = formValue.phone
+                user.website = formValue.website
+                if (user.company?.name) 
+                    user.company.name = formValue.company.name
+                else
+                    Object.defineProperty(user, 'company',{
+                        value : {
+                            "name" : formValue.address.city
+                        }
+                    }) 
+                return of(user)
+            }),
+            map( () => this.router.navigateByUrl('jsonplaceholder/users')),
+            catchError(err => { throw 'erreur updateUser(): ' + err })
+        ).subscribe()
         
-        // return this.http.put<User>(`https://jsonplaceholder.typicode.com/users/${userId}`,
-        // formValue);
     }
     
 

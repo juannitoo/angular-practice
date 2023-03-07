@@ -53,25 +53,10 @@ export class UserComponent implements OnInit {
     return this.router.navigateByUrl(`jsonplaceholder/users/update/${userId}`)
   }
 
-  // backToList(){
-  //   return this.router.navigateByUrl('jsonplaceholder/users');
-  // }
-
   //CRUD
   onGetUser(userId:number): Observable<User> {
     return this.usersService.getUser(userId)
   }
-
-  // updateUser(userId:number, formValue: string){
-    // return this.usersService.updateUser(userId, formValue)
-    // .pipe(
-    //   tap(() =>  this.modifUser = true ),
-    //   tap(() => console.log("user updaté !") ),
-    //   delay(6000),
-    //   tap(() =>  this.modifUser = false ),
-    //   // map( () => this.router.navigateByUrl('jsonplaceholder/users'))
-    // ).subscribe();
-  // }
 
   onDelUser(userId: number){
     return this.usersService.deleteUser(userId)

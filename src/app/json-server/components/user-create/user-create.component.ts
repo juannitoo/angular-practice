@@ -36,7 +36,7 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   
   onSubmitForm(): any {
-    // comme j'ai pas mis les champs de form qui correspondent 
+    // comme je n'ai pas mis les champs de form qui correspondent 
     // au modèle des users complets, je triche ...
     const userFormValues = this.userForm.value
     const userValues: any = {
@@ -65,8 +65,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
     })
   }
 
+  backToList(): void{
+    this.router.navigate(['json-server','users'])
+  }
+
   ngOnDestroy(): void {
-    this.userCreateFormObs.unsubscribe()
+    // this.userCreateFormObs.unsubscribe()
+    // le lien de retour ne fonctionne dans aucun cas sinon, WTF ?
   }
     
 }

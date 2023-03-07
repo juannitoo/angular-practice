@@ -1,5 +1,5 @@
 <section>
-    <p><a routerLink="/json-server/users" class="retour">Retour</a></p>
+    <p class="retour" (click)="backToList()">Retour</p>
     <form [formGroup]="userForm" class="box-user">
         <div class="form-group">
             <label for="name">Nom :</label>

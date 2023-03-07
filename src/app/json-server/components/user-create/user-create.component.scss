@@ -57,6 +57,8 @@ button {
   color: #3d3de9;
   text-decoration: none;
   font-weight: bold;
+  font-size : 1.2em;
+  cursor: pointer;
   &:hover {
       text-decoration: underline;
   }

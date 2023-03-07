@@ -1,26 +1,28 @@
 # Test d'Angular via l'API REST JsonplaceHolder et json-server
+### STEP 1
 CRUD sur json-server, architecture modulaire, service, interfaces, routage et lazy loading pour l'instant.
 C'est une démo pour me familiariser avec Angular.
 Manque principalement pour l'instant la gestion des erreurs et des tests.
 
-EDIT: Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai continué mon apprentissage et 
-je vais donc mettre en place sur la partie jsonPlaceHolder le state management reactif perso via l'utilisation
-des Behaviorsubject, vu que c'est ce que j'essayais de faire sans savoir que cela existait ! 
-Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que
-survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
+### STEP 2
+Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai continué mon apprentissage et je vais donc mettre en place sur la partie jsonPlaceHolder le state management reactif perso via l'utilisation des Behaviorsubject, vu que c'est ce que j'essayais de faire sans savoir que cela existait ! 
+Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
 
 Voilà synthétiquement où j'en suis :
 
 - [x] CRUD basique
 - [x] Architecture modulaire
 - [x] Lazy loading
+- State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
+- [x]  Material UI pour appréhender l'outil et avoir une finition professionnelle
 
 
 Ce que j'ai à faire :
-- [ ] State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
-- [ ] Vrai form robuste avec validators persos
-- [ ] Material UI pour appréhender l'outil et avoir une finition professionnelle
+- [ ] Vrai form robuste car warning sur json place holder + validators persos 
 - [ ] TESTS !!!!!
+- [ ] Directives, pipes et animations persos
+- [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour". Mieux gérer les unsubscriptions
+- [ ] Mieux gérer les types en général et supprimer les any qui trainent
 
 Et après selon votre bon vouloir :
 - [ ] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple, où
