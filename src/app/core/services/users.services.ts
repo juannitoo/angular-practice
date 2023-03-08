@@ -25,16 +25,15 @@ export class UsersService {
             this.http.get<User[]>('https://jsonplaceholder.typicode.com/users').pipe(
                 tap(users=>{
                     this._users$.next(users)
-                    console.log("userrService getUsers() via http get")
+                    console.log("usersService getUsers() via http get")
                 }),
                 catchError(err => { throw 'erreur getUsers(): ' + err })
             ).subscribe()
         } else {
-            console.log("userrService getUsers() sans http get, vive le BehaviorSubject !")
+            console.log("usersService getUsers() sans http get, vive le BehaviorSubject !")
         }
     }
-
-    
+ 
     getUser(userId: Number): Observable<User>{
         if (this._users$.value.length === 0 ) return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${userId}`);
         else { 
@@ -58,7 +57,6 @@ export class UsersService {
         ).subscribe()   
     }
 
-
     addUser(formValue: FormData ){
         this.users$.pipe( 
             map( users => {
@@ -74,7 +72,6 @@ export class UsersService {
             catchError(err => { throw 'erreur addUser(): ' + err })
         ).subscribe()
     }
-
 
     updateUser(userId: Number, formValue: any){
         this.getUser(userId).pipe(

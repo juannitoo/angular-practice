@@ -13,7 +13,7 @@ Voilà synthétiquement où j'en suis :
 - [x] CRUD basique
 - [x] Architecture modulaire
 - [x] Lazy loading
-- State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
+- [x] State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
 - [x]  Material UI pour appréhender l'outil et avoir une finition professionnelle
 
 
