@@ -28,12 +28,12 @@ mat-panel-description{
 }
 
 .box{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(145, 145, 145);
     padding-bottom: 10px;
 }
 
 .opened{
-    background-color: rgb(245, 245, 235);
+    box-shadow: 0px 0px 7px 7px rgb(205, 205, 205);
 }
 
 .intitule{
