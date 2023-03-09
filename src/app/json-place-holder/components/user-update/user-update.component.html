@@ -7,16 +7,19 @@
         <mat-form-field  appearance="fill" class="form-input" *ngIf="user$">
             <mat-label for="name">Nom :</mat-label>
             <input matInput type="text" class="input-text" id="name" formControlName="name" />
+            <mat-error>{{errorText(userForm.controls['name'])}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
             <mat-label for="username">Pseudo :</mat-label>
             <input matInput type="text" class="input-text" id="username" formControlName="username" />
+            <mat-error>{{errorText(userForm.controls['username'])}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
             <mat-label for="email">Email :</mat-label>
             <input matInput type="text" class="input-text" id="email" formControlName="email" />
+            <mat-error>{{errorText(userForm.controls['email'])}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
@@ -40,7 +43,9 @@
         </mat-form-field>     
 
         <div class="action-buttons">
-            <button type="submit" (click)="onSubmitForm()" mat-raised-button>Enregistrer</button>
+            <button type="submit" (click)="onSubmitForm()" 
+            mat-raised-button
+            [disabled]="userForm.invalid">Enregistrer</button>
         </div>
 
     </form>

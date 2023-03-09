@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
@@ -25,8 +25,10 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.userCreateForm = this.formBuider.group({
-      name: [null],
-      username: [null],
+      name: [null, [Validators.required, Validators.minLength(5)]],
+      username: [null, [Validators.required, Validators.maxLength(50)]],
+    }, {
+      updateOn: 'blur'
     })
  
   }

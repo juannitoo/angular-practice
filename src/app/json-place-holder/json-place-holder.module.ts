@@ -11,14 +11,13 @@ import { SharedModule } from '../shared/shared.module';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 
-
 @NgModule({
   declarations: [
     JsonLandingComponent,
     UsersListComponent,
     UserComponent,
     UserCreateComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
   ],
   imports: [
     CommonModule,
