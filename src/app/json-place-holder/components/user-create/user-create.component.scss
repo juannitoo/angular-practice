@@ -7,15 +7,16 @@
   }
   
 .form-group {
-  margin: 10px auto;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin: 5% 5% 0% 5%;;
+  width: 90%;
 }
 
-input, textarea {
-  width: 50%;
+h4{
+  text-align: center;
+}
+
+.input-text {
+  width: 100%;
 }
 
 .action-buttons {
@@ -25,21 +26,6 @@ input, textarea {
 button {
   display: block;
   margin: 20px auto;
-}
-
-
-#name{
-  display: block;
-  font-size : 0.9em;
-  margin: 0 0 0 0.3em;
-}
-
-.details{
-  display: block;
-  font-size : 0.7em;
-  height : 1.5em;
-  margin: 0 0 0em 0.5em;
-  text-align: center;
 }
 
 .retour{

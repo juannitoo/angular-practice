@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
     return this.usersService.getUser(userId)
   }
 
-  onDelUser(userId: number){
+  onDelUser(userId: number): void{
     return this.usersService.deleteUser(userId)
   }
 

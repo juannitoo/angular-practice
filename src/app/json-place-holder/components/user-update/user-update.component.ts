@@ -52,14 +52,14 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
           companyName : user.company?.name
         })  
       },
-      error(err){
+      error(err) {
         console.log("erreur user-update datas.subscribe() :", err)
       }
     })
     
   }
 
-  onSubmitForm() {
+  onSubmitForm(): void {
     // comme je n'ai pas mis les champs de form qui correspondent 
     // au modèle des users complets, je triche ...
     const userFormValues = this.userForm.value

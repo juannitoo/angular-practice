@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 

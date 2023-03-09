@@ -2,38 +2,47 @@
     <p><a routerLink="../../" class="retour" >Retour</a></p>
 
     <form [formGroup]="userForm" class="box-user" *ngIf="user$">
-        <div class="form-input">
-            <label for="name">Nom :</label>
-            <input type="text" class="input-text" id="name" formControlName="name" />
-        </div>
-        <div class="form-input">
-            <label for="username">Pseudo :</label>
-            <input type="text" class="input-text" id="username" formControlName="username" />
-        </div>
-        <div class="form-input">
-            <label for="email">Email :</label>
-            <input type="text" class="input-text" id="email" formControlName="email" />
-        </div>
-        <div class="form-input">
-            <label for="city">Ville :</label>
-            <input type="text" class="input-text" id="city" formControlName="addressCity" />
-        </div>
-        <div class="form-input">
-            <label for="phone">Tel :</label>
-            <input type="text" class="input-text" id="phone" formControlName="phone" />
-        </div>
-        <div class="form-input">
-            <label for="website">Site web :</label>
-            <input type="text" class="input-text" id="website" formControlName="website" />
-        </div>
-        <div class="form-input">
-            <label for="company">Entreprise : </label>
-            <input type="text" class="input-text" id="company" formControlName="companyName" />
-        </div>
+        <h4>Modifiez votre profil</h4>
+
+        <mat-form-field  appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="name">Nom :</mat-label>
+            <input matInput type="text" class="input-text" id="name" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="username">Pseudo :</mat-label>
+            <input matInput type="text" class="input-text" id="username" formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="email">Email :</mat-label>
+            <input matInput type="text" class="input-text" id="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="city">Ville :</mat-label>
+            <input matInput type="text" class="input-text" id="city" formControlName="addressCity" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="phone">Tel :</mat-label>
+            <input matInput type="text" class="input-text" id="phone" formControlName="phone" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="website">Site web :</mat-label>
+            <input matInput type="text" class="input-text" id="website" formControlName="website" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-input" *ngIf="user$">
+            <mat-label for="company">Entreprise : </mat-label>
+            <input matInput type="text" class="input-text" id="company" formControlName="companyName" />
+        </mat-form-field>     
 
         <div class="action-buttons">
-            <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+            <button type="submit" (click)="onSubmitForm()" mat-raised-button>Enregistrer</button>
         </div>
+
     </form>
 
 </section>
