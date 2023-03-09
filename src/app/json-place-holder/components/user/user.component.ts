@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { tap, map, switchMap, delay} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -18,18 +17,12 @@ export class UserComponent implements OnInit {
   // enfant de la liste de user-list
   @Input() user!: User;
 
-  // simulation delete
+  // remonte les users modifiés suite à un delete
   @Output()
   usersChange : EventEmitter<Observable<User[]>> = new EventEmitter<Observable<User[]>>()
 
   // lorsque url par ex user/1
   user$! : Observable<User | undefined>;
-
-  // pour palier à l'update manquant
-  modifUser! : boolean
-
-  // hack update
-  formvalue!: string;
 
   //material accordion
   panelOpenState = false;
@@ -45,8 +38,6 @@ export class UserComponent implements OnInit {
     if (userId) {
       this.user$ = this.onGetUser(userId);
     }
-    this.modifUser = false
-    this.formvalue =""; 
   }
   
   showUser(userId : number){
@@ -61,7 +52,5 @@ export class UserComponent implements OnInit {
   onDelUser(userId: number){
     return this.usersService.deleteUser(userId)
   }
-
-
 
 }

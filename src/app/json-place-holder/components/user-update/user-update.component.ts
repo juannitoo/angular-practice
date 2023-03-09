@@ -1,27 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription, } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
-
-
-// petite déception dans la gestion des forms
-// https://angular.io/guide/deprecations#ngmodel-with-reactive-forms
-// Il ne faut pas mélanger les template form et reactive form, logique ...
-// donc je ne peux grosso modo pas récupérer proprement les datas du behaviorSubject 
-// pour les assigner directement dans la classe pour pré-remplir les champs du form lors d'un update...
-// Donc, hack :
-
-// const dataPlaceholder = {}
-
-// Cette const serait pour enregistrer les datas du behavior subject asObservable()
-// vu que si je la place ds la classe, le futur this de this.dataPlaceholder écrit dans le subscribe 
-// lui même écrit dans la classe ne correspond plus à la classe, mais à celui du subscribe, logique mais hic ...
-
-// Ca ne me plait pas, je commente ce hack et reste avec mon warning ds la console en attendant de trouver mieux
-// Créer un autre fichier, je trouve ca nul aussi ... une fonction de conversion obsToArray peut-être ... 
-// faut voir comment font les autres ...
 
 @Component({
   selector: 'app-user-update',
@@ -33,20 +15,19 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
 
   userForm! : FormGroup
 
-  private userCreateForm! : any
-
   user$! : Observable<User>
   userId!: Number
 
-  dataPlaceholder!: {name: String, username: String, email: String, addressCity: String, phone: String, website: String, companyName: String}
+  data$! : Subscription
 
   constructor( private formBuilder: FormBuilder,
                 private usersService: UsersService,
-                private router: Router,
                 private route: ActivatedRoute ) { }
 
 
   ngOnInit(): void {
+    this.userId = +this.route.snapshot.params['id']
+    this.user$ = this.usersService.getUser(this.userId)
     this.userForm = this.formBuilder.group({
       name : [null],
       username : [null],
@@ -56,37 +37,31 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
       website : [null],
       companyName : [null]
     })
-    this.userId = +this.route.snapshot.params['id']
-    this.user$ = this.usersService.getUser(this.userId)
-
-    // console.log('!!!O_O!!', this.test(this.dataPlaceholder))
-    // this.userForm.setValue({
-    //   name : dataPlaceholder.name,
-    //   username : "jean",
-    //   email : "jean",
-    //   addressCity : "jean",
-    //   phone : "jean",
-    //   website : "jean",
-    //   companyName : "jean"
-    // })  
+    // je récupère le référence de this pour pouvoir cibler 
+    // les éléments de la classe dans le subscribe
+    let self = this
+    this.data$ = this.user$.subscribe({
+      next(user) {
+        self.userForm.setValue({
+          name : user.name,
+          username : user.username,
+          email : user.email,
+          addressCity : user.address?.city,
+          phone : user.phone,
+          website : user.website,
+          companyName : user.company?.name
+        })  
+      },
+      error(err){
+        console.log("erreur user-update datas.subscribe() :", err)
+      }
+    })
+    
   }
-
-  // test(x:any){
-  //   // let self = this
-  //   this.user$.subscribe({
-  //     next(value:any){
-  //       // self.dataPlaceholder['name'] = value.name
-  //       // this de la propiété de la classe n'est pas là
-  //       x.name = value.name;
-  //       return x
-  //     }
-  //   })
-  //   return x
-  // }
 
   onSubmitForm() {
     // comme je n'ai pas mis les champs de form qui correspondent 
-    // au modèle des users complets, je triche ... pour l'instant ...
+    // au modèle des users complets, je triche ...
     const userFormValues = this.userForm.value
     const userValues: Object = {
       address : { 
@@ -111,7 +86,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.userCreateFormObs$.unsubscribe()
+    this.data$.unsubscribe()
   }
     
 }

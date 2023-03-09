@@ -1,6 +1,6 @@
-.form-group {
+.form-input {
     margin: 10px auto;
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,13 +20,12 @@
   }
   
   .box-user{
-    background-color: rgb(240,240,240);
     box-sizing: border-box;
     width : 50%;
     margin: 2em auto;
     padding: 0.4em;
     border-radius: 5px;
-    box-shadow: rgb(149, 149, 149) 4px 4px 20px;
+    box-shadow: 0px 0px 22px 2px rgb(205, 205, 205);
   }
   
   #name{
