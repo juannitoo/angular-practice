@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, } from 'rxjs';
+import { Observable, Subscription, tap, } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { emailValidator } from '../../validators/email.validators';
@@ -93,7 +93,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
       return 'Ce champ est requis';
     }
     if (ctrl.hasError('emailValidatorError')) {
-        // emailValidatorError est le nom retourner par le validator
+        // emailValidatorError est le nom de la var renseignée dans le validator
         return "Cet email n'a pas la forme minimale requise : x@x.xx";
     } else {
         return 'Ce champ contient une erreur';
@@ -105,6 +105,9 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
     this.userForm.controls['name'].clearValidators()
     this.userForm.controls['username'].clearValidators()
     this.userForm.controls['email'].clearValidators()
+    this.userForm.controls['name'].updateValueAndValidity()
+    this.userForm.controls['username'].updateValueAndValidity()
+    this.userForm.controls['email'].updateValueAndValidity()
   }
     
 }
