@@ -15,11 +15,10 @@ Voilà synthétiquement où j'en suis :
 - [x] Lazy loading
 - [x] State management pour rendre JsonPlaceHolder agnostique de son back-end et avoir un comportment cohérent
 - [x] Material UI pour appréhender l'outil et avoir une finition professionnelle (sur jsonplaceholder)
-- [x] Vrai form robuste + validators persos 
+- [x] Directive et animation perso, pipe non réalisé car même concept
 
 
 Ce que j'ai à faire :
-- [ ] Directives, pipes et animations persos
 - [ ] TESTS !!!!!
 - [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour". Mieux gérer les unsubscriptions
 - [ ] Mieux gérer les types en général et supprimer les any qui trainent

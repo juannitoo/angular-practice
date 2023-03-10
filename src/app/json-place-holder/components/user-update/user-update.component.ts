@@ -1,15 +1,23 @@
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, tap, } from 'rxjs';
+import { Observable, Subscription, } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
+import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
 import { emailValidator } from '../../validators/email.validators';
 
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
   styleUrls: ['./user-update.component.scss'],
+  animations: [
+    trigger( 'slideText', [
+      transition('void => *', [
+        useAnimation(SlideAndFadeAnimation)
+    ])
+  ])],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserUpdateComponent implements OnInit, OnDestroy {

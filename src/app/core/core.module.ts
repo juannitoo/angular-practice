@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpClient],
   exports: [

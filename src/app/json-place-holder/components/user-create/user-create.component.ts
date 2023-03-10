@@ -1,14 +1,22 @@
-import { Component, OnInit, DoCheck, ChangeDetectionStrategy } from '@angular/core';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
+import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
 
 
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.scss'],
+  animations: [
+    trigger( 'slideText', [
+      transition('void => *', [
+        useAnimation(SlideAndFadeAnimation)
+    ])
+  ])],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserCreateComponent implements OnInit {
