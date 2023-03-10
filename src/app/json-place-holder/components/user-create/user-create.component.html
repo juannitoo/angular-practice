@@ -4,7 +4,7 @@
     <div class="form-card" *ngIf="!newUser">
         <h4>Créez un nouvel utilisateur</h4>
 
-        <form [formGroup]="userCreateForm">
+        <form [formGroup]="userCreateForm" (submit)="onSubmitForm()">
             <mat-form-field  appearance="fill" class="form-group">
                 <mat-label for="name">Nom :</mat-label>
                 <input matInput type="text" class="input-text" id="name" formControlName="name">
@@ -17,9 +17,10 @@
             </mat-form-field>
 
             <div class="action-buttons">
-                <button mat-raised-button type="submit" 
-                    (click)="onSubmitForm()"
-                    [disabled]="userCreateForm.invalid">Enregistrer</button>
+                <button mat-raised-button 
+                type="submit" 
+                [disabled]="userCreateForm.invalid"
+                >Enregistrer</button>
             </div>
         </form>
     </div>

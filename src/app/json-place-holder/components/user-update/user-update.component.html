@@ -1,7 +1,7 @@
 <section>
     <p><a routerLink="../../" class="retour" >Retour</a></p>
 
-    <form [formGroup]="userForm" class="box-user" *ngIf="user$">
+    <form [formGroup]="userForm" class="box-user" (submit)="onSubmitForm()" *ngIf="user$">
         <h4>Modifiez votre profil</h4>
 
         <mat-form-field  appearance="fill" class="form-input" *ngIf="user$">
@@ -43,9 +43,9 @@
         </mat-form-field>     
 
         <div class="action-buttons">
-            <button type="submit" (click)="onSubmitForm()" 
+            <button type="submit" 
             mat-raised-button
-            [disabled]="userForm.invalid">Enregistrer</button>
+            >Enregistrer</button>
         </div>
 
     </form>
