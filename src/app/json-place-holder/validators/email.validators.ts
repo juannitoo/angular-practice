@@ -5,6 +5,8 @@ export function emailValidator(): ValidatorFn {
         let pattern : RegExp = /[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\.[a-z]{2,3}/
         if (pattern.test(ctrl.value)) {
             return null;
+        } else if (ctrl.value === "") {
+            return null;
         } else {
             return {
                 emailValidatorError: ctrl.value

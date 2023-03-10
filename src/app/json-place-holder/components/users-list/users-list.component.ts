@@ -12,7 +12,11 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
   animations: [
     trigger( 'slideText', [
       transition('void => *', [
-        useAnimation(SlideAndFadeAnimation)
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '500ms',
+          }
+      })
     ])
   ])],
   changeDetection: ChangeDetectionStrategy.OnPush

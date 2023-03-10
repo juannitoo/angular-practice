@@ -79,7 +79,7 @@ export class UsersService {
                 user.name = formValue.name
                 user.username = formValue.username
                 user.email = formValue.email
-                if (user.address?.city) 
+                if (user.address?.city !== undefined) 
                     user.address.city = formValue.address.city
                 else
                     // Ah il a pas, il m'embête, je vais lui expliquer
@@ -90,7 +90,7 @@ export class UsersService {
                     })                  
                 user.phone = formValue.phone
                 user.website = formValue.website
-                if (user.company?.name) 
+                if (user.company?.name !== undefined) 
                     user.company.name = formValue.company.name
                 else
                     Object.defineProperty(user, 'company',{

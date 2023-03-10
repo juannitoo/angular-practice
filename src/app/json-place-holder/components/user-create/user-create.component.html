@@ -5,12 +5,12 @@
         <h4 titleEvent @slideText>Créez un nouvel utilisateur</h4>
 
         <form [formGroup]="userCreateForm" (submit)="onSubmitForm()">
-            <mat-form-field  appearance="fill" class="form-group">
+            <mat-form-field  appearance="fill" class="form-group" @slideInput>
                 <mat-label for="name">Nom :</mat-label>
                 <input matInput type="text" class="input-text" id="name" formControlName="name">
                 <mat-error>Ce champ est requis, minimum 5 caractères</mat-error>
             </mat-form-field>
-            <mat-form-field  appearance="fill" class="form-group">
+            <mat-form-field  appearance="fill" class="form-group" @slideInput2>
                 <mat-label for="username">Pseudo :</mat-label>
                 <input matInput type="text" class="input-text" id="username" formControlName="username">
                 <mat-error>Ce champ est requis, maximum 50 caractères</mat-error>
@@ -19,7 +19,6 @@
             <div class="action-buttons">
                 <button mat-raised-button 
                 type="submit" 
-                [disabled]="userCreateForm.invalid"
                 >Enregistrer</button>
             </div>
         </form>

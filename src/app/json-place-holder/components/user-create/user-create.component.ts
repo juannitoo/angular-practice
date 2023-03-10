@@ -14,9 +14,32 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
   animations: [
     trigger( 'slideText', [
       transition('void => *', [
-        useAnimation(SlideAndFadeAnimation)
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '400ms',
+          }
+        })
+      ])
+    ]),
+    trigger('slideInput', [
+      transition(':enter', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '550ms',
+          }
+        })
+      ])
+    ]),
+    trigger('slideInput2', [
+      transition(':enter', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+          }
+        })
+      ])
     ])
-  ])],
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserCreateComponent implements OnInit {

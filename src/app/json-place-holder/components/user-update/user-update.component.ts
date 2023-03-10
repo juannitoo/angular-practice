@@ -15,7 +15,11 @@ import { emailValidator } from '../../validators/email.validators';
   animations: [
     trigger( 'slideText', [
       transition('void => *', [
-        useAnimation(SlideAndFadeAnimation)
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '500ms',
+          }
+      })
     ])
   ])],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,7 +44,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
     this.userForm = this.formBuilder.group({
       name : [null, [Validators.required, Validators.minLength(5)]],
       username : [null, [Validators.required, Validators.maxLength(50)]],
-      email : [null, [Validators.required, emailValidator()]], // c'est pour la démo
+      email : [null, [ emailValidator() ]], // c'est pour la démo
       addressCity : [null],
       phone : [null],
       website : [null],
@@ -54,13 +58,13 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
     this.data$ = this.user$.subscribe({
       next(user) {
         self.userForm.setValue({
-          name : user.name,
-          username : user.username,
-          email : user.email,
-          addressCity : user.address?.city,
-          phone : user.phone,
-          website : user.website,
-          companyName : user.company?.name
+          name : user.name !== undefined ? user.name : "",
+          username : user.username !== undefined ? user.username : "",
+          email : user.email !== undefined ? user.email : "",
+          addressCity : user.address?.city !== undefined ? user.address?.city : "",
+          phone : user.phone !== undefined ? user.phone : "",
+          website : user.website !== undefined ? user.website : "",
+          companyName : user.company?.name !== undefined ? user.company?.name : ""
         })  
       },
       error(err) {
