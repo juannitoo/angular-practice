@@ -2,7 +2,7 @@
     <p><a routerLink="../../" class="retour" >Retour</a></p>
 
     <form [formGroup]="userForm" class="box-user" (submit)="onSubmitForm()" *ngIf="user$">
-        <h4>Modifiez votre profil</h4>
+        <h4 titleEvent >Modifiez votre profil</h4>
 
         <mat-form-field  appearance="fill" class="form-input" *ngIf="user$">
             <mat-label for="name">Nom :</mat-label>

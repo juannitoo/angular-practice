@@ -2,7 +2,7 @@
     <p><a routerLink="./../" class="retour" >Retour</a></p>
 
     <div class="form-card" *ngIf="!newUser">
-        <h4>Créez un nouvel utilisateur</h4>
+        <h4 titleEvent >Créez un nouvel utilisateur</h4>
 
         <form [formGroup]="userCreateForm" (submit)="onSubmitForm()">
             <mat-form-field  appearance="fill" class="form-group">
