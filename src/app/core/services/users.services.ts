@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, of, catchError, BehaviorSubject } from 'rxjs';
+import { Observable, tap, map, of, catchError, BehaviorSubject, retry } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 
@@ -12,25 +12,23 @@ export class UsersService {
         return this._users$.asObservable()
     }
 
-    private _loading$ = new BehaviorSubject<boolean>(false);
-    get loading$(): Observable<boolean> {
-      return this._loading$.asObservable();
-    }
-
     constructor( private http : HttpClient,
                  private router : Router ) { }
 
-    getUsers(){
+    getUsers(): Observable<User[]>{
         if (this._users$.value.length === 0 ) {
             this.http.get<User[]>('https://jsonplaceholder.typicode.com/users').pipe(
                 tap(users=>{
                     this._users$.next(users)
                     console.log("usersService getUsers() via http get")
                 }),
+                retry(4),
                 catchError(err => { throw 'erreur getUsers(): ' + err })
             ).subscribe()
+            return this.users$ // ca ne sert que pour le test !
         } else {
             console.log("usersService getUsers() sans http get, vive le BehaviorSubject !")
+            return this.users$ // et normalement ca ne retourne rien
         }
     }
  
@@ -46,7 +44,7 @@ export class UsersService {
         }       
     }
     
-    deleteUser(userId: number){  
+    deleteUser(userId: number): void{  
         this.users$.pipe(
             map( (users) => { 
                 const index = users.findIndex((u)=> u.id === userId);
@@ -54,7 +52,7 @@ export class UsersService {
                 return of(users)
             }),
             catchError(err => { throw 'erreur deleteUser(): ' + err })
-        ).subscribe()   
+        ).subscribe(()=> {return true})        
     }
 
     addUser(formValue: FormData ){
@@ -82,7 +80,6 @@ export class UsersService {
                 if (user.address?.city !== undefined) 
                     user.address.city = formValue.address.city
                 else
-                    // Ah il a pas, il m'embête, je vais lui expliquer
                     Object.defineProperty(user, 'address',{
                         value : {
                             "city" : formValue.address.city
@@ -95,7 +92,7 @@ export class UsersService {
                 else
                     Object.defineProperty(user, 'company',{
                         value : {
-                            "name" : formValue.address.city
+                            "name" : formValue.company.name
                         }
                     }) 
                 return of(user)

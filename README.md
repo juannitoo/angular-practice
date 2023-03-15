@@ -8,6 +8,9 @@ Manque principalement pour l'instant la gestion des erreurs et des tests.
 Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai continué mon apprentissage et je vais donc mettre en place sur la partie jsonPlaceHolder le state management reactif perso via l'utilisation des Behaviorsubject, vu que c'est ce que j'essayais de faire sans savoir que cela existait ! 
 Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
 
+### Vous pouvez cloner ce dépot sans installer json-server et vous pourrez quand même essayer la partie json-Place-Holder
+C'est cette partie où j'ai le plus travaillé. Pour l'instant, json-server reste un CRUD fonctionnel "simple".
+
 Voilà synthétiquement où j'en suis :
 
 - [x] CRUD basique
@@ -18,8 +21,9 @@ Voilà synthétiquement où j'en suis :
 - [x] Directive et animation perso, pipe non réalisé car même concept
 
 
-Ce que j'ai à faire :
-- [ ] TESTS !!!!!
+Ce qu'il me reste principalement à faire :
+- [ ] TESTS !!!!! (en cours)
+- [ ] Authentification (en cours)
 - [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour". Mieux gérer les unsubscriptions
 - [ ] Mieux gérer les types en général et supprimer les any qui trainent
 

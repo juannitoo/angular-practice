@@ -2,19 +2,42 @@
 <article>
 <p>Ce repo me permet de m'initier aux concepts 
     d'angular et en même temps vous permez d'évaluer un 
-    peu mieux mon niveau.
+    peu mieux mon niveau. J'ai donc pour l'instant créer 2 fixtures modules,
+    json-place-holder et json-server qui sont donc 2 back-end distinct
 </p>
 <p><b><i>JsonPlaceHolder</i></b> est une API REST
     gratuite de démo qui permet de récupérer des datas, 
     et de faire un simili CRUD. J'ai mis en place une 
     architecture modulaire et lazy loadé ce module. 
     C'est le bac à sable, un peu frustrant vu les limitations
-    de l'api, ce qui m'a conduit vers json-server.
+    de l'api, ce qui m'a conduit dans un premier temps vers json-server.
 </p>
 <p><b><i>Json-server</i></b> est un module node qui permet de réellement 
     mettre à jour ou supprimer les datas que je vais envoyer 
     via mes requetes http, et non plus seulement faire du fake 
     en console. Il faut donc avoir un serveur qui tourne en 
-    parallèle. Les datas ont été récupérées sur l'api jsonplaceholder
+    parallèle. Les datas ont été récupérées sur l'api jsonplaceholder pour initialiser
+    le serveur.
+</p>
+<p>
+    Après avoir réalisé le CRUD sur la partie json-server, je suis repassé sur
+    la partie json-place-holder afin de mettre en place un state management ou je ne 
+    solicite l'API qu'à l'initilaisation pour récupérer les datas. Vu que je ne 
+    peux rien modifier sur l'API, je gère les datas du CRUD via un BehavoirSubject 
+    et ne les renvois jamais vers l'API. Le comportement devient donc parfaitement 
+    cohérent. 
+    J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
+    n'en ai pas créer ici. j'ai par contre créé ma propre directive, 
+    disponible au click sur les titres des pages, son code est visible dans le module share.
+    Il manque une partie authentfication à mettre en place une fois que 
+    j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision 
+    d'ensemble du framework.
+</p>
+<p>Concernant les tests, mon initiation, je dois dire que j'ai un peu de mal à
+    appréhender la chose, surtout pour tester mon CRUD reactive state, je pense repartir 
+    sur la partie json-server avec son comportement plus prévisible, sans reactive state, 
+    pour pouvoir effectuer différents tests plus en adéquation avec mon niveau actuel.
+    Pourquoi parce que dans mon service, je ne renvoie rien rienb via les méthodes mais mets à
+    jour un behaviorSubject. Mon CRUD json-place-holder pipe et subscribe en 1 seule instruction.
 </p>
 </article>
