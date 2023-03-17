@@ -14,22 +14,20 @@ export class TitleEventDirective implements AfterViewInit {
   titleEvent() {
     let active = false
     let title = this.renderer.createElement("p")
-    title.innerHTML = 'Salut, Je suis la directive custom titleEvent positionné sur le titre : <b>'+this.el.nativeElement.textContent
+    title.innerHTML = 'Salut, Je suis la directive custom titleEvent positionnée sur le titre : <b>'+this.el.nativeElement.textContent
     title.innerHTML += '</b><br />Vous pouvez me trouver dans <b>app/shared/directives/title-event.directive.ts</b>'
     this.el.nativeElement.addEventListener('click', () =>{
         if (!active) {
             this.renderer.insertBefore(
                 this.el.nativeElement.parentNode, 
                 title, 
-                this.el.nativeElement,
-                false
+                this.el.nativeElement
             )
             active = true
         } else {
             this.renderer.removeChild(
                 this.el.nativeElement.parentNode, 
-                title, 
-                true
+                title
             )
             active = false
         }
@@ -38,4 +36,5 @@ export class TitleEventDirective implements AfterViewInit {
     this.renderer.setStyle(title, 'text-align', "center");
     this.renderer.setStyle(this.el.nativeElement, 'cursor', 'pointer');
   }
+  
 }

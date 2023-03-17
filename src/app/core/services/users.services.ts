@@ -100,7 +100,9 @@ export class UsersService {
             map( () => this.router.navigateByUrl('jsonplaceholder/users')),
             catchError(err => { throw 'erreur updateUser(): ' + err })
         ).subscribe()
-        
+        // normalement ne retourne rien
+        // juste pour les tests
+        return this.getUser(userId)
     }
     
 

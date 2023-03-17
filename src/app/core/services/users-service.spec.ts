@@ -5,18 +5,26 @@ import { HttpHandler } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 
+// initiation aux tests unitaires, je découvre et prends le temps de comprendre
+
+// Pas simple à appréhender, ce que j'en comprends pour l'instant, c'est qu'il 
+// ne faut pas réellement importer de dépendances mais des mocks pour découpler le 
+// plus possible les tests du code. Ca reste flou, que fait réellement un spy ? Vu que si je 
+// commente la méthode getUser ds le service et retourne tous le temps le user2, 
+// le spy n'en tient pas compte et mon test compare juste que ma valeur d'entrée 
+// est égale à ma valeur de sortie ...
+
+// Concernant ces tests, je ne sais pas trop comment tester ce service dont les méthodes
+// ne retournent rien, et sont des observables "pipés". Je les ai donc modifiés pour sortir
+// au moins qqchose. Il faut que je vois plus de vidéos ou autres tutos pour voir si je 
+// vais dans la bonne direction. Pour l'instant, ma meilleure source, c'est la doc 
+// officielle Angular, et il y a de quoi lire et de quoi se gratter la tête ! Mais ne sachant
+// pas non plus me servir de Jasmine, c'est un peu confus pourl'instant.
+
 
 describe('UsersService', () => {
 
   let usersService: UsersService; 
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations:[],
-      providers: [UsersService, HttpClient, HttpHandler]
-    })
-    usersService = TestBed.get(UsersService); 
-  })
 
   let users = [
     {
@@ -66,9 +74,17 @@ describe('UsersService', () => {
       }
     }
   ]
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations:[],
+      providers: [UsersService, HttpClient, HttpHandler]
+    })
+    usersService = TestBed.inject(UsersService); 
+  })
   
   it('should configure usersServices and dependencies in testing module', () => { 
-    expect(usersService).toBeTruthy();
+    expect(usersService).toBeDefined();
   })
 
   it('getUser() should return a user', () => {
@@ -80,26 +96,31 @@ describe('UsersService', () => {
     expect(response!).toEqual(users[0])
   })
 
-  // le fake async + tick ne change rien par rapport à au dessus
-  it('getUsers() should return an array of users', fakeAsync(() => {
+  it('getUsers() should return an array of users', () => {
     let response:User[]
     spyOn(usersService, 'getUsers').and.returnValue(of(users))
     usersService.getUsers()!.subscribe(res => {
         response = res
     })
-    tick(1)
     expect(response!).toEqual(users)
-  }))
-
-  it('deleteUser() should delete a user', () => {
-    // je ne sais pas quoi mettre ici, type subscription ds le service
-    // observable souscrit qui ne retoure rien
-    // et une gestion d'erreur ds observable
-    spyOn(usersService, 'deleteUser')
-    usersService.deleteUser(1)
-    expect(1).toBeInstanceOf(Number)
   })
 
+  it('deleteUser() should delete a user', () => {
+    spyOn(usersService, 'deleteUser')
+    usersService.deleteUser(1)
+    expect(1).toEqual(jasmine.any(Number))
+    expect(usersService.deleteUser).toHaveBeenCalledOnceWith(1)
+  })
+
+  it('updateUser() should update a user', () => {
+    let response: User
+    spyOn(usersService, 'updateUser').and.returnValue(of(users[0]))
+    usersService.updateUser(1, {name:"Jean Balangué"}).subscribe( (res) => {
+      response = res
+    })
+    expect(usersService.updateUser).toHaveBeenCalledOnceWith(1, {name:"Jean Balangué"})
+    expect(response!).toEqual(users[0])
+  })
 
 });
 
