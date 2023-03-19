@@ -6,61 +6,62 @@ import { TitleEventDirective } from "./title-event.directive";
 // la directive ajoute et supprime un paragrahe au dessus du titre cliqué.
 // Je créé un mock du component ultra simple
 // et je fais un test qui ne conclue jamais
-// Serait-ce un test E2E et non pas unitaire ? Jasmine sait elle faire ca ? ou Protractor ?
 // Là j'ai un vrai problème parce que ce que je fais ne fonctionne jamais.
+
+//EDIT
+// Si ca ne fonctionnait pas, c'est parce que je n'avais pas encapsuler mon H1 dans une div
+// ds mon faux template, et ma directive cherche le parentNode, jusqu'alors inexistant ds mon template. 
+// Et c'est donc mon premier vrai test concluant ! 
+// J'ai même fait un test parentNode pour fêter ca !
 
 describe('Directive TitleEvent', () => {
 
-
   @Component({
-    template: `<h1 titleEvent>A tilte</h1>`
+    template: `<div><h1 titleEvent>A title</h1></div>`
   })
   class TestComponent { }
-
-
-
 
   let fixture: ComponentFixture<Component>
   let component: Component
   let element: DebugElement
   let title: HTMLElement
+  let div: HTMLElement
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TitleEventDirective, TestComponent ]
     })
     .createComponent(TestComponent);
-    // component = fixture.componentInstance
   
     fixture.detectChanges(); // initial binding
 
     element = fixture.debugElement.query(By.css('h1'))
     title = fixture.debugElement.query(By.css('h1')).nativeElement
+    div = fixture.debugElement.query(By.css('div')).nativeElement
   });
 
 
-  it('should have a H1 element', () => {
+  it('should have a title element', () => {
     expect(title).withContext("à l'initialisation, on a un titre").toBeDefined()
   })
   
+  it('title element should have a parentNode element', () => {
+    expect(div).withContext("à l'initialisation, on a un titre avec un parentnode").toBeDefined()
+  })
 
-  xit('should add a paragrah on click', () => {
-
+  it('should add a paragrah on click', () => {
     let p = fixture.debugElement.query(By.css("p"))
-    
     expect(p).withContext("à l'initialisation, pas de paragraphe").toBeNull()
 
     let click = title.dispatchEvent(new Event('click')) 
+    expect(click).withContext("click").toBeTrue()
 
     fixture.detectChanges()
 
-    expect(click).toBeTrue()
-
-    let p1 = fixture.debugElement.query(By.css("p"))
-    expect(p1).withContext("après le click").not.toBeNull() // fu..
-
-    // je n'ai pas réussi à setter un spy sur la méthode de la directive
-
+    let lastPdoesntWorkSoNewP = fixture.debugElement.query(By.css("p"))
+    expect(lastPdoesntWorkSoNewP).withContext("après le click").not.toBeNull()
   });
+
+
   
 });
