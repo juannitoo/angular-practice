@@ -24,13 +24,13 @@ Voilà synthétiquement où j'en suis :
 - [x] Directive et animation perso
 - [x] Mieux gérer les types en général et supprimer les any qui trainent
 - [x] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple
+- [x] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 
 en cours :
 - [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :
 - [ ] Authentification (j'ai vu ce dont on parle, je reviendrai dessus plus tard avec node, ou je mettrais en place un json web token, avec un interceptor)
-- [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 
 
 Et après selon votre bon vouloir :
