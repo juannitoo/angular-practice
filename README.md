@@ -5,8 +5,11 @@ C'est une démo pour me familiariser avec Angular.
 Manque principalement pour l'instant la gestion des erreurs et des tests.
 
 ### STEP 2
-Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai continué mon apprentissage et je vais donc mettre en place sur la partie jsonPlaceHolder le state management reactif perso via l'utilisation des Behaviorsubject, vu que c'est ce que j'essayais de faire sans savoir que cela existait ! 
+Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai continué mon apprentissage et je vais donc mettre en place sur la partie jsonPlaceHolder le state management reactif perso via l'utilisation des Behaviorsubject, vu que c'est ce que j'essayais de faire sans connaitre le nom ! 
 Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
+
+### STEP 3
+J'ai corrigé les types any qui trainaient en créant des interfaces pour les forms, j'ai refait un tour sur node, je potasse les tests unitaires et fonctionnels
 
 ### Vous pouvez cloner ce dépot sans installer json-server et vous pourrez quand même essayer la partie json-Place-Holder
 C'est cette partie où j'ai le plus travaillé. Pour l'instant, json-server reste un CRUD fonctionnel "simple".
@@ -40,8 +43,11 @@ Et après selon votre bon vouloir :
 
 [http://json2ts.com/](http://json2ts.com/)
 
-Pour essayer, git clone, npm install et ng serve pour la partie angular.
+[https://jsoncrack.com/](https://jsoncrack.com/)
 
-Pour essayer le crud via json-server, il faut installer json-server et la db qui va bien avec. Pour ce faire, le plus simple et d'installer un autre repo que je vous mets à disposition [https://github.com/juannitoo/angular-json-server](https://github.com/juannitoo/angular-json-server)
-Sinon, si vous avez déjà json-server, je vous ai mis les fichiers nécessaires dans ce repo angular sous "src/assets/db-json-server", à mettre à la racine du projet json-server.
+
+### Pour essayer, git clone, npm install et ng serve pour la partie angular.
+
+### Pour essayer le crud via json-server, 
+il faut installer json-server et la db qui va bien avec. Pour ce faire, le plus simple et d'installer un autre repo que je vous mets à disposition [https://github.com/juannitoo/angular-json-server](https://github.com/juannitoo/angular-json-server). Sinon, si vous avez déjà json-server, je vous ai mis les fichiers nécessaires dans ce repo angular sous "src/assets/db-json-server", à mettre à la racine du projet json-server.
 

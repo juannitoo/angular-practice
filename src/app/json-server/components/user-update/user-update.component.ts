@@ -54,8 +54,6 @@ export class UserUpdateComponent implements OnInit {
   }
 
   onSubmitForm(userId: number): void {
-    // je triche à cause des intefaces 
-    // ds le model et pas ds le form
     const userFormValues = this.userForm.value
     const userValues: UserCreateValues = {
       address : { 

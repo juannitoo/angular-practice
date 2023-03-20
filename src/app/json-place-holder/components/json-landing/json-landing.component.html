@@ -17,6 +17,7 @@
  </i></p>
  <p><i>EDIT 2: Me revoilà qqs jours plus tard pour mettre en place Material UI et le state Management reactif
    avec BehaviorSubject, qui contrairement à un subject classique, stocke la dernière valeur en plus de l'envoyer à ces abonnés.
+   Le comportement est donc completement cohérent.
 </i></p>
  <p>Voilà un exemple de routes possibles :</p>
  <code>
@@ -30,12 +31,12 @@
     .then((json) => console.log(json));<br />
 </code>
 <code>Renvoie :
-    {{ '{' }}
-        id: 1,
-        title: '...',
-        body: '...',
-        userId: 1
-        {{ '}' }}
+   {{ '{' }}
+      id: 1,
+      title: '...',
+      body: '...',
+      userId: 1
+   {{ '}' }}
 </code>
  
  <p>Cliquez ci dessous pour visualiser ce test avec les datas de l'api.</p>
