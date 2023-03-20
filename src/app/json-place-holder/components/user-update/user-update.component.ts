@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, } from 'rxjs';
+import { UserUpdateForm } from 'src/app/core/interfaces/user-update-form.interface';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
@@ -75,21 +76,13 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
   }
 
   onSubmitForm(): void {
-    // comme je n'ai pas mis les champs de form qui correspondent 
-    // au modèle des users complets, je triche ...
     const userFormValues = this.userForm.value
-    const userValues: Object = {
+    const userValues: UserUpdateForm = {
       address : { 
         city : userFormValues.addressCity,
-        geo: {lat:"",lng:""},
-        street:"",
-        suite:"",
-        zipcode:""
       },
       company : {
         name : userFormValues.companyName,
-        catchPhrase:"",
-        bs:""
       },
       email: userFormValues.email,
       name: userFormValues.name,

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
 
@@ -56,7 +57,7 @@ export class UserUpdateComponent implements OnInit {
     // je triche à cause des intefaces 
     // ds le model et pas ds le form
     const userFormValues = this.userForm.value
-    const userValues: any = {
+    const userValues: UserCreateValues = {
       address : { 
         city : userFormValues.addressCity,
         geo: {lat:"",lng:""},

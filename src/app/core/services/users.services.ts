@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, map, of, catchError, BehaviorSubject, retry } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
+import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 
 @Injectable()
 export class UsersService {
@@ -71,7 +72,7 @@ export class UsersService {
         ).subscribe()
     }
 
-    updateUser(userId: Number, formValue: any){
+    updateUser(userId: Number, formValue: UserUpdateForm){ 
         this.getUser(userId).pipe(
             map( user => {
                 user.name = formValue.name

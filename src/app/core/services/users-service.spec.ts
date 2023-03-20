@@ -9,17 +9,13 @@ import { User } from '../models/user.model';
 
 // Pas simple à appréhender, ce que j'en comprends pour l'instant, c'est qu'il 
 // ne faut pas réellement importer de dépendances mais des mocks pour découpler le 
-// plus possible les tests du code. Ca reste flou, que fait réellement un spy ? Vu que si je 
-// commente la méthode getUser ds le service et retourne tous le temps le user2, 
-// le spy n'en tient pas compte et mon test compare juste que ma valeur d'entrée 
-// est égale à ma valeur de sortie ...
+// plus possible les tests du code. 
 
 // Concernant ces tests, je ne sais pas trop comment tester ce service dont les méthodes
 // ne retournent rien, et sont des observables "pipés". Je les ai donc modifiés pour sortir
 // au moins qqchose. Il faut que je vois plus de vidéos ou autres tutos pour voir si je 
 // vais dans la bonne direction. Pour l'instant, ma meilleure source, c'est la doc 
-// officielle Angular, et il y a de quoi lire et de quoi se gratter la tête ! Mais ne sachant
-// pas non plus me servir de Jasmine, c'est un peu confus pourl'instant.
+// officielle Angular, et il y a de quoi lire et de quoi se gratter la tête !
 
 
 describe('UsersService', () => {
@@ -75,6 +71,16 @@ describe('UsersService', () => {
     }
   ]
 
+  let userUpdateForm = {
+    name: "string",
+    username: "string",
+    email: "string",
+    phone: "string",
+    address : {city : "string"},
+    company : {name : "string"},
+    website: "string",
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations:[],
@@ -108,17 +114,16 @@ describe('UsersService', () => {
   it('deleteUser() should delete a user', () => {
     spyOn(usersService, 'deleteUser')
     usersService.deleteUser(1)
-    expect(1).toEqual(jasmine.any(Number))
-    expect(usersService.deleteUser).toHaveBeenCalledOnceWith(1)
+    expect(usersService.deleteUser).toHaveBeenCalledOnceWith(jasmine.any(Number))
   })
 
   it('updateUser() should update a user', () => {
     let response: User
     spyOn(usersService, 'updateUser').and.returnValue(of(users[0]))
-    usersService.updateUser(1, {name:"Jean Balangué"}).subscribe( (res) => {
+    usersService.updateUser(1, userUpdateForm).subscribe( (res) => {
       response = res
     })
-    expect(usersService.updateUser).toHaveBeenCalledOnceWith(1, {name:"Jean Balangué"})
+    expect(usersService.updateUser).toHaveBeenCalledOnceWith(1, userUpdateForm)
     expect(response!).toEqual(users[0])
   })
 

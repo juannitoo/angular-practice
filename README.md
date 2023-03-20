@@ -17,24 +17,20 @@ Voilà synthétiquement où j'en suis :
 - [x] Architecture modulaire
 - [x] Lazy loading
 - [x] State management pour rendre JsonPlaceHolder indépendant de son back-end et avoir un comportment cohérent
-- [x] Material UI pour appréhender l'outil et avoir une finition professionnelle (sur jsonplaceholder)
+- [x] Material UI pour appréhender l'outil et avoir une finition plus professionnelle (sur jsonplaceholder)
 - [x] Directive et animation perso
-
+- [x] Mieux gérer les types en général et supprimer les any qui trainent
+- [x] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple
 
 en cours :
-- Petite pause d'Angular pour me faire un cours sur Node Express Mongodb pour pourvoir postuler en début de semaine prochaine à une offre d'emploi.
+- [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :
-- [ ] TESTS !!!!! (en cours, j'arrive à faire des choses, j'ai lu les notices, mais je crois que je n'ai pas compris le concept.
-Allez voir shared/directive/title-event.spec.ts pour comprendre ce que je veux dire)
-- [ ] Authentification (j'ai vu ce dont on parle, je reviendrai dessus plus tard)
-- [ ] Faire qqchose avec un subject
-- [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour". Mieux gérer les unsubscriptions
-- [ ] Mieux gérer les types en général et supprimer les any qui trainent
+- [ ] Authentification (j'ai vu ce dont on parle, je reviendrai dessus plus tard avec node, ou je mettrais en place un json web token, avec un interceptor)
+- [ ] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 
 
 Et après selon votre bon vouloir :
-- [ ] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple, où
 - [ ] Me faire engager chez vous
 
 

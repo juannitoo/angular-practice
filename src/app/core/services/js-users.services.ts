@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, switchMap, catchError, timer, retry } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
+import { UserCreateValues } from '../interfaces/js-user-create-form.interface';
 
 
 @Injectable()
@@ -50,7 +51,7 @@ export class JsUsersService {
         )
     }
 
-    addUser(formValue: FormData ): Observable<User>{
+    addUser(formValue: UserCreateValues ): Observable<User>{
         return this.getUsers().pipe(
             map(users => [...users].sort((a,b) => a.id - b.id)),
             map(sortedUsers => sortedUsers[sortedUsers.length - 1]),
@@ -75,7 +76,7 @@ export class JsUsersService {
         )
     }
 
-    updateUser(userId: number, formValue: any): Observable<User>{
+    updateUser(userId: number, formValue: UserCreateValues): Observable<User>{
         return this.getUser(userId).pipe(
             map( () => ({
                 ...formValue,
