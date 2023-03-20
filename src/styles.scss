@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-html, body { min-height: 100vh; }
+html, body { 
+  min-height: 100vh; 
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -13,7 +16,6 @@ body {
 }
 
 p{
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

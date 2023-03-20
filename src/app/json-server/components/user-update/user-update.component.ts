@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
@@ -75,6 +75,7 @@ export class UserUpdateComponent implements OnInit {
       website: userFormValues.website
     }
     this.userFormUpdateObs = this.jsUsersService.updateUser( userId, userValues).pipe(
+      take(1),
       tap(() => this.router.navigateByUrl('json-server/users'))
     ).subscribe({
       error: (error) => console.error(`erreur dans onSubmitForm() jsonserver/users/update : ${error}`)
@@ -82,7 +83,7 @@ export class UserUpdateComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.userFormUpdateObs.unsubscribe()
+    // this.userFormUpdateObs.unsubscribe() // je take(1) plutot et mon lien refonctionne
   }
 
 }
