@@ -3,7 +3,9 @@
 <p>Ce repo me permet de m'initier aux concepts 
     d'angular et en même temps vous permez d'évaluer un 
     peu mieux mon niveau. J'ai donc pour l'instant créer 2 fixtures modules,
-    json-place-holder et json-server qui sont donc 2 back-end distinct
+    json-place-holder et json-server qui sont donc des back-end distincts.
+    Et je reviens donc un peu plus tard pour y ajouter un back-end NodeJs et continuer
+    ma progression.
 </p>
 <p><b><i>JsonPlaceHolder</i></b> est une API REST
     gratuite de démo qui permet de récupérer des datas, 
@@ -34,8 +36,21 @@
 </p>
 <p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
     appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
-    faire des choses qui me semblent cohérentes comme tester le type d'un param ou la
+    faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
     fonctionnalité de ma directive. je reste là dessus un petit moment pour améliorer
     et progresser.
 </p>
+<p>Alors, je suis bien resté sur les tests quelques jours et j'ai lu bcp de choses mais 
+    je n'arrive toujours pas à tester les choses essentielles de mon crud jsonplaceholder
+    comme getUsers() mais aussi des Observables | async. Par ex :<br />
+    <i>app-user  *ngFor="let x of users | async" [user]="x" /app-user</i>
+</p>
+<p>Je vais donc basculer du côté Node pour éviter de rester bloqué trop longtemps et je vais 
+    continuer en même temps avec les tests pour voir si sans observable, ce sera plus facile
+    à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
+    de développer en mode TDD.
+</p>
+<p><b><i>NodeJs</i></b>  va me permettre de réaliser une petite API rest avec Mongo et Express 
+    pour avoir de la persistance dans les datas et ou je vais pouvoir mettre en place 
+    une vrai authentification JWT.</p>
 </article>
