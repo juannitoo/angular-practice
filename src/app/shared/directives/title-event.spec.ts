@@ -22,7 +22,6 @@ describe('Directive TitleEvent', () => {
   class TestComponent { }
 
   let fixture: ComponentFixture<Component>
-  let component: Component
   let element: DebugElement
   let title: HTMLElement
   let div: HTMLElement

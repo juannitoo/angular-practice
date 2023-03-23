@@ -94,7 +94,7 @@ describe('UsersService', () => {
   })
 
   it('getUser() should return a user', () => {
-    let response:User;
+    let response:User
     spyOn(usersService, 'getUser').and.returnValue(of(users[0]))
     usersService.getUser(1).subscribe(res => {
         response = res
