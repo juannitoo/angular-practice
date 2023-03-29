@@ -19,6 +19,8 @@ import { emailValidator } from '../../validators/email.validators';
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '500ms',
+              direction: 'X',
+              directionValue: '-100%'
           }
       })
     ])

@@ -15,7 +15,8 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '500ms',
-              direction: 'X'
+              direction: 'X',
+              directionValue: '-100%'
           }
       })
     ])

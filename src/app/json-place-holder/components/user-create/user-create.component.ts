@@ -17,7 +17,8 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '400ms',
-              direction: 'X'
+              direction: 'X',
+                  directionValue: '-100%'
           }
         })
       ])
@@ -27,7 +28,8 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '550ms',
-              direction: 'X'
+              direction: 'X',
+                  directionValue: '-100%'
           }
         })
       ])
@@ -37,7 +39,8 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '700ms',
-              direction: 'X'
+              direction: 'X',
+                  directionValue: '-100%'
           }
         })
       ])

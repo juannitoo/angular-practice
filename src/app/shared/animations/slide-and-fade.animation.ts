@@ -2,7 +2,7 @@ import { animate, animation, style } from '@angular/animations';
 
 export const SlideAndFadeAnimation = animation([
     style({
-        transform: 'translate{{direction}}(-100%)',
+        transform: 'translate{{direction}}({{directionValue}})', //-100%
         opacity: 0,
     }),
     animate('{{timer}} ease-out', style({
