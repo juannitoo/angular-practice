@@ -1,16 +1,14 @@
 #content{ 
-    // background-color: rgb(255,255,255);
-    width: 80%;
-    margin: 0 auto;
-    padding: 1em;
+    max-width: 95vw;
     min-height: 100vh;
+    margin: 0 auto;
 }
 
 #dynamic-content{
     background-color: rgb(255,255,255);
-    width: 80%;
-    margin: 0 auto;
     padding: 1em;
-    margin-top: 1.5em;
-    border-radius: 5px;
+    max-width: 95%;
+    margin: 0 auto;
+    border-radius: 4px;
+    min-height: 78vh;
 }

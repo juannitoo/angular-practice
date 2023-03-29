@@ -7,20 +7,7 @@
     Et je reviens donc un peu plus tard pour y ajouter un back-end NodeJs et continuer
     ma progression.
 </p>
-<p><b><i>JsonPlaceHolder</i></b> est une API REST
-    gratuite de démo qui permet de récupérer des datas, 
-    et de faire un simili CRUD. J'ai mis en place une 
-    architecture modulaire et lazy loadé ce module. 
-    C'est le bac à sable, un peu frustrant vu les limitations
-    de l'api, ce qui m'a conduit dans un premier temps vers json-server.
-</p>
-<p><b><i>Json-server</i></b> est un module node qui permet de réellement 
-    mettre à jour ou supprimer les datas que je vais envoyer 
-    via mes requetes http, et non plus seulement faire du fake 
-    en console. Il faut donc avoir un serveur qui tourne en 
-    parallèle. Les datas ont été récupérées sur l'api jsonplaceholder pour initialiser
-    le serveur.
-</p>
+
 <p> Après avoir réalisé le CRUD sur la partie json-server, je suis repassé sur
     la partie json-place-holder afin de mettre en place un state management ou je ne 
     solicite l'API qu'à l'initilaisation pour récupérer les datas. Vu que je ne 
@@ -34,6 +21,7 @@
     j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision 
     d'ensemble du framework.
 </p>
+
 <p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
     appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
     faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
@@ -50,7 +38,32 @@
     à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
     de développer en mode TDD.
 </p>
-<p><b><i>NodeJs</i></b>  va me permettre de réaliser une petite API rest avec Mongo et Express 
-    pour avoir de la persistance dans les datas et ou je vais pouvoir mettre en place 
-    une vrai authentification JWT.</p>
 </article>
+
+<div class="encart-container">
+<article class="encart" routerLink="jsonplaceholder">
+    <img src="assets/images/jsonplaceholder.png" alt="" class="img-encart" />
+    <p class="p-encart"><b><i>JSONPlaceholder</i></b> est une API REST
+        gratuite de démo qui permet de récupérer des datas, 
+        et de faire un simili CRUD. J'ai mis en place une 
+        architecture modulaire et lazy loadé ce module. 
+    </p>
+</article>
+
+<article class="encart" routerLink="json-server">
+    <img src="assets/images/jsonserver.jpg" alt="" class="img-encart" />
+    <p class="p-encart"><b><i>Json-server</i></b> est un module node qui permet de réellement 
+        mettre à jour ou supprimer les datas que je vais envoyer 
+        via mes requetes http, et non plus seulement faire du fake 
+        en console. Il faut donc avoir un serveur qui tourne en 
+        parallèle. Les datas ont été récupérées sur l'api jsonplaceholder pour initialiser
+        le serveur.</p>
+</article>
+
+<article class="encart" routerLink="nodeJs">
+    <img src="assets/images/nodejs-logo.png" alt="" class="img-encart" />
+    <p class="p-encart"><b><i>NodeJs</i></b>  va me permettre de réaliser une petite API rest avec Mongo et Express 
+        pour avoir de la persistance dans les datas et ou je vais pouvoir mettre en place 
+        une vrai authentification JWT.</p>
+</article>
+</div>

@@ -17,6 +17,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '400ms',
+              direction: 'X'
           }
         })
       ])
@@ -26,6 +27,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '550ms',
+              direction: 'X'
           }
         })
       ])
@@ -35,6 +37,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '700ms',
+              direction: 'X'
           }
         })
       ])

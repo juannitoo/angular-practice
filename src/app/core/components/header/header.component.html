@@ -1,5 +1,17 @@
 <header>
-  <img class="logo" src="../../../../assets/images/angular-logo.png" />
+  <div class="logo">
+    <img class="logo-img" src="../../../../assets/images/angular-logo.png" />
+    <div class="text-logo" @slideTextContainer>
+      <span class="logo-letter">P</span>
+      <span class="logo-letter">r</span>
+      <span class="logo-letter">a</span>
+      <span class="logo-letter">c</span>
+      <span class="logo-letter">t</span>
+      <span class="logo-letter">i</span>
+      <span class="logo-letter">c</span>
+      <span class="logo-letter">e</span>
+    </div>
+  </div>
   <nav>
     <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="jsonplaceholder" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder API</a>
