@@ -14,7 +14,7 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
               timer: '700ms',
               delay: '0ms',
               direction: 'Y',
-              directionValue: '-100%'
+              directionValue: '-200%'
           }
         })
       ]),
@@ -26,7 +26,7 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
               timer: '700ms',
               delay: '0ms',
               direction: 'Y',
-              directionValue: '100%'
+              directionValue: '200%'
           }
         })
       ]),

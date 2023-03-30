@@ -24,7 +24,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
               timer: '700ms',
               delay: '750ms',
               direction: 'X',
-              directionValue: '-100%'
+              directionValue: '0%'
           }}
         )
       ])
