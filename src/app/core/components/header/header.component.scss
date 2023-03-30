@@ -1,43 +1,42 @@
 header { 
-    width: 95vw;
-    margin: 0 auto;
+    width: 98vw;
     background-color: rgb(240, 240, 240);
-    border-radius: 5px;
-    padding-bottom: 1rem;
-    height: 15vh;
+    min-height: 8vh;
     position: fixed;
     top: 0;
-    left : 2vh;
+    left : 0;
+    display: flex;
+    align-items: center;
+    z-index: 1000 // matinput et accordeon je ne sais pas combien
 }
 
 .logo{
-    display: block;
-    margin: 0 auto;
+    flex: 200px;
     text-align: center;
-}
-
-.logo-img{
-    width: 300px;
-}
-
-.text-logo{
-    font-size: 2.5em;
-    margin: -0.5em 0px 1em 0em;
-}
-
-.logo-letter{
-    opacity : 0; 
-    font-style: italic;
 }
 
 nav{
     text-align: center;
-    // width: 90vw;
+    flex: 200px;
+}
+
+.logo-img{
+    width: 200px;
+}
+
+.text-logo{
+    margin: -1.3rem 0rem 0rem 5rem;
+}
+
+.logo-letter{
+    font-size: 1.7em;
+    color: rgb(50,50,50);
+    font-style: italic;
 }
 
 a{
-    margin: 0 10px;
-    color: #3d3de9;
+    margin: 0px 10px;
+    color: rgb(61, 61, 233);
     text-decoration: none;
     font-weight: bold;
     &:hover {

@@ -1,4 +1,4 @@
-import { query, stagger, transition, trigger, useAnimation } from '@angular/animations';
+import { animate, animateChild, query, stagger, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
 
@@ -10,15 +10,46 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
     trigger( 'slideTextContainer', [
       transition(':enter', [
         query("span", [
-          stagger(250, [
-            useAnimation(SlideAndFadeAnimation, {
-              params: {
-                  timer: '200ms',
-                  direction: 'X',
-                  directionValue: '-100%'
-              }}
-            )]
+          stagger(150, [
+            animateChild()
+          ],
           )]
+        )
+      ])
+    ]),
+    trigger( 'slideLetter', [
+      transition(':enter', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+              delay: '750ms',
+              direction: 'X',
+              directionValue: '-100%'
+          }}
+        )
+      ])
+    ]),
+    trigger( 'slideLogo', [
+      transition(':enter', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+              delay: '0ms',
+              direction: 'X',
+              directionValue: '-100%'
+          }}
+        )
+      ])
+    ]),
+    trigger( 'slideNav', [
+      transition(':enter', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+              delay: '0ms',
+              direction: 'X',
+              directionValue: '100%'
+          }}
         )
       ])
     ]),
@@ -26,15 +57,11 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
 })
 export class HeaderComponent implements OnInit {
 
+  slideLetterState: 'hidden' | 'show' = 'hidden'
+
   constructor() { }
 
   ngOnInit(): void {
-    setTimeout(()=>{
-      const list = document.getElementsByClassName('logo-letter')
-      for (let i=0; i<list.length ; i++ ){
-        list.item(i)?.setAttribute('style', 'opacity:1;')
-      }
-    }, 1800)
   }
 
 }

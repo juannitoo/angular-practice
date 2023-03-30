@@ -12,6 +12,7 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '700ms',
+              delay: '0ms',
               direction: 'Y',
               directionValue: '-100%'
           }
@@ -23,6 +24,7 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '700ms',
+              delay: '0ms',
               direction: 'Y',
               directionValue: '100%'
           }

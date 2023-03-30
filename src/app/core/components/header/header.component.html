@@ -1,18 +1,18 @@
 <header>
   <div class="logo">
-    <img class="logo-img" src="../../../../assets/images/angular-logo.png" />
+    <img class="logo-img" src="../../../../assets/images/angular-logo.png" @slideLogo/>
     <div class="text-logo" @slideTextContainer>
-      <span class="logo-letter">P</span>
-      <span class="logo-letter">r</span>
-      <span class="logo-letter">a</span>
-      <span class="logo-letter">c</span>
-      <span class="logo-letter">t</span>
-      <span class="logo-letter">i</span>
-      <span class="logo-letter">c</span>
-      <span class="logo-letter">e</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">P</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">r</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">a</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">c</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">t</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">i</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">c</span>
+      <span class="logo-letter" [@slideLetter]="slideLetterState">e</span>
     </div>
   </div>
-  <nav>
+  <nav @slideNav>
     <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="jsonplaceholder" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder API</a>
     <a routerLink="json-server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Json-server</a>

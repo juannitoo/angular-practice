@@ -5,8 +5,8 @@ export const SlideAndFadeAnimation = animation([
         transform: 'translate{{direction}}({{directionValue}})', //-100%
         opacity: 0,
     }),
-    animate('{{timer}} ease-out', style({
-        transform: 'translateX(0)',
+    animate('{{timer}} {{delay}} ease-out', style({
+        transform: 'translate{{direction}}(0)',
         opacity: 1,
     }))
 ])
