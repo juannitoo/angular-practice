@@ -27,6 +27,7 @@ Voilà synthétiquement où j'en suis :
 - [x] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 
 en cours :
+- [ ] CSS pour avoir une home présentable
 - [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :

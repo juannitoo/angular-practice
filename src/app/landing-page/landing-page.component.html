@@ -1,74 +1,78 @@
 <h1>Divers tests Angular (v14)</h1>
 <article>
-<p>Ce repo me permet de m'initier aux concepts 
-    d'angular et en même temps vous permez d'évaluer un 
-    peu mieux mon niveau. J'ai donc pour l'instant créer 2 fixtures modules,
-    json-place-holder et json-server qui sont donc des back-end distincts.
-    Et je reviens donc un peu plus tard pour y ajouter un back-end NodeJs et continuer
-    ma progression.
-</p>
+  <p>Ce repo me permet de m'initier aux concepts 
+      d'angular et en même temps vous permez d'évaluer un 
+      peu mieux mon niveau. J'ai donc pour l'instant créer 2 fixtures modules,
+      json-place-holder et json-server qui sont donc des back-end distincts.
+      Et je reviens donc un peu plus tard pour y ajouter un back-end NodeJs et continuer
+      ma progression.
+  </p>
 
-<p> Après avoir réalisé le CRUD sur la partie json-server, je suis repassé sur
-    la partie json-place-holder afin de mettre en place un state management ou je ne 
-    solicite l'API qu'à l'initilaisation pour récupérer les datas. Vu que je ne 
-    peux rien modifier sur l'API, je gère les datas du CRUD via un BehavoirSubject 
-    et ne les renvois jamais vers l'API. Le comportement devient donc parfaitement 
-    cohérent. 
-    J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
-    n'en ai pas créer ici. j'ai par contre créé ma propre directive, 
-    disponible au click sur les titres des pages, son code est visible dans le module share.
-    Il manque une partie authentfication à mettre en place une fois que 
-    j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision 
-    d'ensemble du framework.
-</p>
+  <p> Après avoir réalisé le CRUD sur la partie json-server, je suis repassé sur
+      la partie json-place-holder afin de mettre en place un state management ou je ne 
+      solicite l'API qu'à l'initilaisation pour récupérer les datas. Vu que je ne 
+      peux rien modifier sur l'API, je gère les datas du CRUD via un BehavoirSubject 
+      et ne les renvois jamais vers l'API. Le comportement devient donc parfaitement 
+      cohérent. 
+      J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
+      n'en ai pas créer ici. j'ai par contre créé ma propre directive, 
+      disponible au click sur les titres des pages, son code est visible dans le module share.
+      Il manque une partie authentfication à mettre en place une fois que 
+      j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision 
+      d'ensemble du framework.
+  </p>
 
-<p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
-    appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
-    faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
-    fonctionnalité de ma directive. je reste là dessus un petit moment pour améliorer
-    et progresser.
-</p>
-<p>Alors, je suis bien resté sur les tests quelques jours et j'ai lu bcp de choses mais 
-    je n'arrive toujours pas à tester les choses essentielles de mon crud jsonplaceholder
-    comme getUsers() mais aussi des Observables | async. Par ex :<br />
-    <i>app-user  *ngFor="let x of users | async" [user]="x" /app-user</i>
-</p>
-<p>Je vais donc basculer du côté Node pour éviter de rester bloqué trop longtemps et je vais 
-    continuer en même temps avec les tests pour voir si sans observable, ce sera plus facile
-    à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
-    de développer en mode TDD.
-</p>
+  <p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
+      appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
+      faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
+      fonctionnalité de ma directive. je reste là dessus un petit moment pour améliorer
+      et progresser.
+  </p>
+  <p>Alors, je suis bien resté sur les tests quelques jours et j'ai lu bcp de choses mais 
+      je n'arrive toujours pas à tester les choses essentielles de mon crud jsonplaceholder
+      comme getUsers() mais aussi des Observables | async. Par ex :<br />
+      <i>app-user  *ngFor="let x of users | async" [user]="x" /app-user</i>
+  </p>
+
+  <p>Je vais donc basculer du côté Node pour éviter de rester bloqué trop longtemps et je vais 
+      continuer en même temps avec les tests pour voir si sans observable, ce sera plus facile
+      à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
+      de développer en mode TDD. Je pense que j'ai mal pris la chose et je pense maintenant qu'un 
+      test fonctionnel est une spécificité décrite par exemple dans une user story et qu'un test unitaire 
+      vérifie par exemple le type d'une donnée. Protractor et Jasmine fonctionneraient donc ensemble.
+      Je laisse murir un peu, cherche encore des explications, et fait du css "pour me reposer".
+  </p>
 </article>
 
 <div class="encart-container">
  
 <article class="encart" routerLink="jsonplaceholder" @slideBox>
-    <img src="assets/images/jsonplaceholder.png" alt="" class="img-encart" />
-    <hr>
-    <p class="p-encart"><b><i>JSONPlaceholder</i></b> est une API REST
-        gratuite de démo qui permet de récupérer des datas, 
-        et de faire un simili CRUD. J'ai mis en place une 
-        architecture modulaire et lazy loadé ce module, 
-        mais aussi un réactive state. C'est la partie la plus aboutie.
-    </p>
+  <img src="assets/images/jsonplaceholder.png" alt="" class="img-encart" />
+  <hr>
+  <p class="p-encart"><b><i>JSONPlaceholder</i></b> est une API REST
+      gratuite de démo qui permet de récupérer des datas, 
+      et de faire un simili CRUD. J'ai mis en place une 
+      architecture modulaire et lazy loadé ce module, 
+      mais aussi un réactive state. C'est la partie la plus aboutie.
+  </p>
 </article>
 
 <article class="encart" routerLink="json-server" @slideBox2>
-    <img src="assets/images/jsonserver.jpg" alt="" class="img-encart" />
-    <hr>
-    <p class="p-encart"><b><i>Json-server</i></b> est un module node qui permet de réellement 
-        mettre à jour ou supprimer les datas que je vais envoyer 
-        via mes requetes http, et non plus seulement faire du fake 
-        en console. Il faut donc avoir un serveur qui tourne en 
-        parallèle. Les datas ont été récupérées sur l'api jsonplaceholder pour initialiser
-        le serveur.</p>
+  <img src="assets/images/jsonserver.jpg" alt="" class="img-encart" />
+  <hr>
+  <p class="p-encart"><b><i>Json-server</i></b> est un module node qui permet de réellement 
+      mettre à jour ou supprimer les datas que je vais envoyer 
+      via mes requetes http, et non plus seulement faire du fake 
+      en console. Il faut donc avoir un serveur qui tourne en 
+      parallèle. Les datas ont été récupérées sur l'api jsonplaceholder pour initialiser
+      le serveur.</p>
 </article>
 
 <article class="encart" routerLink="nodeJs" @slideBox>
-    <img src="assets/images/nodejs-logo.png" alt="" class="img-encart" />
-    <hr>
-    <p class="p-encart"><b><i>NodeJs</i></b>  va me permettre de réaliser une petite API rest avec Mongo et Express 
-        pour avoir de la persistance dans les datas et ou je vais pouvoir mettre en place 
-        une vrai authentification JWT.</p>
+  <img src="assets/images/nodejs-logo.png" alt="" class="img-encart" />
+  <hr>
+  <p class="p-encart"><b><i>NodeJs</i></b>  va me permettre de réaliser une petite API rest avec Mongo et Express 
+      pour avoir de la persistance dans les datas et ou je vais pouvoir mettre en place 
+      une vrai authentification JWT.</p>
 </article>
 </div>
