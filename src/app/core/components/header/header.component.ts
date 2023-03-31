@@ -1,5 +1,6 @@
 import { animate, animateChild, query, stagger, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { FadeInColorAnimation } from 'src/app/shared/animations/fade-in-color.animation';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
 
 @Component({
@@ -19,12 +20,12 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
     ]),
     trigger( 'slideLetter', [
       transition(':enter', [
-        useAnimation(SlideAndFadeAnimation, {
+        useAnimation(FadeInColorAnimation, {
           params: {
-              timer: '700ms',
-              delay: '750ms',
-              direction: 'X',
-              directionValue: '0%'
+              timer: '800ms',
+              delay: '800ms',
+              startColor: 'red',
+              endColor: 'rgb(141, 141, 141)'
           }}
         )
       ])
@@ -36,7 +37,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
               timer: '700ms',
               delay: '0ms',
               direction: 'X',
-              directionValue: '-100%'
+              directionValue: '-200%'
           }}
         )
       ])
