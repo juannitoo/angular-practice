@@ -7,19 +7,31 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   animations: [
-    trigger( 'slideBox', [
+    trigger( 'slideInitiation', [
       transition('void => *', [
         useAnimation(SlideAndFadeAnimation, {
           params: {
               timer: '700ms',
               delay: '0ms',
-              direction: 'Y',
+              direction: 'x',
               directionValue: '-200%'
           }
         })
       ]),
     ]),
-    trigger( 'slideBox2', [
+    trigger( 'slideFonctionnalites', [
+      transition('void => *', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+              delay: '0ms',
+              direction: 'x',
+              directionValue: '200%'
+          }
+        })
+      ]),
+    ]),
+    trigger( 'slideEncart', [
       transition('void => *', [
         useAnimation(SlideAndFadeAnimation, {
           params: {
@@ -27,6 +39,18 @@ import { SlideAndFadeAnimation } from '../shared/animations/slide-and-fade.anima
               delay: '0ms',
               direction: 'Y',
               directionValue: '200%'
+          }
+        })
+      ]),
+    ]),
+    trigger( 'slideEncart2', [
+      transition('void => *', [
+        useAnimation(SlideAndFadeAnimation, {
+          params: {
+              timer: '700ms',
+              delay: '0ms',
+              direction: 'Y',
+              directionValue: '-100%'
           }
         })
       ]),

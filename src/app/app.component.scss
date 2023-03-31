@@ -14,3 +14,15 @@
     margin-top: 10vh;
     min-height: 100vh;
 }
+
+@media (max-width: 938px) { 
+    #dynamic-content{
+        margin-top: 14vh;
+    }
+}
+
+@media (max-width: 470px) { 
+    #dynamic-content{
+        margin-top: 30vh;
+    }
+}

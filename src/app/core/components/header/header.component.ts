@@ -23,7 +23,7 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
         useAnimation(FadeInColorAnimation, {
           params: {
               timer: '800ms',
-              delay: '800ms',
+              delay: '1200ms',
               startColor: 'red',
               endColor: 'rgb(141, 141, 141)'
           }}
