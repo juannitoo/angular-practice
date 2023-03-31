@@ -6,13 +6,21 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NodeModule } from './node/node.module';
 
 const routes: Routes = [
+
   { path: 'jsonplaceholder', loadChildren: () => import('./json-place-holder/json-place-holder.module')
-                                           .then( m => JsonPlaceHolderModule) },
+                                            .then( m => JsonPlaceHolderModule), 
+                                            title: 'Json-place-holder landing page' },
+
   { path: 'json-server', loadChildren: () => import('./json-server/json-server.module')
-                                           .then( m => JsonServerModule) },
+                                            .then( m => JsonServerModule), 
+                                            title: 'Json-server landing page' },
+
   { path: 'nodeJs', loadChildren: () => import('./node/node.module')
-                                           .then( m => NodeModule) },
-  { path: '', component: LandingPageComponent },
+                                            .then( m => NodeModule), 
+                                            title: 'NodeJs landing page' },
+
+  { path: '', component: LandingPageComponent, title: "Exercices pour m'exercer avec Angular" },
+
   { path: '**', component: LandingPageComponent }                                        
 ];
 

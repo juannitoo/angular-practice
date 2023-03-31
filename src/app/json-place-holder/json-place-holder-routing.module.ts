@@ -7,11 +7,11 @@ import { UserComponent } from './components/user/user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes: Routes = [
-  { path: 'users/update/:id', component: UserUpdateComponent },
-  { path: 'users/create', component: UserCreateComponent },
+  { path: 'users/update/:id', component: UserUpdateComponent, title:"Modifier les datas du user" },
+  { path: 'users/create', component: UserCreateComponent, title:"Créez un user" },
   { path: 'users/:id', component: UserComponent },
-  { path: 'users', component: UsersListComponent },
-  { path : '', component: JsonLandingComponent }
+  { path: 'users', component: UsersListComponent, title:"Les users de JsonPlaceHolder"  },
+  { path : '', component: JsonLandingComponent, title:"Présentation de l'exercice JsonPlaceHolder" }
 ];
 
 @NgModule({

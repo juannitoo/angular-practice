@@ -7,11 +7,11 @@ import { UserComponent } from './components/user/user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
 const routes = [  
-  { path: 'users/update/:id', component: UserUpdateComponent},
-  { path: 'users/create', component: UserCreateComponent},
-  { path: 'users/:id', component: UserComponent},
-  { path: 'users', component: UsersListComponent},
-  { path: '', component: JsonServerLandingComponent}
+  { path: 'users/update/:id', component: UserUpdateComponent, title:" Modifiez un utilisateur"},
+  { path: 'users/create', component: UserCreateComponent, title:" Créez un utilisateur"},
+  { path: 'users/:id', component: UserComponent, title:"Informations personnelles de l'utilisateur :id"},
+  { path: 'users', component: UsersListComponent, title:"Les users présents sur le serveur"},
+  { path: '', component: JsonServerLandingComponent, title:"Présentation de l'exercice json-server"}
 ];
 
 @NgModule({
