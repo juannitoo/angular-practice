@@ -28,6 +28,7 @@ h5{
     flex: 200px;
     p{
         font-size: 1.3rem;
+        text-align: justify;
     }
     margin: 2em;
 }
@@ -68,6 +69,7 @@ h5{
     flex: 200px; // width minimum des boites avant flex
     padding: 1rem;
     margin: 1rem 2rem 4rem 2rem;
+    text-align: justify;
     cursor: pointer;
     &:hover{
         box-shadow: 0px 0px 9px 5px rgb(170, 170, 170);

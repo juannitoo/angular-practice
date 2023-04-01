@@ -1,59 +1,62 @@
-<h1>JsonPlaceHolder API</h1>
-<article>
-<p><a target="_blank" href="https://jsonplaceholder.typicode.com/">JsonPlaceHolder.typicode.com</a>
- est une api gratuite qui permet de simuler le CRUD. 
- Plusieurs sous-api sont disponibles, j'ai choisi celles des Users.
- On ne ne peux pas rééllement insérer ou supprimer, mais elle renvoie renvoie 
- l'objet soi disant créé, updaté et supprimé alors c'est suffisant pour 
- m'exercer.</p>
- <p><i>EDIT : Après moults batailles à essayer d'afficher mon user créé dans la liste de users affichés,
-    via @output() event emitter, http post, ou encore query params, j'abandone et je l'affiche 
-    sur la même page. Il y aurait l'option de passer par le module shared, ou encore subject
-    mais j'ai d'autres choses plus simples à voir et comprendre avant. Je fignole donc un peu et je vais dégainer 
-    le module node json-server qui me permettra de réellement me mettre en situation.
-    Bon finalement je suis passé par le service où je gère le simili CRUD sauf le update. 
-    Le hack, c'est que je shunte l'appel http du service pour retourner les nouveaux objets créés.
-    Donc j'ai un comportement qui ressemble à un comportement normal. meme si je ne peux pas afficher 
-    les nouveaux objets de façon uniques (/users/xx) sans continuer les modifs partout.
- </i></p>
- <p><i>EDIT 2: Me revoilà qqs jours plus tard pour mettre en place Material UI et le state Management reactif
-   avec BehaviorSubject, qui contrairement à un subject classique, stocke la dernière valeur en plus de l'envoyer à ces abonnés.
-   Le comportement est donc completement cohérent.
-</i></p>
- <p>Voilà un exemple de routes possibles :</p>
- <code>
-    https://jsonplaceholder.typicode.com/users<br />
-    https://jsonplaceholder.typicode.com/users/1<br />
- </code>
- <p>Un exemple d'appel en js natif avec l'api posts</p>
- <code>
-    fetch('https://jsonplaceholder.typicode.com/posts/1')<br />
-    .then((response) => response.json())<br />
-    .then((json) => console.log(json));<br />
-</code>
-<code>Renvoie :
-   {{ '{' }}
-      id: 1,
-      title: '...',
-      body: '...',
-      userId: 1
-   {{ '}' }}
-</code>
- 
- <p>Cliquez ci dessous pour visualiser ce test avec les datas de l'api.</p>
-<p><a routerLink="users">Accéder à la démo des Users</a></p>
-</article>
+<section>
+   
+   <h1>JsonPlaceHolder</h1>
+   <article id="json-exemple">
+      <p>Voilà un exemple de routes possibles :</p>
+      <div class="code">
+         https://jsonplaceholder.typicode.com/users<br />
+         https://jsonplaceholder.typicode.com/users/1<br />
+      </div>
+      <p>Un exemple d'appel en js natif avec l'api posts</p>
+      <div class="code">
+         fetch('https://jsonplaceholder.typicode.com/posts/1')<br />
+         .then((response) => response.json())<br />
+         .then((json) => console.log(json));<br />
+      </div>
+      <div class="code">Renvoie :
+         {{ '{' }}
+            id: 1,
+            title: '...',
+            body: '...',
+            userId: 1
+         {{ '}' }}
+      </div>
+   </article> 
+   <article class="presentation">
+      <p><a target="_blank" href="https://jsonplaceholder.typicode.com/">JsonPlaceHolder.typicode.com</a>
+      est une api gratuite qui permet de simuler le CRUD. 
+      Plusieurs sous-api sont disponibles, j'ai choisi celles des Users.
+      On ne ne peux pas rééllement insérer ou supprimer, mais elle renvoie 
+      l'objet soi disant créé, updaté et supprimé alors c'est suffisant pour 
+      m'exercer.</p>
+      <p><b>Cette partie a été réalisée en 4 étapes, c'est celle où pour l'instant j'ai le plus travaillé.</b></p>
+      <p><b class="decalage">La première</b> a été celle ou j'ai vraiment débuté avec Angular. J'ai récupéré les données de l'API pour 
+         les afficher puis j'ai fait du fake en console pour simuler le CRUD. Je me suis ensuite dirigé 
+         vers la partie JSON-server pour mettre en place un crud fonctionnel.
+      </p>
+      <p><b class="decalage">La deuxième étape</b> a consisté à tout tenter pour afficher un user fraichement créer dans ma liste de users affichée. 
+         Ca n'a pas été simple et ca m'a fait découvrir les query params ou encore les @output(). J'ai finalement réussi à 
+         afficher le user créé et me suis arrêté là pour passer sur la partie JSON-server. Je ne pouvais donc pas afficher les nouveaux 
+         objects de façon unique. Le hack, c'est que je shuntais l'appel http du service en stockant mes datas 
+         dans un objet de type any dans le service. Ne voulant pas aller trop loin dans cette voie, j'ai continué à voir 
+         d'autres tutoriaux pour continuer mon apprentissage.
+      </p>
+      <p><b class="decalage">Me revoilà pour la troisième étape</b> quelques jours plus tard pour mettre en place Material UI et le state Management reactif
+         avec BehaviorSubject, qui contrairement à un subject classique, stocke la dernière valeur en plus de l'envoyer à ces abonnés.
+         C'était plutôt facile parce que j'avais déjà fait le gros du travail en amont sans le savoir, mon behaviorSubject avait un type any 
+         et non pas BehaviorSubject. J'ai donc poursuivi sur ce pattern sur les users updatés ou supprimés. Le comportement est donc 
+         maintenant completement cohérent. J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
+         n'en ai pas créer ici. J'ai par contre créé ma propre directive, disponible au click sur les titres des pages de la démo des users, 
+         son code est visible dans le module share.
+      </p>
+      <p><b class="decalage">Enfin la dernière étape</b>, en ce moment, est celle du CSS. Il manque une partie authentfication à mettre en place une fois que 
+         j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision d'ensemble du framework. Concernant les tests, je débute,
+         vous pourrez en apprendre plus sur la partie nodeJs.
+      </p>
+   </article>
 
-<p> Après avoir réalisé le CRUD sur la partie json-server, je suis repassé sur
-   la partie json-place-holder afin de mettre en place un state management ou je ne 
-   solicite l'API qu'à l'initilaisation pour récupérer les datas. Vu que je ne 
-   peux rien modifier sur l'API, je gère les datas du CRUD via un BehavoirSubject 
-   et ne les renvois jamais vers l'API. Le comportement devient donc parfaitement 
-   cohérent. 
-   J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
-   n'en ai pas créer ici. j'ai par contre créé ma propre directive, 
-   disponible au click sur les titres des pages, son code est visible dans le module share.
-   Il manque une partie authentfication à mettre en place une fois que 
-   j'aurais vu comment réaliser différents tests et ainsi avoir une bonne vision 
-   d'ensemble du framework.
-</p>
+   <article class="button-container">
+      <button mat-raised-button routerLink="users">Accéder à la démo des Users</button>
+   </article>
+
+</section>

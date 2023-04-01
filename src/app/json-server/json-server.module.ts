@@ -9,6 +9,7 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { JsUsersService } from '../core/services/js-users.services';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { JsUsersService } from '../core/services/js-users.services';
   imports: [
     CommonModule,
     JsonServerRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers : [
     JsUsersService
