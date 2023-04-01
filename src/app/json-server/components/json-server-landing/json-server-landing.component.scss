@@ -26,8 +26,8 @@ button{
 
 a{
     color: #080808;
-    text-decoration: none;
+    text-decoration: underline;
     &:hover {
-        text-decoration: underline;
+        text-decoration: none;
     }
 }
