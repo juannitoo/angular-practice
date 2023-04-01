@@ -1,10 +1,13 @@
 .form-input {
     width: 90%;
-    margin:5% 5% 0% 5% ;
+    box-sizing: border-box;
+    margin: 0% 5% 0% 5% ;
+    // margin:0 auto;
 }
 
 h4{
   text-align: center;
+  font-size: 1.2rem;
 }
   
 .action-buttons {
@@ -14,6 +17,11 @@ h4{
 button {
   display: block;
   margin: 20px auto;
+  color: rgb(211, 17, 17);
+  &:hover{
+    background-color: rgb(211, 17, 17);
+    color:white;
+  }
 }
 
 .box-user{
@@ -27,13 +35,36 @@ button {
   
 .retour{
   display: block;
-  text-align: center;
-  margin: 3em 0 0 0;
-  color: #3d3de9;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.3em;
-  &:hover {
-      text-decoration: underline;
+  width : 100%;
+  float: left;
+  font-size : 1em;
+  margin-left: 1em;
+}
+
+mat-icon{
+  scale: 1.5;
+  color: black;
+  &:hover{
+    color:rgb(211, 17, 17);
+  }
+}
+@media (min-width: 1350px) { 
+  .box-user{
+      width: 30%;
+      margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 750px) { 
+  .box-user{
+      width: 70%;
+      margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 450px) { 
+  .box-user{
+      width: 100%;
+      margin-bottom: 5em;
   }
 }

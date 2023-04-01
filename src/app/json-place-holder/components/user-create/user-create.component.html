@@ -1,7 +1,11 @@
 <section>
-    <p><a routerLink="./../" class="retour" >Retour</a></p>
-
+    
     <div class="form-card" *ngIf="!newUser">
+        <p id="return-container">
+            <a routerLink="./../" class="retour" 
+            title="Retour à la liste"><mat-icon>backspace_outline</mat-icon>
+            </a>
+        </p>
         <h4 titleEvent @slideText>Créez un nouvel utilisateur</h4>
 
         <form [formGroup]="userCreateForm" (submit)="onSubmitForm()">

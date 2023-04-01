@@ -1,6 +1,9 @@
 <div class="container">
-    <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder :</h4>
-    <a class="align-center" routerLink="create">Ajouter un User</a>
+    <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
+    <a class="align-center" routerLink="create" title="Ajoutez un user">
+        <mat-icon class="icone">account_circle</mat-icon>
+        <mat-icon class="icone">add</mat-icon> 
+    </a>
     <article>
         <app-user *ngFor="let x of users | async" [user]="x"></app-user>
     </article>

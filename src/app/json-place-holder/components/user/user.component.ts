@@ -27,6 +27,9 @@ export class UserComponent implements OnInit {
   //material accordion
   panelOpenState = false;
 
+  // pour savoir si afficher les pseudos ds accordeon
+  isSmartPhone = false
+
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
@@ -38,6 +41,7 @@ export class UserComponent implements OnInit {
     if (userId) {
       this.user$ = this.onGetUser(userId);
     }
+    this.isSmartPhone = document.getElementsByTagName('html')[0].clientWidth < 500 ? false : true
   }
   
   showUser(userId : number){

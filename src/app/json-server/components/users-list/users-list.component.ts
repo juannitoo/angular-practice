@@ -14,9 +14,9 @@ export class UsersListComponent implements OnInit {
 
   users$! : Observable<User[]>;
 
-
   ngOnInit(): void {
     this.users$ = this.JsUsersService.getUsers()
+    console.log(this.users$)
   }
 
 }

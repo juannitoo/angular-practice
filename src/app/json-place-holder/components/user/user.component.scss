@@ -60,3 +60,19 @@ p{
     display: inline-block;
     width: 45%;
 }
+
+#btn-update{
+    color: rgb(50, 17, 197);
+    &:hover{
+        background-color: rgb(50, 17, 197);
+        color: white;
+    }
+}
+
+#btn-delete{
+    color: rgb(211, 17, 17);
+    &:hover{
+        background-color: rgb(211, 17, 17);
+        color: white;
+    }
+}

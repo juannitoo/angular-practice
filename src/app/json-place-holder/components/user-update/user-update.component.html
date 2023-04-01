@@ -1,7 +1,7 @@
 <section>
-    <p><a routerLink="../../" class="retour" >Retour</a></p>
-
+    
     <form [formGroup]="userForm" class="box-user" (submit)="onSubmitForm()" *ngIf="user$">
+        <p><a routerLink="../../" class="retour" title="Retour à la liste"><mat-icon>backspace_outline</mat-icon></a></p>
         <h4 titleEvent @slideText>Modifiez votre profil</h4>
 
         <mat-form-field  appearance="fill" class="form-input" *ngIf="user$">

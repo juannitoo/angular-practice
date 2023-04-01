@@ -12,7 +12,8 @@
         <mat-panel-description class="bold" title="Nom">
           {{ user.name }}       
         </mat-panel-description>
-        <mat-panel-description class="bold" title="Pseudo">
+        <mat-panel-description class="bold" title="Pseudo"
+          *ngIf="isSmartPhone">
           {{ user.username }}       
         </mat-panel-description>
         <mat-icon id="icone">account_circle</mat-icon>    
@@ -42,13 +43,15 @@
       </p>
       <p>
         <span class="margin-left actions" >
-          <button type="button" mat-raised-button color="primary" (click)="showUser(user.id)">
+          <button type="button" mat-raised-button id="btn-update" 
+            (click)="showUser(user.id)">
             <mat-icon>edit</mat-icon> Modifier
           </button>
         </span>
 
         <span class="actions">
-          <button type="button" mat-raised-button color="warn" (click)="onDelUser(user.id)">
+          <button type="button" mat-raised-button 
+            id="btn-delete" (click)="onDelUser(user.id)">
             <mat-icon>delete</mat-icon> Supprimer
           </button>
         </span>

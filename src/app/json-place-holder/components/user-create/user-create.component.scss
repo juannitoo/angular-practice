@@ -13,6 +13,7 @@
 
 h4{
   text-align: center;
+  font-size: 1.2em;
 }
 
 .input-text {
@@ -26,11 +27,47 @@ h4{
 button {
   display: block;
   margin: 20px auto;
+  color: rgb(211, 17, 17);
+  &:hover{
+    background-color: rgb(211, 17, 17);
+    color:white;
+  }
 }
 
+#return-container{
+  display: block;
+  width: 100%;
+}
 .retour{
   display: block;
-  width : 100%;
-  text-align: center;
-  font-size : 1.5em;
+  font-size : 1em;
+}
+
+mat-icon{
+  scale: 1.5;
+  color: black;
+  &:hover{
+    color:rgb(211, 17, 17);
+  }
+}
+
+@media (min-width: 1350px) { 
+  .form-card{
+      width: 30%;
+      margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 750px) { 
+  .form-card{
+      width: 70%;
+      margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 450px) { 
+  .form-card{
+      width: 100%;
+      margin-bottom: 5em;
+  }
 }

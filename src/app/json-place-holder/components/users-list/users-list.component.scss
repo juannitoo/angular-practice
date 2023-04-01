@@ -15,9 +15,33 @@ article{
     margin-top:2em;
 }
 
+.icone{
+    color: black;
+    scale: 1.5;
+    margin: 0.2em;
+}
+
+a:hover{
+    .icone{
+        color: rgb(211, 17, 17);
+    }
+}
+
+
 @media (min-width: 1250px) { 
     .container{
         width: 45%;
+    }
+}
 
+@media (max-width: 700px) { 
+    .container{
+        width: 100%;
+    }
+}
+
+@media (min-width: 2000px) { 
+    .container{
+        width: 30%;
     }
 }
