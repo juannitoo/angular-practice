@@ -55,12 +55,8 @@ h5{
     border-right: 2px solid red;
 }
 
-
-
-
-
 .encart-container{
-    margin-top: 2rem;
+    // margin-top: 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -71,7 +67,7 @@ h5{
     background-color: rgb(245, 245, 250);
     flex: 200px; // width minimum des boites avant flex
     padding: 1rem;
-    margin: 2rem;
+    margin: 1rem 2rem 4rem 2rem;
     cursor: pointer;
     &:hover{
         box-shadow: 0px 0px 9px 5px rgb(170, 170, 170);
