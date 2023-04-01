@@ -26,8 +26,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.users$ = this.JsUsersService.getUsers()
     this.errorSubscription = this.JsUsersService.errors$.subscribe((err) => {
-      console.log('eeee', err)
       if (err !== "") {
+        this.isServerResponse = true
         this.errors.error = true
         this.errors.message = err
       }
