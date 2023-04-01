@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, switchMap, catchError, timer, retry } from 'rxjs';
+import { map, Observable, switchMap, catchError, timer, retry, Subject } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UserCreateValues } from '../interfaces/js-user-create-form.interface';
 
@@ -8,18 +8,24 @@ import { UserCreateValues } from '../interfaces/js-user-create-form.interface';
 @Injectable()
 export class JsUsersService {
 
+    errors$ = new Subject<string>();
+
     constructor( private http : HttpClient ) { }
+
 
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>('http://localhost:3000/users').pipe(
             retry({
-                count: 2,
+                count: 1,
                 delay: () => {
                   console.log('service getUsers() Fail, retest...');
-                  return timer(500);
+                  return timer(250);
                 },
             }),
-            catchError( err => { throw `erreur service getUsers(): ${err}` })
+            catchError( err => { 
+                this.errors$.next(`Impossible de récupérer les users. ${err.message}`)
+                throw `erreur service getUsers(): ${err.message}` 
+            })
         )
     }
 
@@ -32,7 +38,7 @@ export class JsUsersService {
                   return timer(500);
                 },
             }),
-            catchError( err => { throw `erreur service getUser(): ${err}` })
+            catchError( err => { throw `erreur service getUser(): ${err.message}` })
         );
     }
     
@@ -47,7 +53,7 @@ export class JsUsersService {
                   return timer(500);
                 },
             }),
-            catchError( err => { throw `erreur service deleteUser(): ${err}` })
+            catchError( err => { throw `erreur service deleteUser(): ${err.message}` })
         )
     }
 
@@ -72,7 +78,7 @@ export class JsUsersService {
               return timer(500);
             },
         }),
-           catchError( err => { throw `erreur service addUser(): ${err}` })
+           catchError( err => { throw `erreur service addUser(): ${err.message}` })
         )
     }
 
@@ -96,7 +102,7 @@ export class JsUsersService {
                   return timer(500);
                 },
             }),
-            catchError( err => { throw `erreur service updateUser(): ${err}` })
+            catchError( err => { throw `erreur service updateUser(): ${err.message}` })
         )
     }
     
