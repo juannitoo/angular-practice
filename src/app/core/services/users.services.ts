@@ -8,7 +8,7 @@ import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 @Injectable()
 export class UsersService {
 
-    errors$ = new Subject<string>();
+    // errors$ = new Subject<string>();
 
     private _users$ = new BehaviorSubject<User[]>([])
     get users$(): Observable<User[]> {
@@ -27,7 +27,7 @@ export class UsersService {
                 }),
                 retry(4),
                 catchError(err => { 
-                    this.errors$.next('Erreur getUsers()')
+                    // this.errors$.next('Erreur getUsers()')
                     throw 'erreur getUsers(): ' + err.message 
                 })
             ).subscribe()

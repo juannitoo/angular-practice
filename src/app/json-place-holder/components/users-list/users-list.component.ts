@@ -28,39 +28,11 @@ export class UsersListComponent implements OnInit {
 
   users! : Observable<User[]>
 
-  errorSubscription!: Subscription
-  errors = {
-    error: false,
-    message: ""
-  }
-  
-  usersSubscription! : Subscription
-  isServerResponse = false
-
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
-    //oops
-
-    this.errorSubscription = this.usersServ.errors$.subscribe((err) => {
-      if (err) {
-        this.isServerResponse = true
-        this.errors.error = true
-        this.errors.message = err
-      }
-    })
-    
-    this.usersSubscription = this.users.subscribe((users)=>{
-      console.log('aaaa', )
-      if (users) this.isServerResponse = true
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.errorSubscription.unsubscribe()
-    this.usersSubscription.unsubscribe()
   }
 
 
