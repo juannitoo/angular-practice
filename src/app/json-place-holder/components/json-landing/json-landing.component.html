@@ -29,10 +29,10 @@
       On ne ne peux pas rééllement insérer ou supprimer, mais elle renvoie 
       l'objet soi disant créé, updaté et supprimé alors c'est suffisant pour 
       m'exercer.</p>
-      <p><b>Cette partie a été réalisée en 4 étapes, c'est celle où pour l'instant j'ai le plus travaillé.</b></p>
-      <p><b class="decalage">La première</b> a été celle ou j'ai vraiment débuté avec Angular. J'ai récupéré les données de l'API pour 
-         les afficher puis j'ai fait du fake en console pour simuler le CRUD. Je me suis ensuite dirigé 
-         vers la partie JSON-server pour mettre en place un crud fonctionnel.
+      <p><b>Cette partie a été réalisée en 4 étapes, c'est celle où pour l'instant j'ai le plus travaillé.</b>
+      </p>
+      <p><b class="decalage">La première étape</b> a été celle ou j'ai vraiment débuté avec Angular. J'ai récupéré les données de l'API pour 
+         les afficher puis j'ai fait du fake en console pour simuler le CRUD.
       </p>
       <p><b class="decalage">La deuxième étape</b> a consisté à tout tenter pour afficher un user fraichement créer dans ma liste de users affichée. 
          Ca n'a pas été simple et ca m'a fait découvrir les query params ou encore les @output(). J'ai finalement réussi à 
@@ -44,8 +44,8 @@
       <p><b class="decalage">Me revoilà pour la troisième étape</b> quelques jours plus tard pour mettre en place Material UI et le state Management reactif
          avec BehaviorSubject, qui contrairement à un subject classique, stocke la dernière valeur en plus de l'envoyer à ces abonnés.
          C'était plutôt facile parce que j'avais déjà fait le gros du travail en amont sans le savoir, mon behaviorSubject avait un type any 
-         et non pas BehaviorSubject. J'ai donc poursuivi sur ce pattern sur les users updatés ou supprimés. Le comportement est donc 
-         maintenant completement cohérent. J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
+         et non pas BehaviorSubject, et l'event emitter @output() était déjà en place. J'ai donc poursuivi sur ce pattern sur les users updatés 
+         ou supprimés. Le comportement est donc maintenant completement cohérent. J'ai aussi vu ce qu'était les interceptors et les resolvers mais je 
          n'en ai pas créé ici. J'ai par contre créé ma propre directive, disponible au click sur le titre de cette page et celles
           des pages de la démo des users, son code est visible dans le module shared.
       </p>

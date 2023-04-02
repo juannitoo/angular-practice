@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.services';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
@@ -28,11 +28,39 @@ export class UsersListComponent implements OnInit {
 
   users! : Observable<User[]>
 
+  errorSubscription!: Subscription
+  errors = {
+    error: false,
+    message: ""
+  }
+  
+  usersSubscription! : Subscription
+  isServerResponse = false
+
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
+
+    this.errorSubscription = this.usersServ.errors$.subscribe((err) => {
+      if (err) {
+        this.isServerResponse = true
+        this.errors.error = true
+        this.errors.message = err
+      }
+    })
+    
+    this.usersSubscription = this.users.subscribe((users)=>{
+      console.log('aaaa', )
+      if (users) this.isServerResponse = true
+    })
   }
+
+  ngOnDestroy(): void {
+    this.errorSubscription.unsubscribe()
+    this.usersSubscription.unsubscribe()
+  }
+
 
 }
