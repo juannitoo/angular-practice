@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, of, catchError, BehaviorSubject, retry } from 'rxjs';
+import { Observable, tap, map, of, catchError, BehaviorSubject, retry, Subject } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 
 @Injectable()
 export class UsersService {
+
+    errors$ = new Subject<string>();
 
     private _users$ = new BehaviorSubject<User[]>([])
     get users$(): Observable<User[]> {
@@ -24,7 +26,10 @@ export class UsersService {
                     console.log("usersService getUsers() via http get")
                 }),
                 retry(4),
-                catchError(err => { throw 'erreur getUsers(): ' + err })
+                catchError(err => { 
+                    this.errors$.next('Erreur getUsers()')
+                    throw 'erreur getUsers(): ' + err.message 
+                })
             ).subscribe()
             return this.users$ // ca ne sert que pour le test !
         } else {

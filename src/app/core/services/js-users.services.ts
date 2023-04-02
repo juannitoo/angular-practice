@@ -4,6 +4,7 @@ import { map, Observable, switchMap, catchError, timer, retry, Subject } from 'r
 import { User } from 'src/app/core/models/user.model';
 import { UserCreateValues } from '../interfaces/js-user-create-form.interface';
 
+//json-server users
 
 @Injectable()
 export class JsUsersService {
@@ -18,8 +19,8 @@ export class JsUsersService {
             retry({
                 count: 1,
                 delay: () => {
-                  console.log('service getUsers() Fail, retest...');
-                  return timer(250);
+                  console.log('service getUsers() Fail, retest...')
+                  return timer(250)
                 },
             }),
             catchError( err => { 
@@ -34,8 +35,8 @@ export class JsUsersService {
             retry({
                 count: 2,
                 delay: () => {
-                  console.log('service getUser() Fail, retest...');
-                  return timer(500);
+                  console.log('service getUser() Fail, retest...')
+                  return timer(500)
                 },
             }),
             catchError( err => { throw `erreur service getUser(): ${err.message}` })
@@ -49,8 +50,8 @@ export class JsUsersService {
             retry({
                 count: 2,
                 delay: () => {
-                  console.log('service deleteUser() Fail, retest...');
-                  return timer(500);
+                  console.log('service deleteUser() Fail, retest...')
+                  return timer(500)
                 },
             }),
             catchError( err => { throw `erreur service deleteUser(): ${err.message}` })
@@ -98,8 +99,8 @@ export class JsUsersService {
             retry({
                 count: 2,
                 delay: () => {
-                  console.log('service updateUsers() Fail, retest...');
-                  return timer(500);
+                  console.log('service updateUsers() Fail, retest...')
+                  return timer(500)
                 },
             }),
             catchError( err => { throw `erreur service updateUser(): ${err.message}` })
