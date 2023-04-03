@@ -8,8 +8,8 @@ import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 @Injectable()
 export class UsersService {
 
-    private _errors$ = new BehaviorSubject<string>("")
-    get errors$(): Observable<string> {
+    private _errors$ = new BehaviorSubject<any>({error: false, message:""})
+    get errors$(): Observable<{error: boolean, message:string}> {
         return this._errors$.asObservable()
     }
 
@@ -30,7 +30,10 @@ export class UsersService {
                 }),
                 retry(2),
                 catchError(err => { 
-                    this._errors$.next(`Erreur getUsers() : ${err.message}`)
+                    this._errors$.next({
+                        error: true, 
+                        message:`Erreur getUsers() : ${err.message}`
+                    })
                     throw 'erreur getUsers(): ' + err.message 
                 })
             ).subscribe()

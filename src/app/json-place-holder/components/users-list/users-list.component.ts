@@ -29,26 +29,19 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users! : Observable<User[]>
 
   errorSubscription! : Subscription
-  error! : Observable<string>
-  errorFlag! : Observable<boolean>
-  contentFlag! : Observable<boolean>
+  error! : Observable<boolean>
+  message! : Observable<string>
 
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
-    this.errorFlag = of(false)
-    this.contentFlag = of(true)
+    this.message = of("")
     this.errorSubscription = this.usersServ.errors$.subscribe( val => {
-      console.log('!!!', val)
-      if (val !== ""){
-        this.error = of(val)
-        this.errorFlag = of(true)
-        this.contentFlag = of(false)
-      } else {
-        this.errorFlag = of(false)
-        this.contentFlag = of(true)
+      if (val.error === true){
+        this.error = of(val.error)
+        this.message = of(val.message)
       }
     })
   }

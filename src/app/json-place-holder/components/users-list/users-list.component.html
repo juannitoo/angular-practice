@@ -1,8 +1,8 @@
 <div class="container">
-    <div *ngIf="errorFlag | async" class="errors">
+    <div *ngIf="error | async else contentBlock" class="errors">
         <p> Impossible de contacter le serveur jsonplaceholder.
             Voilà le message renvoyé si présent : <br />
-            " {{ error | async }} "
+            " {{ message | async }} "
         </p>
         <p>Faire apparaitre ce message d'erreur n'a pas été simple a cause du montage
             reactif. Le subject n'a pas fonctionné, mais un behaviorSubject oui. Enfin il a fallu 
@@ -12,16 +12,19 @@
             nous ne sommes plus abonnés, et donc le message n'apparait plus.
         </p>
         <p> Je ne sais pas si c'est le meilleur des montages où s'il faudrait passer par 
-            un autre lifecyclehook que le ngOnInit, mais en l'état ca fonctionne en cas d'erreur.
+            un autre lifecyclehook que le ngOnInit, mais en l'état ca fonctionne en cas d'erreur, et
+            ca ne fuite pas.
         </p>
     </div>
-    <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
-    <a class="align-center" routerLink="create" title="Ajoutez un user" 
-        *ngIf="contentFlag | async">
-        <mat-icon class="icone">account_circle</mat-icon>
-        <mat-icon class="icone">add</mat-icon> 
-    </a>
-    <article *ngIf="contentFlag | async">
-        <app-user *ngFor="let x of users | async" [user]="x"></app-user>
-    </article>
+
+    <ng-template #contentBlock>
+        <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
+        <a class="align-center" routerLink="create" title="Ajoutez un user" >
+            <mat-icon class="icone">account_circle</mat-icon>
+            <mat-icon class="icone">add</mat-icon> 
+        </a>
+        <article>
+            <app-user *ngFor="let x of users | async" [user]="x"></app-user>
+        </article>
+    </ng-template>
 </div>
