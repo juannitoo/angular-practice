@@ -27,6 +27,18 @@ a:hover{
     }
 }
 
+.errors{
+    padding: 2rem;
+    margin: 5rem;
+    background-color: rgb(252, 71, 71);
+    color: white;
+}
+
+mat-progress-bar{
+    width: 50%;
+    margin: 5rem auto;
+}
+
 mat-spinner{
     margin: 2em auto;
 }

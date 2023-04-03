@@ -1,10 +1,27 @@
 <div class="container">
+    <div *ngIf="errorFlag | async" class="errors">
+        <p> Impossible de contacter le serveur jsonplaceholder.
+            Voilà le message renvoyé si présent : <br />
+            " {{ error | async }} "
+        </p>
+        <p>Faire apparaitre ce message d'erreur n'a pas été simple a cause du montage
+            reactif. Le subject n'a pas fonctionné, mais un behaviorSubject oui. Enfin il a fallu 
+            retourner le message d'erreur sous forme d'obsevable dans le template car il est issu
+            d'un flux. Vous pouvez vous en apercevoir en rafraichissant la page une fois 
+            une erreur créée, par exemple en modifiant l'url vers l'api. En rafraichissant la page,
+            nous ne sommes plus abonnés, et donc le message n'apparait plus.
+        </p>
+        <p> Je ne sais pas si c'est le meilleur des montages où s'il faudrait passer par 
+            un autre lifecyclehook que le ngOnInit, mais en l'état ca fonctionne en cas d'erreur.
+        </p>
+    </div>
     <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
-    <a class="align-center" routerLink="create" title="Ajoutez un user">
+    <a class="align-center" routerLink="create" title="Ajoutez un user" 
+        *ngIf="contentFlag | async">
         <mat-icon class="icone">account_circle</mat-icon>
         <mat-icon class="icone">add</mat-icon> 
     </a>
-    <article>
+    <article *ngIf="contentFlag | async">
         <app-user *ngFor="let x of users | async" [user]="x"></app-user>
     </article>
 </div>

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.services';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
@@ -24,16 +24,36 @@ import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.
   ])],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersListComponent implements OnInit { 
+export class UsersListComponent implements OnInit, OnDestroy { 
 
   users! : Observable<User[]>
+
+  errorSubscription! : Subscription
+  error! : Observable<string>
+  errorFlag! : Observable<boolean>
+  contentFlag! : Observable<boolean>
 
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
+    this.errorFlag = of(false)
+    this.contentFlag = of(true)
+    this.errorSubscription = this.usersServ.errors$.subscribe( val => {
+      console.log('!!!', val)
+      if (val !== ""){
+        this.error = of(val)
+        this.errorFlag = of(true)
+        this.contentFlag = of(false)
+      } else {
+        this.errorFlag = of(false)
+        this.contentFlag = of(true)
+      }
+    })
   }
 
-
+  ngOnDestroy(): void {
+    this.errorSubscription.unsubscribe()
+  }
 }

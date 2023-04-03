@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, of, catchError, BehaviorSubject, retry, Subject } from 'rxjs';
+import { Observable, tap, map, of, catchError, BehaviorSubject, retry, Subject, delay } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 import { UserUpdateForm } from '../interfaces/user-update-form.interface';
@@ -8,7 +8,10 @@ import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 @Injectable()
 export class UsersService {
 
-    // errors$ = new Subject<string>();
+    private _errors$ = new BehaviorSubject<string>("")
+    get errors$(): Observable<string> {
+        return this._errors$.asObservable()
+    }
 
     private _users$ = new BehaviorSubject<User[]>([])
     get users$(): Observable<User[]> {
@@ -20,14 +23,14 @@ export class UsersService {
 
     getUsers(): Observable<User[]>{
         if (this._users$.value.length === 0 ) {
-            this.http.get<User[]>('https://jsonplaceholder.typicode.com/users').pipe(
+            this.http.get<User[]>('ttps://jsonplaceholder.typicode.com/users').pipe(
                 tap(users=>{
                     this._users$.next(users)
                     console.log("usersService getUsers() via http get")
                 }),
-                retry(4),
+                retry(2),
                 catchError(err => { 
-                    // this.errors$.next('Erreur getUsers()')
+                    this._errors$.next(`Erreur getUsers() : ${err.message}`)
                     throw 'erreur getUsers(): ' + err.message 
                 })
             ).subscribe()
