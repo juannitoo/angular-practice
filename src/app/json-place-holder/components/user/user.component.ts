@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
     if (userId) {
       this.user$ = this.onGetUser(userId);
     }
-    this.isSmartPhone = document.getElementsByTagName('html')[0].clientWidth < 500 ? false : true
+    this.isSmartPhone = document.getElementsByTagName('html')[0].clientWidth > 500 ? false : true
   }
   
   showUser(userId : number){

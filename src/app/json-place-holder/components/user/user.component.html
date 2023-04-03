@@ -13,7 +13,7 @@
           {{ user.name }}       
         </mat-panel-description>
         <mat-panel-description class="bold" title="Pseudo"
-          *ngIf="isSmartPhone">
+          *ngIf="!isSmartPhone">
           {{ user.username }}       
         </mat-panel-description>
         <mat-icon id="icone">account_circle</mat-icon>    
