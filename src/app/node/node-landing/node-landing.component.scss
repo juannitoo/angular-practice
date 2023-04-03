@@ -1,0 +1,13 @@
+section{
+  width: 60%;
+  margin: 0 auto;
+  p{
+    text-align: justify;
+  }
+}
+
+@media (max-width: 1500px) { 
+  section{
+      width: 100%
+  }
+}

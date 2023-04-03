@@ -1,30 +1,39 @@
-<h1>En cours...</h1>
+<section>
+    <h1>En cours...</h1>
 
-<article>
-<p>Mais c'est vraiment le début. J'aimerais progresser niveau test proritairement mais je 
-    constate qu'il y aura aussi beaucoup de travail concernant Node, et ce n'est pas la 
-    priorité immédiate. Vous pourrez trouver le repo associé à cette partie dans mon github 
-    "angular-practice-node-backend".
-</p>
-<p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
-    appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
-    faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
-    fonctionnalité de ma directive. je reste là dessus un petit moment pour améliorer
-    et progresser.
-</p>
+    <article>
+    <p>Mais c'est vraiment le début. J'aimerais progresser niveau test proritairement mais je 
+        constate qu'il y aura aussi beaucoup de travail concernant Node, et ce n'est pas la 
+        priorité immédiate. Vous pourrez trouver le repo associé à cette partie dans mon github 
+        "angular-practice-node-backend". Les 2 dépots github ne sont pas encore couplés, 
+        aucun code ne les relie.
+    </p>
 
-<p>Alors, je suis bien resté sur les tests quelques jours et j'ai lu bcp de choses mais 
-    je n'arrive toujours pas à tester les choses essentielles de mon crud jsonplaceholder
-    comme getUsers() mais aussi des Observables | async. Par ex :<br />
-    <i>app-user  *ngFor="let x of users | async" [user]="x" /app-user</i>
-</p>
+    <p>Concernant les tests, mon initiation, je dois dire que j'ai eu un peu de mal à
+        appréhender la chose, surtout pour tester mon CRUD reactive state mais j'arrive enfin à
+        faire quelques choses qui me semblent cohérentes comme tester le type d'un param ou la
+        fonctionnalité de ma directive. je reste là dessus un petit moment pour améliorer
+        et progresser. Vous pourrez trouver mes exploits dans ces fichiers : <br/>
+        app/json-place-holder/components/users-list/users-list.spec.ts <br/>
+        app/core/services/users-service.spec.ts <br/>
+        app/shared/directives/title-event.directive.ts <br/>
+    </p>
 
-<p>Je vais donc basculer du côté Node pour éviter de rester bloqué trop longtemps et je vais 
-    continuer en même temps avec les tests pour voir si sans observable, ce sera plus facile
-    à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
-    de développer en mode TDD. Je pense que j'ai mal pris la chose et je pense maintenant qu'un 
-    test fonctionnel est une spécificité décrite par exemple dans une user story et qu'un test unitaire 
-    vérifie par exemple le type d'une donnée. Protractor et Jasmine fonctionneraient donc ensemble.
-    Je laisse murir un peu avant de chercher d'autres explications, et fait du css "pour me reposer".
-</p>
-</article>
+    <p>Alors, je suis bien resté sur les tests quelques jours et j'ai lu bcp de choses mais 
+        je n'arrive toujours pas à tester les choses essentielles de mon crud jsonplaceholder
+        comme getUsers() mais aussi des Observables | async. Par ex :<br />
+        <i>app-user  *ngFor="let x of users | async" [user]="x" /app-user</i>
+    </p>
+
+    <p>Je vais donc basculer du côté Node pour éviter de rester bloqué trop longtemps et je vais 
+        continuer en même temps avec les tests pour voir si sans observable, ce sera plus facile
+        à appréhender. Dans tous les cas, la pratique reste la clé. Donc tuto encore pour essayer 
+        de développer en mode TDD. Je pense que j'ai mal pris la chose et je pense maintenant qu'un 
+        test fonctionnel est une spécificité décrite par exemple dans une user story et qu'un test unitaire 
+        vérifie par exemple le type d'une donnée. J'aurais bien besoin de quelqu'un avec qui en parlait.<br />
+        Protractor (que je n'ai pas utilisé) et Jasmine fonctionneraient donc ensemble.
+        Je laisse murir un peu avant de chercher d'autres explications, et fait du css "pour me reposer"
+        et rendre cet exercice plus présentable.
+    </p>
+    </article>
+</section>
