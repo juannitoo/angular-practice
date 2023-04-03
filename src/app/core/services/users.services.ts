@@ -23,7 +23,7 @@ export class UsersService {
 
     getUsers(): Observable<User[]>{
         if (this._users$.value.length === 0 ) {
-            this.http.get<User[]>('ttps://jsonplaceholder.typicode.com/users').pipe(
+            this.http.get<User[]>('https://jsonplaceholder.typicode.com/users').pipe(
                 tap(users=>{
                     this._users$.next(users)
                     console.log("usersService getUsers() via http get")
