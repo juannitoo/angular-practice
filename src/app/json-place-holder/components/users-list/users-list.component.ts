@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { Observable, Subscription, of } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.services';
@@ -29,19 +29,19 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users! : Observable<User[]>
 
   errorSubscription! : Subscription
-  error! : Observable<boolean>
-  message! : Observable<string>
+  @Input() error! : boolean
+  @Input() message! : string
 
   constructor( private usersServ : UsersService) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
-    this.message = of("")
+    this.message = ""
     this.errorSubscription = this.usersServ.errors$.subscribe( val => {
       if (val.error === true){
-        this.error = of(val.error)
-        this.message = of(val.message)
+        this.error = val.error
+        this.message = val.message
       }
     })
   }

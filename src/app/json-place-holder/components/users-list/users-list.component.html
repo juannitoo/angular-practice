@@ -1,12 +1,12 @@
 <div class="container">
-    <div *ngIf="error | async else contentBlock" class="errors">
+    <div *ngIf="error else contentBlock" class="errors">
         <p> Impossible de contacter le serveur jsonplaceholder.
             Voilà le message renvoyé si présent : <br />
-            " {{ message | async }} "
+            " {{ message }} "
         </p>
         <p>Faire apparaitre ce message d'erreur n'a pas été simple a cause du montage
             reactif. Le subject n'a pas fonctionné, mais un behaviorSubject oui. Enfin il a fallu 
-            retourner le message d'erreur sous forme d'obsevable dans le template car il est issu
+            retourner le message d'erreur sous forme d'input dans le template car il est issu
             d'un flux. Vous pouvez vous en apercevoir en rafraichissant la page une fois 
             une erreur créée, par exemple en modifiant l'url vers l'api. En rafraichissant la page,
             nous ne sommes plus abonnés, et donc le message n'apparait plus.
