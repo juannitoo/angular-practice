@@ -8,9 +8,8 @@ import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 @Injectable()
 export class UsersService {
 
-    
-    private _errors$ = new BehaviorSubject<{error: boolean, message:string}>
-                                            ({error: false, message:""})
+
+    private _errors$ = new Subject<{error: boolean, message:string}>()
     get errors$(): Observable<{error: boolean, message:string}> {
         return this._errors$.asObservable()
     }
