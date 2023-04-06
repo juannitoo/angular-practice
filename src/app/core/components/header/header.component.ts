@@ -41,4 +41,18 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleMenu(){
+    let nav = document.getElementsByTagName('nav')[0]
+    if (nav.style.display  === "none" || nav.style.display == "") {
+      nav.style.display = "block"
+    } else {
+      nav.style.display = "none"
+    }
+  }
+
+  hideNav(){
+    if (document.getElementsByTagName('html')[0].clientWidth <= 480) {
+      document.getElementsByTagName('nav')[0].style.display = "none"
+    }
+  }
 }

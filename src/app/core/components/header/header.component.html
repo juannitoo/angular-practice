@@ -12,10 +12,11 @@
       <span class="logo-letter" [@slideLetter]="slideLetterState">e</span>
     </div>
   </div>
+  <mat-icon id="menu" (click)="toggleMenu()">menu</mat-icon>
   <nav>
-    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="jsonplaceholder" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder</a>
-    <a routerLink="json-server" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Json-server</a>
-    <a routerLink="nodeJs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">NodeJs</a>
+    <a routerLink="" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="jsonplaceholder" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder</a>
+    <a routerLink="json-server" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Json-server</a>
+    <a routerLink="nodeJs" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">NodeJs</a>
   </nav>
 </header>

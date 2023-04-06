@@ -1,5 +1,5 @@
 header { 
-    width: 98vw;
+    width: 100vw;
     background-color: rgb(240, 240, 240);
     min-height: 8vh;
     position: fixed;
@@ -57,6 +57,12 @@ a{
     // text-decoration: underline;
 }
 
+#menu{
+    display: none;
+    margin: 0.2em;
+    z-index: 10;
+}
+
 @media (max-width: 1260px) { 
     nav a{
         font-size: 1rem;
@@ -65,13 +71,6 @@ a{
     }
 }
 
-@media (max-width: 470px) { 
-    a{
-        display:block;
-        margin: 0 auto;
-        text-align: center;
-    }
-}
 
 @media (max-width: 938px) { 
     nav{
@@ -87,4 +86,44 @@ a{
         background-color: white;
         box-shadow: 0px 0px 15px 12px white;
     }  
+}
+
+@media (max-width: 480px) { 
+
+    #menu{
+        display: block;
+        position: fixed;
+        top : 20px;
+        right: 20px;
+        scale: 1.2;
+        z-index: 100;
+    }
+    
+    nav{
+        position: fixed;
+        top : -30px;
+        right: 0px;
+        width: 100%;
+        background-color: rgb(245,245,245);
+        z-index: 5;
+        display: none;
+    }
+
+    a{
+        display:block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+}
+
+@media (min-width: 480px) { 
+
+    #menu{
+        display: none;
+    }
+    
+    nav{
+        display: block;
+    }
 }
