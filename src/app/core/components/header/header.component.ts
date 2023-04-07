@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.toggleNavOnResize()
   }
 
   toggleMenu(){
@@ -53,6 +54,16 @@ export class HeaderComponent implements OnInit {
   hideNav(){
     if (document.getElementsByTagName('html')[0].clientWidth <= 480) {
       document.getElementsByTagName('nav')[0].style.display = "none"
-    }
+    } 
+  }
+
+  toggleNavOnResize(){
+    window.addEventListener('resize', () => {
+      if (document.getElementsByTagName('html')[0].clientWidth >= 480) {
+        document.getElementsByTagName('nav')[0].style.display = "block"
+      } else {
+        document.getElementsByTagName('nav')[0].style.display = "none"
+      }
+    })
   }
 }
