@@ -21,7 +21,7 @@ import { FadeInColorAnimation } from 'src/app/shared/animations/fade-in-color.an
       transition(':enter', [
         useAnimation(FadeInColorAnimation, {
           params: {
-              timer: '800ms',
+              timer: '600ms',
               delay: '1200ms',
               startColor: 'red',
               endColor: 'rgb(141, 141, 141)'

@@ -1,29 +1,12 @@
 <h1>Les users du serveur local</h1>
 
+
 <section>
     <mat-progress-bar mode="indeterminate" color="warn" *ngIf="!isServerResponse"></mat-progress-bar>
-
-    <div *ngIf="errors.error else contentBlock" class="errors">
-        <p>
-            Oups, un problème est survenu.<br />
-            Votre serveur json-server doit certainement être absent, éteint ou mal configuré. Un fichier db.users.init est 
-            présent dans le repo angular-practice sous assets/db-json-server.json . Il faut le placer à la racine du server.
-            Vous pouvez toujours cloner mon autre repo github angular-json-server pour que ca fonctionne, 
-            ou faire un tour sur la 
-            <a id="notice" href="https://www.npmjs.com/package/json-server#getting-started" 
-            target="_blank" alt="lien vers npm json-server">notice</a><br />
-             <span *ngIf="errors.message">Voilà le message d'erreur :<br />
-                {{errors.message}}</span>
-        </p>
-        <p>
-            L'important de toute manière ici, c'est surtout le code du service mais pas les css quasi inexistants, 
-            et aussi la mise en place de cette gestion d'erreur, ma réèlle première, via mon 1er Subject et aussi ng-template.
-            Ca ne vous semble peut-être rien, mais de mon point de vue, je n'ai pas eu besoin d'aller pomper l'algo 
-            quelque part, alors ca me fait plaisir ! Les fichiers sont là :<br />
-            <i>app/core/services/js-users.service</i><br />
-            <i>app/js-server/components/users-list/</i>
-        </p>
-    </div>
+    
+    <ng-container *ngIf="errors.error else contentBlock">
+        <app-error [message]="errors.message"></app-error>
+    </ng-container>
     
     <ng-template #contentBlock>
         <div><a routerLink="create" class="adduser" *ngIf="isServerResponse">Ajoutez un user</a></div>

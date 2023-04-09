@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
@@ -7,6 +7,9 @@ import { HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { httpInterceptorProviders } from './interceptors';
+import { ErrorsService } from './services/errors.service';
 
 
 @NgModule({
@@ -21,7 +24,12 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    httpInterceptorProviders,
+    ErrorsService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+  ],
   exports: [
     HeaderComponent,
     FooterComponent

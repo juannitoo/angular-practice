@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
+import { ErrorsService } from 'src/app/core/services/errors.service';
 import { JsUsersService } from 'src/app/core/services/js-users.services';
 
 @Component({
@@ -10,7 +11,8 @@ import { JsUsersService } from 'src/app/core/services/js-users.services';
 })
 export class UsersListComponent implements OnInit, OnDestroy {
 
-  constructor( private JsUsersService: JsUsersService) { }
+  constructor( private JsUsersService: JsUsersService,
+              private errorsService: ErrorsService) { }
 
   users$! : Observable<User[]>;
 
@@ -25,11 +27,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.users$ = this.JsUsersService.getUsers()
-    this.errorSubscription = this.JsUsersService.errors$.subscribe((err) => {
-      if (err !== "") {
+    this.errorSubscription = this.errorsService.httpErrors$.subscribe((err) => {
+      if (err.message !== "") {
         this.isServerResponse = true
         this.errors.error = true
-        this.errors.message = err
+        this.errors.message = err.message
       }
     })
     

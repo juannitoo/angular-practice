@@ -9,10 +9,7 @@ import { UserCreateValues } from '../interfaces/js-user-create-form.interface';
 @Injectable()
 export class JsUsersService {
 
-    errors$ = new Subject<string>();
-
     constructor( private http : HttpClient ) { }
-
 
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>('http://localhost:3000/users').pipe(
@@ -24,7 +21,6 @@ export class JsUsersService {
                 },
             }),
             catchError( err => { 
-                this.errors$.next(`Impossible de récupérer les users. ${err.message}`)
                 throw `erreur service getUsers(): ${err.message}` 
             })
         )

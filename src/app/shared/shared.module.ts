@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { TitleEventDirective } from './directives/title-event.directive';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
   declarations: [
-    TitleEventDirective
+    TitleEventDirective,
+    ErrorComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { TitleEventDirective } from './directives/title-event.directive';
   ],
   exports:[
     MaterialModule,
-    TitleEventDirective
+    TitleEventDirective,
+    ErrorComponent
   ]
 })
 export class SharedModule { }
