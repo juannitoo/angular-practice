@@ -9,7 +9,7 @@ Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai c
 Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
 
 ### STEP 3
-J'ai corrigé les types any qui trainaient en créant des interfaces pour les forms, j'ai refait un tour sur node, je potasse les tests unitaires et fonctionnels
+J'ai corrigé les types any qui trainaient en créant des interfaces pour les forms, j'ai refait un tour sur node, je potasse les tests unitaires et fonctionnels, je regarde comment gérer les erreurs
 
 ### Vous pouvez cloner ce dépot sans installer json-server et vous pourrez quand même essayer la partie json-Place-Holder
 C'est cette partie où j'ai le plus travaillé. Pour l'instant, json-server reste un CRUD fonctionnel "simple".
@@ -25,9 +25,10 @@ Voilà synthétiquement où j'en suis :
 - [x] Mieux gérer les types en général et supprimer les any qui trainent
 - [x] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple
 - [x] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
+- [x] CSS pour avoir une home présentable
 
 en cours :
-- [ ] CSS pour avoir une home présentable
+- [ ] gestionnaire d'erreur
 - [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :
