@@ -21,7 +21,7 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
           if (error.error instanceof ErrorEvent) {
             console.error("Error Event")
           } else {
-            console.log(`HTTP error status : ${error.status} ${error.statusText}`)
+            // console.log(`HTTP error status : ${error.status} ${error.statusText}`)
 
             switch (error.status) {
 
