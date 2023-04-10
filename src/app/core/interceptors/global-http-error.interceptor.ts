@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest,HttpErrorResponse} from '@angular/common/http'
 import { Observable, throwError } from "rxjs"
-import { catchError } from 'rxjs/operators'
+import { catchError, startWith } from 'rxjs/operators'
 import { Router } from "@angular/router"
 import { ErrorsService } from "../services/errors.service"
 
@@ -21,18 +21,30 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
           if (error.error instanceof ErrorEvent) {
             console.error("Error Event")
           } else {
-            // console.log(`error status : ${error.status} ${error.statusText}`)
+            console.log(`HTTP error status : ${error.status} ${error.statusText}`)
 
             switch (error.status) {
 
                 case 0:  // json-server éteint, status=0 for a failed XmlHttpRequest
-                  this.errorsService.message = `Oups, un problème est survenu.
-                    Votre serveur json-server doit certainement être absent, éteint ou mal configuré. 
-                    Un fichier db.users.init est présent dans le repo angular-practice sous assets/db-json-server.json . 
-                    Il faut le placer à la racine du server. Vous pouvez toujours cloner mon autre repo 
-                    github angular-json-server pour que ca fonctionne, ou faire un tour sur le repo de json-server sur github.
-                    Voilà le message d'erreur :\n 
-                    Impossible de récupérer les users. Error status : ${error.status} message : ${error.message}`
+                  const url = this.router.url
+                  if (url.startsWith('/json-server')) {
+                    this.errorsService.message = `Oups, un problème est survenu.
+                      Votre serveur json-server doit certainement être absent, éteint ou mal configuré. 
+                      Un fichier db.users.init est présent dans le repo angular-practice sous assets/db-json-server.json . 
+                      Il faut le placer à la racine du server. Vous pouvez toujours cloner mon autre repo 
+                      github angular-json-server pour que ca fonctionne, ou faire un tour sur le repo de json-server sur github.
+                      Voilà le message d'erreur :\n 
+                      Impossible de récupérer les users. Error status : ${error.status} . Message : ${error.message}`
+                  } else if (url.startsWith('/jsonplaceholder')) {
+                    this.errorsService.message = `Oups, un problème est survenu. 
+                      Le serveur jsonplaceholder doit certainement être défaillant. Faire apparaitre ce message a été plus compliqué
+                      que sur la partie json-server dû au montage reactif et surtout de la strategie onPush(). Il a fallu utiliser
+                      this.changeDetector.detectChanges() pour emettre les nouvelles modifications du typescript vers le template.
+                      Voilà le message d'erreur :
+                      Impossible de récupérer les users. Error status : ${error.status} Message : ${error.message}`
+                  } else {
+                    this.errorsService.message = `Oups, un problème est survenu. Error status : ${error.status} . Message : ${error.message}`
+                  }
                   this.errorsService.httpErrors$.next({
                     error: error, 
                     message: this.errorsService.message

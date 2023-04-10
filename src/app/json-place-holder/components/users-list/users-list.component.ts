@@ -4,6 +4,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.services';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
+import { ErrorsService } from 'src/app/core/services/errors.service';
 
 @Component({
   selector: 'app-users-list',
@@ -33,14 +34,15 @@ export class UsersListComponent implements OnInit, OnDestroy {
   message! : string
 
   constructor( private usersServ : UsersService,
+                private errorsService : ErrorsService,
                 private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.users = this.usersServ.users$
     this.usersServ.getUsers()
-    this.errorSubscription = this.usersServ.errors$.subscribe( val => {
-      if (val.error === true){
-        this.error = val.error
+    this.errorSubscription = this.errorsService.httpErrors$.subscribe( val => {
+      if (val.message !== ""){
+        this.error = true
         this.message = val.message
         this.changeDetector.detectChanges()
       }

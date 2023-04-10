@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, tap, map, of, catchError, BehaviorSubject, retry, Subject, delay } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
@@ -7,12 +7,6 @@ import { UserUpdateForm } from '../interfaces/user-update-form.interface';
 
 @Injectable()
 export class UsersService {
-
-
-    private _errors$ = new Subject<{error: boolean, message:string}>()
-    get errors$(): Observable<{error: boolean, message:string}> {
-        return this._errors$.asObservable()
-    }
 
     private _users$ = new BehaviorSubject<User[]>([])
     get users$(): Observable<User[]> {
@@ -30,11 +24,7 @@ export class UsersService {
                     console.log("usersService getUsers() via http get")
                 }),
                 retry(2),
-                catchError(err => { 
-                    this._errors$.next({
-                        error: true, 
-                        message:`Erreur getUsers() : ${err.message}`
-                    })
+                catchError((err: HttpErrorResponse) => { 
                     throw 'erreur getUsers(): ' + err.message 
                 })
             ).subscribe()
@@ -50,8 +40,8 @@ export class UsersService {
         else { 
             return this.users$.pipe(
                 map( users => users.filter(user => user.id === userId )[0]),
-                catchError(err => {
-                    throw 'erreur getUser(): ' + err;
+                catchError((err: HttpErrorResponse) => {
+                    throw 'erreur getUser(): ' + err.message
                 })
             )          
         }       
@@ -64,7 +54,7 @@ export class UsersService {
                 users.splice(index,1);
                 return of(users)
             }),
-            catchError(err => { throw 'erreur deleteUser(): ' + err })
+            catchError((err: HttpErrorResponse) => { throw 'erreur deleteUser(): ' + err.message })
         ).subscribe(()=> {return true})        
     }
 
@@ -80,7 +70,7 @@ export class UsersService {
                 return of(users.push(user))
             }),
             map( () => this.router.navigateByUrl('jsonplaceholder/users')),
-            catchError(err => { throw 'erreur addUser(): ' + err })
+            catchError((err: HttpErrorResponse) => { throw 'erreur addUser(): ' + err.message })
         ).subscribe()
     }
 
@@ -111,7 +101,7 @@ export class UsersService {
                 return of(user)
             }),
             map( () => this.router.navigateByUrl('jsonplaceholder/users')),
-            catchError(err => { throw 'erreur updateUser(): ' + err })
+            catchError((err: HttpErrorResponse) => { throw 'erreur updateUser(): ' + err.message })
         ).subscribe()
         // normalement ne retourne rien
         // juste pour les tests

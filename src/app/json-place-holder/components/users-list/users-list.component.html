@@ -1,26 +1,11 @@
-<div class="container">
-    <div *ngIf="error else contentBlock" class="errors">
-        <p> Impossible de contacter le serveur jsonplaceholder.
-            Voilà le message renvoyé si présent : <br />
-            " {{ message }} "
-        </p>
-        <p>Faire apparaitre ce message d'erreur n'a pas été simple a cause du montage 
-            reactif. Le subject n'a pas fonctionné, mais un behaviorSubject oui. Enfin il a fallu 
-            retourner le message d'erreur sous forme d'Observable dans le template car il est issu 
-            d'un flux. <del>Vous pouvez vous en apercevoir en rafraichissant la page une fois 
-            une erreur créée, par exemple en modifiant l'url vers l'api. En rafraichissant la page, 
-            nous ne sommes plus abonnés, et donc le message n'apparait plus.</del>
-        </p>
-        <p> Un peu plus tard j'ai constaté que lorsque j'arrivais sur la page la première fois, 
-             ca ne fonctionnait toujours, et j'ai pu me rendre compte que cela venait de la stratégie 
-             de change Detection OnPush, un simple <i>this.changeDetector.detectChanges()</i> a réglé 
-             tous mes problèmes. Et j'ai donc un code beaucoup plus simple et propre issu d'un subject.
-             C'est ce qu'on appelle une leçon acquise dans la douleur !
-        </p>
-    </div>
+<section class="container">
+    <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
+
+    <ng-container *ngIf="error else contentBlock">
+        <app-error [message]="message"></app-error>
+    </ng-container>
 
     <ng-template #contentBlock>
-        <h4 titleEvent class="align-center" @slideText>Les users de JsonPlaceholder</h4>
         <a class="align-center" routerLink="create" title="Ajoutez un user" >
             <mat-icon class="icone">account_circle</mat-icon>
             <mat-icon class="icone">add</mat-icon> 
@@ -29,4 +14,4 @@
             <app-user *ngFor="let x of users | async" [user]="x"></app-user>
         </article>
     </ng-template>
-</div>
+</section>
