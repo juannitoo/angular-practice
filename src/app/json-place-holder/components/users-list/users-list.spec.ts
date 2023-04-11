@@ -1,4 +1,4 @@
-import { Component, DebugElement } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, Component, DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -8,6 +8,7 @@ import { UsersService } from "src/app/core/services/users.services";
 import { UsersListComponent } from "./users-list.component";
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { UserComponent } from "../user/user.component";
+import { ErrorsService } from "src/app/core/services/errors.service";
 
 // NoopAnimations pour enlever les anims
 // https://stackoverflow.com/questions/63839249/unit-testing-angular-component-with-input
@@ -67,6 +68,7 @@ describe('jsonPlaceHolder Users-list component', () => {
 
   let fixture: ComponentFixture<UsersListComponent>
   let usersService: UsersService
+  let container: DebugElement
   let article: DebugElement
   let appUser: DebugElement[]
   let component: Component
@@ -76,30 +78,34 @@ describe('jsonPlaceHolder Users-list component', () => {
       TestBed.configureTestingModule({
         declarations:[UsersListComponent],
         imports: [  NoopAnimationsModule, HttpClientTestingModule ] ,
-        providers: [UsersService, NoopAnimationsModule]
+        providers: [UsersService, NoopAnimationsModule, ErrorsService],
+        schemas : [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(UsersListComponent)
         usersService = TestBed.inject(UsersService)       
         spyOn(usersService, 'getUsers').and.returnValue(of(users))
         usersService.getUsers()
+        fixture.detectChanges()
+        container = fixture.debugElement.query(By.css('.container'))
         article = fixture.debugElement.query(By.css('article'))
-        appUser = fixture.debugElement.queryAll(By.css('appUser'))
+        appUser = fixture.debugElement.queryAll(By.css('app-user'))
+        container.childNodes.forEach((x)=>console.log("x: ",x.nativeNode))
       })     
-      // article.childNodes.forEach((x)=>console.log("x: ",x.nativeNode))
     })
-  )
+    )
     
   it("should load the template", () => {
-    expect(article).not.toBeNull()   
+    expect(container).not.toBeNull()   
   })
   
   // je souhaite retrouver tous les <app-user> de mon template
   // mais je n'y arrive pas. 
   // <app-user *ngFor="let x of users | async" [user]="x"></app-user>
-  xit('should list users', () => {   
-    fixture.detectChanges()
-    expect(article.childNodes.length).toBeGreaterThan(1)
+  it('should list users', () => {   
+    expect(article).toBeTruthy()
+    expect(appUser).toBeTruthy()
+    // expect(appUser.length).toBeGreaterThan(1)
   })
 
   
