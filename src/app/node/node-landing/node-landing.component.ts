@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NodeService } from 'src/app/core/services/node.service';
 
 @Component({
   selector: 'app-node-landing',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NodeLandingComponent implements OnInit {
 
-  constructor() { }
+  date!: Observable<any>
+
+  constructor( private nodeServ: NodeService) { }
 
   ngOnInit(): void {
+    this.date = this.nodeServ.getDate()
   }
 
 }
