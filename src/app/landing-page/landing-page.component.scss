@@ -30,6 +30,13 @@ h5{
         font-size: 1.3rem;
         text-align: justify;
     }
+    a{
+        color: #080808;
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
     margin: 2em;
 }
 
