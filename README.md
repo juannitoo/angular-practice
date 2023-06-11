@@ -48,8 +48,11 @@ Et après selon votre bon vouloir :
 [https://jsoncrack.com/](https://jsoncrack.com/)
 
 
-### Pour essayer, git clone, npm install et ng serve pour la partie angular.
+### Pour essayer, 
+git clone, npm install et ng serve pour la partie angular.
+ou alors : 
+[http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com](http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com)
 
 ### Pour essayer le crud via json-server, 
-il faut installer json-server et la db qui va bien avec. Pour ce faire, le plus simple et d'installer un autre repo que je vous mets à disposition [https://github.com/juannitoo/angular-json-server](https://github.com/juannitoo/angular-json-server). Sinon, si vous avez déjà json-server, je vous ai mis les fichiers nécessaires dans ce repo angular sous "src/assets/db-json-server", à mettre à la racine du projet json-server.
+il faut télécharger ce repo en local et installer json-server et la db qui va bien avec. Pour ce faire, le plus simple et d'installer un autre repo que je vous mets à disposition [https://github.com/juannitoo/angular-json-server](https://github.com/juannitoo/angular-json-server). Sinon, si vous avez déjà json-server, je vous ai mis les fichiers nécessaires dans ce repo angular sous "src/assets/db-json-server", à mettre à la racine du projet json-server.
 
