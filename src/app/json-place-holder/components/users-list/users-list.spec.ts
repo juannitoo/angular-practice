@@ -103,7 +103,7 @@ describe('jsonPlaceHolder Users-list component', () => {
   // je souhaite retrouver tous les <app-user> de mon template
   // mais je n'y arrive pas. 
   // <app-user *ngFor="let x of users | async" [user]="x"></app-user>
-  xit('should list users', () => {   
+  it('should list users', () => {   
     expect(article).toBeTruthy()
     expect(appError).toBeTruthy()
     // expect(appUser.properties['id']).toBe("1")
