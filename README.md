@@ -21,21 +21,23 @@ Voilà synthétiquement où j'en suis :
 - [x] Lazy loading
 - [x] State management pour rendre JsonPlaceHolder indépendant de son back-end et avoir un comportment cohérent
 - [x] Material UI pour appréhender l'outil et avoir une finition plus professionnelle (sur jsonplaceholder)
-- [x] Directive et animation perso
+- [x] Directive et animations persos
+- [x] Interceptor
 - [x] Mieux gérer les types en général et supprimer les any qui trainent
 - [x] Revoir node, express, et mongoDB pour créer l'API qui ira à la place de jsonplaceholder ou json-server par exemple
 - [x] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 - [x] CSS pour avoir une home présentable
+- [x] CI/CD vers AWS via Github Actions
 
 en cours :
 - [ ] gestionnaire d'erreur
 - [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :
-- [ ] Authentification (j'ai vu ce dont on parle, je reviendrai dessus plus tard avec node, ou je mettrais en place un json web token, avec un interceptor)
+- [ ] Authentification JWT(j'ai vu ce dont on parle, je reviendrai dessus plus tard avec node, ou je mettrais en place un json web token, avec un interceptor)
 
 
-Et après selon votre bon vouloir :
+Et selon votre bon vouloir :
 - [ ] Me faire engager chez vous
 
 

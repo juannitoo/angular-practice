@@ -56,6 +56,13 @@ h5{
         h5{
             font-size: 1.4rem;
         }
+        a{
+            color: #080808;
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 }
 
