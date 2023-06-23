@@ -51,8 +51,7 @@ Et selon votre bon vouloir :
 
 
 ### Pour essayer, 
-git clone, npm install et ng serve pour la partie angular.
-ou alors : 
+git clone, npm ci et ng serve pour la partie angular. Ou alors :  
 [http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com](http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com)
 
 ### Pour essayer le crud via json-server, 
