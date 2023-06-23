@@ -8,13 +8,6 @@ mat-expansion-panel{
     margin-bottom : 20px;
 }
 
-mat-panel-title{
-    margin-left: 8px;
-}
-
-mat-panel-description{
-    width: 30%
-}
 
 p{
     font-size: 1rem;
@@ -30,8 +23,9 @@ p{
 }
 
 .details{
-    width: 100%;
+    width: 80%;
     height: 100%;
+    margin-left: 10%;
     font-size: 1.3em;
 }
 

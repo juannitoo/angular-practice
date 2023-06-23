@@ -28,6 +28,7 @@ Voilà synthétiquement où j'en suis :
 - [x] bug ? sur le unsubscribe de json-server/user-create qui neutralise le lien de "retour".
 - [x] CSS pour avoir une home présentable
 - [x] CI/CD vers AWS via Github Actions
+- [x] Migration Angular 14 -> 15 -> 16
 
 en cours :
 - [ ] gestionnaire d'erreur
@@ -41,19 +42,19 @@ Et selon votre bon vouloir :
 - [ ] Me faire engager chez vous
 
 
-[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)
-
-[https://www.npmjs.com/package/json-server#getting-started](https://www.npmjs.com/package/json-server#getting-started)
-
-[http://json2ts.com/](http://json2ts.com/)
-
-[https://jsoncrack.com/](https://jsoncrack.com/)
-
-
 ### Pour essayer, 
 git clone, npm ci et ng serve pour la partie angular. Ou alors :  
 [http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com](http://angular-practice-s3bucket.s3-website.eu-west-3.amazonaws.com)
 
+
 ### Pour essayer le crud via json-server, 
 il faut télécharger ce repo en local et installer json-server et la db qui va bien avec. Pour ce faire, le plus simple et d'installer un autre repo que je vous mets à disposition [https://github.com/juannitoo/angular-json-server](https://github.com/juannitoo/angular-json-server). Sinon, si vous avez déjà json-server, je vous ai mis les fichiers nécessaires dans ce repo angular sous "src/assets/db-json-server", à mettre à la racine du projet json-server.
+
+
+[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)  
+[https://www.npmjs.com/package/json-server#getting-started](https://www.npmjs.com/package/json-server#getting-started)  
+[http://json2ts.com/](http://json2ts.com/)  
+[https://jsoncrack.com/](https://jsoncrack.com/)  
+
+
 
