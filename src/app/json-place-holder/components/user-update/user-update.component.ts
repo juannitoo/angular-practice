@@ -54,7 +54,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
       website : [null],
       companyName : [null]
     }, {
-      updateOn: 'blur'
+      updateOn: 'change'
     })
     // je récupère le référence de this pour pouvoir cibler 
     // les éléments de la classe dans le subscribe

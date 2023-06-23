@@ -68,7 +68,7 @@ export class UserCreateComponent implements OnInit {
       name: [null, [Validators.required, Validators.minLength(5)]],
       username: [null, [Validators.required, Validators.maxLength(50)]],
     }, {
-      updateOn: 'blur'
+      updateOn: 'change'
     })
  
   }
