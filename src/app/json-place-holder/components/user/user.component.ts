@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -33,8 +32,7 @@ export class UserComponent implements OnInit {
 
   constructor(private usersService: UsersService,
               private route : ActivatedRoute,
-              private router : Router,
-              private http: HttpClient) { }
+              private router : Router) { }
 
   ngOnInit(): void {
     const userId = +this.route.snapshot.params['id'];

@@ -1,5 +1,5 @@
 .container{
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 1em;
     padding-bottom: 7em;
@@ -39,7 +39,7 @@ mat-spinner{
 
 @media (min-width: 1250px) { 
     .container{
-        width: 45%;
+        width: 55%;
     }
 }
 
@@ -51,6 +51,6 @@ mat-spinner{
 
 @media (min-width: 2000px) { 
     .container{
-        width: 30%;
+        width: 40%;
     }
 }
