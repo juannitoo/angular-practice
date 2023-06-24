@@ -35,6 +35,7 @@ en cours :
 - [ ] TESTS !!!!! Unitaires et fonctionnels (ca va un peu mieux mais ca a été laborieux)
 
 Ce qu'il me reste principalement à faire :
+- [ ] ngModule -> StandAlone
 - [ ] Authentification JWT(j'ai vu ce dont on parle, je reviendrai dessus plus tard avec node, ou je mettrais en place un json web token, avec un interceptor)
 
 

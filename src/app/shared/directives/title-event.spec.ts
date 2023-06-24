@@ -5,14 +5,8 @@ import { TitleEventDirective } from "./title-event.directive";
 
 // la directive ajoute et supprime un paragrahe au dessus du titre cliqué.
 // Je créé un mock du component ultra simple
-// et je fais un test qui ne conclue jamais
-// Là j'ai un vrai problème parce que ce que je fais ne fonctionne jamais.
-
-//EDIT
-// Si ca ne fonctionnait pas, c'est parce que je n'avais pas encapsuler mon H1 dans une div
-// ds mon faux template, et ma directive cherche le parentNode, jusqu'alors inexistant ds mon template. 
-// Et c'est donc mon premier vrai test concluant ! 
-// J'ai même fait un test parentNode pour fêter ca !
+// et je fais un test qui vérifie la création d'un paragraphe accroché au parentNode du H1,
+// comme le fait la directive
 
 describe('Directive TitleEvent', () => {
 

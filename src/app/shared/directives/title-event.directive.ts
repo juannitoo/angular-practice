@@ -12,8 +12,8 @@ export class TitleEventDirective implements AfterViewInit {
   }
 
   titleEvent() {
-    let active = false
-    let title = this.renderer.createElement("p")
+    let active : boolean = false
+    let title : HTMLElement = this.renderer.createElement("p")
     title.innerHTML = 'Salut, Je suis la directive custom titleEvent positionnée sur le titre : <b>'+this.el.nativeElement.textContent
     title.innerHTML += '</b><br />Vous pouvez me trouver dans <b>app/shared/directives/title-event.directive.ts</b>'
     this.el.nativeElement.addEventListener('click', () =>{
