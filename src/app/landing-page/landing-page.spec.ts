@@ -1,4 +1,4 @@
-import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing'
+import { TestBed, ComponentFixture } from '@angular/core/testing'
 import { LandingPageComponent } from './landing-page.component'
 import { By } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
