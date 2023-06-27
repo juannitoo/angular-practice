@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   // enfant de la liste de user-list
   @Input() user!: User;
 
-  // lorsque url par ex user/1
+  // lorsque url par ex user/1, user details
   user$! : Observable<User>;
 
   private delUserObs!: Subscription

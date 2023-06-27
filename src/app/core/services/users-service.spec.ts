@@ -5,18 +5,6 @@ import { HttpHandler } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 
-// initiation aux tests unitaires, je découvre et prends le temps de comprendre
-
-// Pas simple à appréhender, ce que j'en comprends pour l'instant, c'est qu'il 
-// ne faut pas réellement importer de dépendances mais des mocks pour découpler le 
-// plus possible les tests du code. 
-
-// Concernant ces tests, je ne sais pas trop comment tester ce service dont les méthodes
-// ne retournent rien, et sont des observables "pipés". Je les ai donc modifiés pour sortir
-// au moins qqchose. Il faut que je vois plus de vidéos ou autres tutos pour voir si je 
-// vais dans la bonne direction. Pour l'instant, ma meilleure source, c'est la doc 
-// officielle Angular, et il y a de quoi lire et de quoi se gratter la tête !
-
 
 describe('UsersService', () => {
 
