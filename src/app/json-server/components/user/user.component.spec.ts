@@ -2,7 +2,7 @@ import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testin
 import { UserComponent } from './user.component'
 import { By } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { JsUsersService } from 'src/app/core/services/js-users.services'
+import { JsUsersService } from 'src/app/core/services/js-users.service'
 import { RouterTestingModule } from "@angular/router/testing"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { DebugElement } from '@angular/core'

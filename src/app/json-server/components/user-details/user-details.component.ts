@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, map } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
-import { JsUsersService } from 'src/app/core/services/js-users.services';
+import { JsUsersService } from 'src/app/core/services/js-users.service';
 
 @Component({
   selector: 'app-user-details',

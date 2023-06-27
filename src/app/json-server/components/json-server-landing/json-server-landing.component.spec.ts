@@ -3,7 +3,7 @@ import { JsonServerLandingComponent } from './json-server-landing.component'
 import { By } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
-describe('landing-page Component', () => {
+describe('Json-Server landingPageComponent', () => {
   let component: JsonServerLandingComponent
   let fixture : ComponentFixture<JsonServerLandingComponent>
   let title: HTMLElement
@@ -27,7 +27,7 @@ describe('landing-page Component', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should return h1 Json-server', () => {
+  it('should return h1', () => {
     expect(title.textContent).toBe("Json-server")
   })
 

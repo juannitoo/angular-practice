@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
-import { JsUsersService } from 'src/app/core/services/js-users.services';
+import { JsUsersService } from 'src/app/core/services/js-users.service';
 
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { ErrorsService } from 'src/app/core/services/errors.service';
-import { JsUsersService } from 'src/app/core/services/js-users.services';
+import { JsUsersService } from 'src/app/core/services/js-users.service';
 
 @Component({
   selector: 'app-users-list',

@@ -8,7 +8,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
-import { JsUsersService } from '../core/services/js-users.services';
+import { JsUsersService } from '../core/services/js-users.service';
 import { SharedModule } from '../shared/shared.module';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 

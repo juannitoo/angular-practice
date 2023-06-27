@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
 import { User } from 'src/app/core/models/user.model';
-import { JsUsersService } from 'src/app/core/services/js-users.services';
+import { JsUsersService } from 'src/app/core/services/js-users.service';
 
 @Component({
   selector: 'app-user-create',
