@@ -1,0 +1,13 @@
+<article *ngIf="user$ | async as u" class="box-user">
+  <p id="name">{{ u.name }}</p>
+  <p class="details maj">Id : {{ u.id }}</p>
+  <p class="details">pseudo : {{ u.username }}</p>
+  <p *ngIf="u.email" class="details">Email : {{ u.email }}</p>
+  <p *ngIf="u.address" class="details">Ville : {{ u.address.city }}</p>
+  <p *ngIf="u.phone" class="details">Tel : {{ u.phone }}</p>
+  <p *ngIf="u.website" class="details">Site Internet : {{ u.website }}</p>
+  <p *ngIf="u.company" class="details">Entreprise : {{ u.company.name }}</p>
+  <button (click)="updateUser(u.id)"class="user-button" id="update">Modifier</button>
+  <button (click)="delUser(u.id)" class="user-button"id="suppression">Supprimer</button>
+  <button (click)="backToList()" class="user-button" id="fermer">Fermer</button>
+</article>

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { JsUsersService } from '../core/services/js-users.services';
 import { SharedModule } from '../shared/shared.module';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     UsersListComponent,
     UserComponent,
     UserCreateComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,

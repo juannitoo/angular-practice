@@ -7,7 +7,7 @@ import { RouterTestingModule } from "@angular/router/testing"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { DebugElement } from '@angular/core'
 import { Router, Routes } from '@angular/router'
-import { UserCreateComponent } from '../user-create/user-create.component'
+// import { UserCreateComponent } from '../user-create/user-create.component'
 
 describe('Json-Server User Component', () => {
   let component: UserComponent
@@ -47,7 +47,7 @@ describe('Json-Server User Component', () => {
     },
     {
       path: 'json-server/users/1',
-      component: UserCreateComponent
+      component: UserComponent
     },
     {
       path: '**',

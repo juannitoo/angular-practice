@@ -5,11 +5,12 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes = [  
   { path: 'users/update/:id', component: UserUpdateComponent, title:" Modifiez un utilisateur"},
   { path: 'users/create', component: UserCreateComponent, title:" Créez un utilisateur"},
-  { path: 'users/:id', component: UserComponent, title:"Informations personnelles de l'utilisateur"},
+  { path: 'users/:id', component: UserDetailsComponent, title:"Informations personnelles de l'utilisateur"},
   { path: 'users', component: UsersListComponent, title:"Les users présents sur le serveur"},
   { path: '', component: JsonServerLandingComponent, title:"Présentation de l'exercice json-server"}
 ];
