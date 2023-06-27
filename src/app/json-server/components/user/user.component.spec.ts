@@ -7,7 +7,7 @@ import { RouterTestingModule } from "@angular/router/testing"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { DebugElement } from '@angular/core'
 import { Router, Routes } from '@angular/router'
-// import { UserCreateComponent } from '../user-create/user-create.component'
+
 
 describe('Json-Server User Component', () => {
   let component: UserComponent
@@ -80,11 +80,11 @@ describe('Json-Server User Component', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should match user name json-server/UserComponent', () => {
+  it('should match user fullname and validate @Input()', () => {
     expect(component.user.name).toBe("Leanne Graham")
   })
 
-  it('should show user details on click', fakeAsync(() => {
+  it('should show user details on click with navigateByUrl', fakeAsync(() => {
     cssUser.triggerEventHandler('click')
     tick()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users/1')
