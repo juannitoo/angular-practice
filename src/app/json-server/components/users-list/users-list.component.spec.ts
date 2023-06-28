@@ -6,7 +6,7 @@ import { JsUsersService } from 'src/app/core/services/js-users.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ErrorsService } from 'src/app/core/services/errors.service'
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core'
-import { Router, RouterLink, Routes } from '@angular/router'
+import { RouterLink } from '@angular/router'
 import { UserCreateComponent } from '../user-create/user-create.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { of } from 'rxjs'
@@ -134,17 +134,6 @@ describe('json-server users-list Component', () => {
     component.users$ = of(users) // sans ca, app-user vaut null et pas de users !
     fixture.detectChanges()
     expect(fixture.debugElement.query(By.css('app-user'))).not.toBeNull()
-
-    // c'est plutôt comme ca dans la doc officielle, mais ca ne fonctionne pas ici !
-    
-    // jsUsersService = TestBed.inject(JsUsersService)
-    // spyOn(jsUsersService, 'getUsers').and.returnValue(of(users))
-    // jsUsersService.getUsers().subscribe((res) => {
-    //   console.log(res) // affiche les users mais n'instancie pas le component via | async
-    //   fixture.detectChanges()
-    //   expect(fixture.debugElement.query(By.css('app-user'))).not.toBeNull()
-    // })
-
   }))
 
 })
