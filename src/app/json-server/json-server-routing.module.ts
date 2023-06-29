@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { JsonServerLandingComponent } from './components/json-server-landing/json-server-landing.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
