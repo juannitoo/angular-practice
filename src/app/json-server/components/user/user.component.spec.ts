@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { JsUsersService } from 'src/app/core/services/js-users.service'
 import { RouterTestingModule } from "@angular/router/testing"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
-import { DebugElement } from '@angular/core'
+import { DebugElement, NgZone } from '@angular/core'
 import { Router, Routes } from '@angular/router'
 
 
@@ -13,6 +13,7 @@ describe('Json-Server User Component', () => {
   let component: UserComponent
   let fixture : ComponentFixture<UserComponent>
   let cssUser: DebugElement
+  let ngZone: NgZone
 
   let users = [
     {
@@ -69,6 +70,7 @@ describe('Json-Server User Component', () => {
 
   beforeEach( () => {
     fixture = TestBed.createComponent(UserComponent)
+    ngZone = TestBed.inject(NgZone)
     component = fixture.componentInstance
     component.user = users[0] //simu @Input()
     fixture.detectChanges()
@@ -85,7 +87,9 @@ describe('Json-Server User Component', () => {
   })
 
   it('should show user details on click with navigateByUrl', fakeAsync(() => {
-    cssUser.triggerEventHandler('click')
+    ngZone.run(() =>
+      cssUser.triggerEventHandler('click')
+    )
     tick()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users/1')
   }))

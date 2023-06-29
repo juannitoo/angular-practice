@@ -3,7 +3,7 @@ import { UserCreateComponent } from './user-create.component'
 import { JsUsersService } from 'src/app/core/services/js-users.service'
 import { RouterTestingModule } from "@angular/router/testing"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
-import { DebugElement } from '@angular/core'
+import { DebugElement, NgZone } from '@angular/core'
 import { Router, Routes } from '@angular/router'
 import { By } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -18,6 +18,7 @@ describe('Json-Server user-create Component', () => {
   let button: DebugElement
   let mockJsUserService: jasmine.SpyObj<JsUsersService>
   let addUserSpy : jasmine.Spy
+  let ngZone: NgZone
 
   let data: Object = {
     "name": "Leanne Graham",
@@ -86,6 +87,7 @@ describe('Json-Server user-create Component', () => {
 
   beforeEach( () => {
     fixture = TestBed.createComponent(UserCreateComponent)
+    ngZone = TestBed.inject(NgZone)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
@@ -106,7 +108,7 @@ describe('Json-Server user-create Component', () => {
 
   it("should navigate to users-list on close", fakeAsync(() => {
     button = fixture.debugElement.query(By.css('#retour'))
-    button.triggerEventHandler('click')
+    ngZone.run(() => button.triggerEventHandler('click'))
     tick()
     fixture.detectChanges()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users')
@@ -121,7 +123,7 @@ describe('Json-Server user-create Component', () => {
   it('should add user and navigate to users-list on submit button click', fakeAsync(() => {
     component.userForm.setValue({ ...data })
     component.userForm.updateValueAndValidity()
-    component.onSubmitForm()
+    ngZone.run(() => component.onSubmitForm())
     tick()
     fixture.detectChanges()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users')

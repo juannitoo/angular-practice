@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { Router, Routes } from "@angular/router";
 import { UserComponent } from "../user/user.component";
-import { DebugElement } from "@angular/core";
+import { DebugElement, NgZone } from "@angular/core";
 import { of } from "rxjs";
 import { By } from "@angular/platform-browser";
 import { UserUpdateComponent } from "../user-update/user-update.component";
@@ -19,6 +19,7 @@ describe('Json-Server user-details component', () => {
   let deleteUserSpy : jasmine.Spy
   let button: DebugElement
   let fullname: string
+  let ngZone: NgZone
 
   let users = [
     {
@@ -84,6 +85,7 @@ describe('Json-Server user-details component', () => {
 
   beforeEach( () => {
     fixture = TestBed.createComponent(UserDetailsComponent)
+    ngZone = TestBed.inject(NgZone)
     component = fixture.componentInstance
     component.user$ = component.getUser(5)
     fixture.detectChanges()
@@ -116,21 +118,21 @@ describe('Json-Server user-details component', () => {
 
   it("should navigate to users-list on close", fakeAsync(() => {
     button = fixture.debugElement.query(By.css('#fermer'))
-    button.triggerEventHandler('click')
+    ngZone.run(() =>button.triggerEventHandler('click'))
     tick()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users')
   }))
 
-  it("should navigate to update-user page on click", fakeAsync(() => {
+  it("should navigate to update-user page on update button click", fakeAsync(() => {
     button = fixture.debugElement.query(By.css('#update'))
-    button.triggerEventHandler('click')
+    ngZone.run(() =>button.triggerEventHandler('click'))
     tick()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users/update/1')
   }))
 
   it("should navigate to users-list on user suppression", fakeAsync(() => {
     button = fixture.debugElement.query(By.css('#suppression'))
-    component.delUser(1)
+    ngZone.run(() =>component.delUser(1))
     tick()
     fixture.detectChanges()
     expect(TestBed.inject(Router).url).toEqual('/json-server/users')
