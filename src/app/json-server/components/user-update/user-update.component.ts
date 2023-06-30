@@ -1,8 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { map, take, tap } from 'rxjs/operators';
+import { Subscription, timer } from 'rxjs';
+import { catchError, map, retry, take, tap } from 'rxjs/operators';
 import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
 import { JsUsersService } from 'src/app/core/services/js-users.service';
 
@@ -74,12 +75,13 @@ export class UserUpdateComponent implements OnInit {
       username: userFormValues.username,
       website: userFormValues.website
     }
-    this.userFormUpdateObs = this.jsUsersService.updateUser( userId, userValues).pipe(
+    this.jsUsersService.updateUser( userId, userValues).pipe(
       take(1),
-      tap(() => this.router.navigateByUrl('json-server/users'))
-    ).subscribe({
-      error: (error) => console.error(`erreur dans onSubmitForm() jsonserver/users/update : ${error}`)
-    })
+      tap(() => this.router.navigateByUrl('json-server/users')),
+      catchError((err: HttpErrorResponse) => { 
+        throw `erreur dans onSubmitForm() jsonserver/users/update : ${err.message}` 
+      })
+    ).subscribe()
   }
 
   ngOnDestroy(): void {

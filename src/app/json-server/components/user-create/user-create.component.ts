@@ -1,10 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Subscription, timer } from 'rxjs';
+import { catchError, retry, take, tap } from 'rxjs/operators';
 import { UserCreateValues } from 'src/app/core/interfaces/js-user-create-form.interface';
-import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.service';
 
 @Component({
@@ -59,11 +59,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       username: userFormValues.username,
       website: userFormValues.website
     }
-    this.userCreateFormObs = this.jsUsersService.addUser(userValues).pipe(
-      tap(() => this.router.navigateByUrl('json-server/users'))
-    ).subscribe({
-      error: (error) => console.error(`erreur dans onSubmitForm() json-server/users/create : ${error}`)
-    })
+    this.jsUsersService.addUser(userValues).pipe(
+      take(1),
+      tap(() => this.router.navigateByUrl('json-server/users')),
+      catchError((err: HttpErrorResponse) => { 
+        throw `erreur dans onSubmitForm() json-server/users/create : ${err.message}` 
+      })
+    ).subscribe()
   }
 
   backToList(): void{
@@ -72,7 +74,8 @@ export class UserCreateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // this.userCreateFormObs.unsubscribe()
-    // le lien de retour ne fonctionne dans aucun cas sinon, WTF ?
+    // le lien de retour ne fonctionne dans aucun cas sinon, j'ai mis take(1) plutôt
+    // le service se charge du retry
   }
     
 }
