@@ -87,18 +87,25 @@ describe('jsonPlaceHolder Users-list component', () => {
                     ErrorsService,
                     ChangeDetectorRef ],
         schemas : [CUSTOM_ELEMENTS_SCHEMA]
-      }).compileComponents()
+      }).compileComponents().then(() => {
+        fixture = TestBed.createComponent(UsersListComponent)    
+        changeDetector = TestBed.inject(ChangeDetectorRef)      
+        component = fixture.componentInstance
+        fixture.detectChanges()
+        container = fixture.debugElement.query(By.css('.container'))
+        article = fixture.debugElement.query(By.css('article'))
+      })
     }) 
   )
 
-  beforeEach( () => {
-    fixture = TestBed.createComponent(UsersListComponent)    
-    changeDetector = TestBed.inject(ChangeDetectorRef)      
-    component = fixture.componentInstance
-    fixture.detectChanges()
-    container = fixture.debugElement.query(By.css('.container'))
-    article = fixture.debugElement.query(By.css('article'))
-  })     
+  // beforeEach( () => {
+  //   fixture = TestBed.createComponent(UsersListComponent)    
+  //   changeDetector = TestBed.inject(ChangeDetectorRef)      
+  //   component = fixture.componentInstance
+  //   fixture.detectChanges()
+  //   container = fixture.debugElement.query(By.css('.container'))
+  //   article = fixture.debugElement.query(By.css('article'))
+  // })     
 
     
   it("should load the template", () => {

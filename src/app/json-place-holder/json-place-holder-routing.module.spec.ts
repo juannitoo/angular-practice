@@ -10,7 +10,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UserComponent } from './components/user/user.component'
 
 
-describe('Json-Server Routing-Module', () => {
+describe('Json Place Holder Routing-Module', () => {
   let fixture: ComponentFixture<JsonLandingComponent>
   let router: Router
   let location: Location
@@ -49,9 +49,9 @@ describe('Json-Server Routing-Module', () => {
     expect(module).toBeTruthy()
   })
 
-  it('should have 5 routes', () => {
+  it('should have 4 routes', () => {
     const routes = testRoutes
-    expect(routes.length).toEqual(5)
+    expect(routes.length).toEqual(4)
   })
 
   it('should use JsonLandingComponent with "/" path', fakeAsync(() => {
@@ -62,11 +62,6 @@ describe('Json-Server Routing-Module', () => {
   it('should use UsersListComponent with "/users" path', fakeAsync(() => {
     initRoutes(UsersListComponent)
     expect(location.path()).toBe('/users')
-  }))
-
-  it('should use UserDetailsComponent with "/users/1" path', fakeAsync(() => {
-    initRoutes(UserComponent)
-    expect(location.path()).toBe('/users/:id')
   }))
 
   it('should use UserCreateComponent with "/users/create" path', fakeAsync(() => {

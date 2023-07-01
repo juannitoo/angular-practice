@@ -44,9 +44,10 @@
       <p><b class="decalage">Me revoilà pour la troisième étape</b> quelques jours plus tard pour mettre en place Material UI et le state Management reactif
          avec BehaviorSubject, qui contrairement à un subject classique, stocke la dernière valeur en plus de l'envoyer à ces abonnés.
          C'était plutôt facile parce que j'avais déjà fait le gros du travail en amont sans le savoir, mon behaviorSubject était un objet avec un type any 
-         et non pas BehaviorSubject, et l'event emitter @output() était déjà en place. J'ai donc poursuivi sur ce pattern sur les users updatés 
-         ou supprimés. Le comportement est donc maintenant completement cohérent et je ne peux pas aller beaucoup plus loin ici. <br />
-         J'ai aussi vu ce qu'était les interceptors et les resolvers mais je n'en ai pas créé. J'ai par contre créé ma propre directive, disponible au click 
+         et non pas BehaviorSubject. J'ai donc poursuivi sur ce pattern sur les users updatés ou supprimés. Le comportement est donc 
+         maintenant completement cohérent et je ne peux pas aller beaucoup plus loin ici. <br />
+         J'ai aussi vu ce que sont les interceptors et j'en ai fait un qui me sert pour le gestionnaire d'erreur.
+         J'ai aussi vu ce que sont les resolvers mais je n'en ai pas créé. J'ai par contre créé ma propre directive, disponible au click 
          sur le titre de cette page et celles des pages de la démo des users, son code est visible dans le module shared.
       </p>
       <p><b class="decalage">Enfin la dernière étape</b>, en ce moment, est celle du CSS. Il manque une partie authentification à mettre en place une fois que 

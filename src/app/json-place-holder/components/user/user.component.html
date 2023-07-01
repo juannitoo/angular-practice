@@ -21,11 +21,11 @@
 
     <!-- I'm visible because I am open -->
     <article class="details">
-      <p *ngIf="user.email" class="box">   
+      <p *ngIf="user.email" class="box" id="email">   
         <span class="intitule">Email :</span>          
         {{ user.email }}
       </p>
-      <p *ngIf="user.address" class="box"> 
+      <p *ngIf="user.address && user.address.city !== ''" class="box"> 
         <span class="intitule">Ville :</span>          
         {{ user.address.city }}
       </p>
@@ -37,7 +37,7 @@
         <span class="intitule">Site Internet :</span>  
         {{ user.website }}
       </p>
-      <p *ngIf="user.company" class="box"> 
+      <p *ngIf="user.company && user.company.name !== '' " class="box"> 
         <span class="intitule">Entreprise :</span>     
         {{ user.company.name }}
       </p>
@@ -57,6 +57,7 @@
         </span>
         
       </p>
+      
     </article>
     
   </mat-expansion-panel>
