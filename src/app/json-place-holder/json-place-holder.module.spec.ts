@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing"
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing"
 import { JsonPlaceHolderModule } from "./json-place-holder.module"
 import { JsonLandingComponent } from "./components/json-landing/json-landing.component"
 import { UserComponent } from "./components/user/user.component"
@@ -18,8 +18,8 @@ describe('Json-Place-Holder Module', () => {
   let fixture : ComponentFixture<JsonPlaceHolderModule>
   let component: JsonLandingComponent
 
-  beforeEach( async () => {
-    await TestBed.configureTestingModule({
+  beforeEach( waitForAsync( () => {
+    TestBed.configureTestingModule({
       declarations: [ UserComponent,
                       UserCreateComponent,
                       UserUpdateComponent,
@@ -34,11 +34,11 @@ describe('Json-Place-Holder Module', () => {
               ],
       providers : [ JsonPlaceHoldeRoutingModule, UsersService ]
     })
+  }))
+  
+  it('should start !', () => {
     fixture = TestBed.createComponent(UserCreateComponent)
     component = fixture.componentInstance
-  })
-
-  it('should start !', () => {
     expect(component).toBeTruthy()
   })
 })
