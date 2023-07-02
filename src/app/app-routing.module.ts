@@ -6,7 +6,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NodeModule } from './node/node.module';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
-const routes: Routes = [
+export const routes: Routes = [
 
   { path: 'jsonplaceholder', loadChildren: () => import('./json-place-holder/json-place-holder.module')
                                             .then( m => JsonPlaceHolderModule), 
