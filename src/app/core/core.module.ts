@@ -10,13 +10,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 import { httpInterceptorProviders } from './interceptors';
 import { ErrorsService } from './services/errors.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     LandingPageComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

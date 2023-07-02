@@ -4,6 +4,7 @@ import { JsonPlaceHolderModule } from './json-place-holder/json-place-holder.mod
 import { JsonServerModule } from './json-server/json-server.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NodeModule } from './node/node.module';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
 
@@ -21,7 +22,7 @@ const routes: Routes = [
 
   { path: '', component: LandingPageComponent, title: "Exercices pour m'exercer avec Angular" },
 
-  { path: '**', component: LandingPageComponent }                                        
+  { path: '**', component: PageNotFoundComponent }                                        
 ];
 
 
