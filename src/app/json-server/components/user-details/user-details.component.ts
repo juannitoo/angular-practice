@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, takeUntil, tap } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { JsUsersService } from 'src/app/core/services/js-users.service';
 
@@ -14,7 +14,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
   // lorsque url par ex user/1, user details
   user$! : Observable<User>;
-  private delUserObs!: Subscription
+
+  componentDestroyed$: Subject<void> = new Subject<void>()
 
   constructor(private jsUsersService: JsUsersService,
               private route : ActivatedRoute,
@@ -42,18 +43,16 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   }
 
   delUser(userId: number){
-    return this.delUserObs = this.jsUsersService.deleteUser(userId)
-    .pipe(
-      map( () => this.router.navigateByUrl('json-server/users')),
-    ).subscribe({
-      error: (error) => console.error(`erreur dans delUser() json-server/users/: ${error}`)
-    });
+    return this.jsUsersService.deleteUser(userId).pipe(
+      takeUntil(this.componentDestroyed$),
+      tap( () => this.router.navigateByUrl('json-server/users')),
+      catchError((err: HttpErrorResponse) => { throw `erreur dans delUser() json-server/users/: ${err}`})
+    ).subscribe()
   }
 
   ngOnDestroy(): void {
-    if (this.delUserObs !== undefined) {
-      this.delUserObs.unsubscribe()
-    }
+    this.componentDestroyed$.next()
+    this.componentDestroyed$.complete()
   }
 
 }
