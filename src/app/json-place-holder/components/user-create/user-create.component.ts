@@ -55,9 +55,6 @@ export class UserCreateComponent implements OnInit {
 
   userCreateForm!: FormGroup
 
-  // j'affiche les 2 premiers chps lors du post du formulaire
-  newUser! : User
-
   constructor( private formBuider: FormBuilder,
     private usersService: UsersService,
     private router: Router,

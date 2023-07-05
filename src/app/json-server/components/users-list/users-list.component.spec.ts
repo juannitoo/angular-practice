@@ -119,21 +119,23 @@ describe('json-server users-list Component', () => {
     expect(addUserLink.nativeElement.href).toContain('/create')
     // Expected 'http://localhost:9876/create' toBe '/create' so toContain
   }))
-
-  it('should show error message when needed', fakeAsync(() => {
-    component.isServerResponse = true
-    component.errors.error = true
-    fixture.detectChanges()
-    appError = fixture.debugElement.query(By.css('app-error'))
-    expect(appError).toBeTruthy()
-  }))
-
+  
   it('should show users', fakeAsync(() => {
     component.isServerResponse = true
     component.errors.error = false
     component.users$ = of(users) // sans ca, app-user vaut null et pas de users !
     fixture.detectChanges()
     expect(fixture.debugElement.query(By.css('app-user'))).not.toBeNull()
+  }))
+
+  it('should show error message when needed', fakeAsync(() => {
+    // console.log(fixture.debugElement.query(By.css('app-error')))
+    component.isServerResponse = true
+    component.errors.error = true
+    fixture.detectChanges()
+    appError = fixture.debugElement.query(By.css('app-error'))
+    // console.log(fixture.debugElement.query(By.css('app-error')))
+    expect(appError).not.toBeNull()
   }))
 
 })
