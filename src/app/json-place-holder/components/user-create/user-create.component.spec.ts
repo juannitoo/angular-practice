@@ -115,21 +115,21 @@ describe('JsonPlaceHolder user-create Component', () => {
     expect(inputs.length).toEqual(inputsNumber)
   })
 
-  xit("should navigate to users-list on close", fakeAsync(() => {
-    button = fixture.debugElement.query(By.css('#retour'))
-    ngZone.run(() => button.triggerEventHandler('click'))
-    tick()
-    fixture.detectChanges()
-    expect(TestBed.inject(Router).url).toEqual('/json-server/users')
-  }))
+  // xit("should navigate to users-list on close", fakeAsync(() => {
+  //   button = fixture.debugElement.query(By.css('#retour'))
+  //   ngZone.run(() => button.triggerEventHandler('click'))
+  //   tick()
+  //   fixture.detectChanges()
+  //   expect(TestBed.inject(Router).url).toEqual('/json-server/users')
+  // }))
 
-  xit('should add user and navigate to users-list on submit button click', fakeAsync(() => {
-    component.userCreateForm.setValue({ ...data })
-    component.userCreateForm.updateValueAndValidity()
-    ngZone.run(() => component.onSubmitForm())
-    tick()
-    fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges()
-    expect(TestBed.inject(Router).url).toEqual('/json-server/users')
-  }))
+  // xit('should add user and navigate to users-list on submit button click', fakeAsync(() => {
+  //   component.userCreateForm.setValue({ ...data })
+  //   component.userCreateForm.updateValueAndValidity()
+  //   ngZone.run(() => component.onSubmitForm())
+  //   tick()
+  //   fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges()
+  //   expect(TestBed.inject(Router).url).toEqual('/json-server/users')
+  // }))
 
 })
