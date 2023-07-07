@@ -2,7 +2,6 @@
     width: 90%;
     box-sizing: border-box;
     margin: 0% 5% 0% 5% ;
-    // margin:0 auto;
 }
 
 h4{
@@ -36,9 +35,12 @@ button {
 .retour{
   display: block;
   width : 100%;
-  float: left;
-  font-size : 1em;
+}
+
+.lien-retour{
+  text-align: left;
   margin-left: 1em;
+  font-size: 1em;
 }
 
 mat-icon{

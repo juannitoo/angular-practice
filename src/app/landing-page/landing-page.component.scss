@@ -97,6 +97,10 @@ h5{
     height: 100px;
 }
 
+table{
+    margin-top: -1rem;
+}
+
 @media (max-width: 1250px) { 
     .intro{
         margin: 0rem;
@@ -119,6 +123,9 @@ h5{
     #art-1{
         border: none;
 
+    }
+    table{
+        margin: 0 auto;
     }
  }
 
