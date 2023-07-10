@@ -7,7 +7,7 @@ import { UserUpdateForm } from 'src/app/core/interfaces/user-update-form.interfa
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
-import { emailValidator } from '../../validators/email.validators';
+import { emailValidator } from '../../../shared/validators/email.validators';
 
 @Component({
   selector: 'app-user-update',
@@ -48,7 +48,7 @@ export class UserUpdateComponent implements OnInit, OnDestroy {
     this.userForm = this.formBuilder.group({
       name : [null, [Validators.required, Validators.minLength(5)]],
       username : [null, [Validators.required, Validators.maxLength(50)]],
-      email : [null, [ emailValidator() ]], // c'est pour la démo
+      email : [null, [ emailValidator() ]],
       addressCity : [null],
       phone : [null],
       website : [null],

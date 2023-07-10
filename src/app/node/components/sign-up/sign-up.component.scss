@@ -1,0 +1,73 @@
+.form-card {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 20px auto;
+  box-shadow: 0px 0px 11px 1px rgb(211, 17, 17);
+  // box-shadow: 0px 0px 22px 5px rgb(210,210,210);
+  border-radius: 5px;
+}
+
+.form-group {
+  margin: 5% 10% 0% 10%;;
+  width: 80%;
+}
+
+#inscription, #connexion{
+  width : 50%;
+  display: inline-block;
+  p{
+    text-align: center;
+    font-size : 1.5em;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.input-text {
+width: 100%;
+}
+
+.action-buttons {
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+button {
+  display: block;
+  margin: 1em auto;
+  // color: rgb(211, 17, 17);
+  font-size: 1.2em;
+  &:hover{
+    color:white;
+  }
+}
+
+.red{
+  color: rgb(211, 17, 17);
+}
+
+.black{
+  color: black;
+}
+
+@media (min-width: 1350px) { 
+  .form-card{
+    width: 30%;
+    margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 750px) { 
+  .form-card{
+      width: 70%;
+      margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 450px) { 
+  .form-card{
+      width: 100%;
+      margin-bottom: 5em;
+  }
+}

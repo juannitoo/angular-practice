@@ -17,4 +17,8 @@ export class NodeLandingComponent implements OnInit {
     this.date = this.nodeServ.getDate()
   }
 
+  send(){
+    this.nodeServ.sendData()
+  }
+
 }
