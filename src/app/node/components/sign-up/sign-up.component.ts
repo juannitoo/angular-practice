@@ -1,9 +1,11 @@
 import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Data } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Data, Router } from '@angular/router';
+import { Observable, map, tap } from 'rxjs';
 import { NodeService } from 'src/app/core/services/node.service';
 import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validators';
+
+// https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +27,7 @@ export class SignUpComponent implements OnInit {    // DoCheck
 
   constructor( private formBuilder: FormBuilder,
               private nodeService: NodeService,
-              ) {}
+              private router: Router) {}
 
   ngOnInit(): void {
 
@@ -49,23 +51,30 @@ export class SignUpComponent implements OnInit {    // DoCheck
   // }
 
   onSubmitForm(){
-    const data : Data = { 
-      email : this.signUpForm.value.email,
-      password : this.signUpForm.value.password
-    }
+
+    const data : Data = { email : this.signUpForm.value.email }
+
     if (this.buttonValue === "Se connecter"){
+      
       console.log("connexion component")
-      this.nodeService.signInUser(data)
+      data['password'] = this.signUpForm.value.connectionPassword
+      this.nodeService.loginUser(data).pipe(
+        tap((param) => console.log('param:', param)),
+        tap( ()=> this.router.navigateByUrl(''))
+      ).subscribe()
+
     } else {
+
       console.log("inscription component")
-      this.nodeService.signInUser(data)
+      data['password'] = this.signUpForm.value.password
+      this.nodeService.signUpUser(data)
+
     }
   }
 
   chooseForm(formType: string){
     this.buttonValue = "Se connecter"
     if (formType === "inscription"){
-
       this.buttonValue = "S'inscrire"
       this.signUpForm.removeControl("connectionPassword")
       this.password = this.formBuilder.control(null, [Validators.required, Validators.minLength(5)] )
@@ -84,9 +93,11 @@ export class SignUpComponent implements OnInit {    // DoCheck
       )
 
     } else {
-
-      this.signUpForm.addControl("connectionPassword", this.formBuilder.control('', [Validators.required, Validators.minLength(5)]))
-
+      if ( this.signUpForm.controls['password']) this.signUpForm.removeControl("password")
+      if ( this.signUpForm.controls['confirmPassword']) this.signUpForm.removeControl("confirmPassword")
+      if ( !this.signUpForm.controls['connectionPassword']) {
+        this.signUpForm.addControl("connectionPassword", this.formBuilder.control('', [Validators.required, Validators.minLength(5)]))
+      }
     }
 
   }

@@ -42,15 +42,15 @@ export class NodeService {
     ).subscribe()
   }
 
-  signInUser(data: Data): any {
+  loginUser(data: Data): any {
     console.log('signUpUser service')
-    return this.http.post<any>('http://localhost:3001/api/users/signin', 
+    return this.http.post<any>('http://localhost:3001/api/users/login', 
       { "email": data['email'], 
         "password": data["password"]
       },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
       ).pipe(
       tap(message =>{console.log(`message retour ${message.message}`)}),
-    ).subscribe()
+    )
   }
 }
