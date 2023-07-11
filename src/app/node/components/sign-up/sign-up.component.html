@@ -2,12 +2,12 @@
   
   <div class="form-card">
     
-    <div id="connexion" (click)="chooseForm('connexion')"
-      [ngClass]="{ red: buttonValue==='Se connecter'}"><p>Connexion</p>
+    <div class="connexion" (click)="chooseForm('connexion')"
+      [ngClass]="{ white: buttonValue==='Se connecter'}"><p>Connexion</p>
     </div>
 
-    <div id="inscription" (click)="chooseForm('inscription')"
-      [ngClass]="{ red: buttonValue==='S\'inscrire'}"><p>Inscription</p>
+    <div class="inscription" (click)="chooseForm('inscription')"
+      [ngClass]="{ white: buttonValue==='S\'inscrire'}"><p>Inscription</p>
     </div>
 
     <form [formGroup]="signUpForm" (submit)="onSubmitForm()">
@@ -19,23 +19,41 @@
       </mat-form-field>
 
       <ng-container *ngIf="buttonValue === 'Se connecter'; else templateB" >
-      <mat-form-field  appearance="fill" class="form-group">
-        <mat-label for="connectionPassword">Mot de passe :</mat-label>
-        <input matInput type="password" class="input-text" id="connectionPassword" formControlName="connectionPassword">
-        <mat-error>Ce champ est requis, minimum 5 caractères</mat-error>
-      </mat-form-field>
+        <mat-form-field  appearance="fill" class="form-group">
+          <mat-label for="connectionPassword">Mot de passe :</mat-label>
+          <input matInput [type]="hideConnectionPassword ? 'password' : 'text'" 
+            class="input-text" id="connectionPassword" 
+            formControlName="connectionPassword"
+          >
+          <mat-icon matSuffix (click)="hideConnectionPassword = !hideConnectionPassword"
+            >{{hideConnectionPassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+          <mat-error>Ce champ est requis, minimum 5 caractères</mat-error>
+        </mat-form-field>
       </ng-container>
 
       <ng-template #templateB>
         <mat-form-field appearance="fill" class="form-group" [formGroup]="passwordForm">
           <mat-label for="password">Mot de passe :</mat-label>
-          <input matInput type="password" class="input-text" id="password" formControlName="password">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+            class="input-text" class="input-text" id="password" 
+            formControlName="password"
+          >
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
           <mat-error>Ce champ est requis, minimum 5 caractères</mat-error>
         </mat-form-field>
 
         <mat-form-field  appearance="fill" class="form-group" [formGroup]="passwordForm">
           <mat-label for="password2">Répétez votre mot de passe :</mat-label>
-          <input matInput type="password" class="input-text" id="password2" formControlName="password2">
+          <input matInput [type]="hidePassword2 ? 'password' : 'text'" 
+            class="input-text" id="password2" 
+            formControlName="password2"
+          >
+          <mat-icon matSuffix (click)="hidePassword2 = !hidePassword2">
+            {{hidePassword2 ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
           <mat-error>Ce champ est requis</mat-error>
         </mat-form-field>
         <small class="error-text" *ngIf="showPasswordsError$ | async">Les mots de passe doivent correspondre</small>

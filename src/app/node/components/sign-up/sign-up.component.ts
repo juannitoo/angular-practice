@@ -18,6 +18,10 @@ export class SignUpComponent implements OnInit {    // DoCheck
   confirmPassword!: FormControl
   passwordForm!: FormGroup
   showPasswordsError$!: Observable<boolean>
+  validForm$!: Observable<boolean>
+  hideConnectionPassword!: boolean
+  hidePassword!: boolean
+  hidePassword2!: boolean
 
   constructor( private formBuilder: FormBuilder,
               private nodeService: NodeService,
@@ -33,6 +37,10 @@ export class SignUpComponent implements OnInit {    // DoCheck
     })
 
     this.buttonValue = "Se connecter"
+
+    this.hideConnectionPassword = true
+    this.hidePassword = true
+    this.hidePassword2 = true
 
   }
 
@@ -56,7 +64,6 @@ export class SignUpComponent implements OnInit {    // DoCheck
 
   chooseForm(formType: string){
     this.buttonValue = "Se connecter"
-
     if (formType === "inscription"){
 
       this.buttonValue = "S'inscrire"
@@ -73,7 +80,7 @@ export class SignUpComponent implements OnInit {    // DoCheck
         password: this.passwordForm
       })
       this.showPasswordsError$ = this.passwordForm.statusChanges.pipe(
-        map(status => status === 'INVALID' && this.password.value && this.confirmPassword.value )
+        map(status => status === 'INVALID' && this.password.value && this.confirmPassword.value ),
       )
 
     } else {
