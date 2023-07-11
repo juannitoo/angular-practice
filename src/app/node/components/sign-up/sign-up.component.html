@@ -36,8 +36,9 @@
         <mat-form-field  appearance="fill" class="form-group" [formGroup]="passwordForm">
           <mat-label for="password2">Répétez votre mot de passe :</mat-label>
           <input matInput type="password" class="input-text" id="password2" formControlName="password2">
-          <mat-error>Les mots de passe doivent correspondre</mat-error>
+          <mat-error>Ce champ est requis</mat-error>
         </mat-form-field>
+        <small class="error-text" *ngIf="showPasswordsError$ | async">Les mots de passe doivent correspondre</small>
       </ng-template>
 
 
