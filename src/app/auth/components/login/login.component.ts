@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, catchError, map, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validators';
 
@@ -20,10 +20,12 @@ export class LoginComponent implements OnInit {    // DoCheck
   confirmPassword!: FormControl
   passwordForm!: FormGroup
   showPasswordsError$!: Observable<boolean>
+  errorMessageIdentifiant!: boolean
   validForm$!: Observable<boolean>
   hideConnectionPassword!: boolean
   hidePassword!: boolean
   hidePassword2!: boolean
+
 
 
 
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {    // DoCheck
     this.hideConnectionPassword = true
     this.hidePassword = true
     this.hidePassword2 = true
+    this.errorMessageIdentifiant= false
 
   }
 
@@ -60,9 +63,10 @@ export class LoginComponent implements OnInit {    // DoCheck
     if (this.buttonValue === "Se connecter"){
 
       data['password'] = this.signUpForm.value.connectionPassword
-      this.authService.login(data).pipe(
-        tap(() => this.router.navigateByUrl('nodeJs')), // undefined ici
-      ).subscribe()
+      this.authService.login(data).subscribe({
+        next : () => { this.router.navigateByUrl('nodeJs') },
+        error : () => { this.errorMessageIdentifiant = true }
+      })
 
 
     } else { //inscription

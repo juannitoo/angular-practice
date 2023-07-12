@@ -28,7 +28,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   providers: [
     HttpClient,
     ErrorsService,
-    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    // { provide: ErrorHandler, useClass: GlobalErrorHandlerService }, 
+    // je commente pour que le message json-server Et le retour de l'identification erronée fonctionne
   ],
   exports: [
     HeaderComponent,

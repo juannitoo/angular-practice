@@ -17,10 +17,11 @@ Après avoir expérimenté les rouages d'Angular avec ces deux exercices, j'ai c
 Je vais aussi intégrer Material UI pour avoir une finition professionelle, mais j'ai du taf, vu que je n'ai que survolé la chose pour l'instant, et que ce n'est pas ce sur quoi je me suis focalisé.
 
 ### STEP 3
-J'ai corrigé les types any qui trainaient en créant des interfaces pour les forms, j'ai refait un tour sur node, je potasse les tests unitaires et fonctionnels, je regarde comment gérer les erreurs
+J'ai corrigé les types any qui trainaient en créant des interfaces pour les forms, j'ai refait un tour sur node, je potasse les tests unitaires et fonctionnels, je regarde comment gérer les erreurs.
 
-### Vous pouvez cloner ce dépot sans installer json-server et vous pourrez quand même essayer la partie json-Place-Holder
-C'est cette partie où j'ai le plus travaillé. Pour l'instant, json-server reste un CRUD fonctionnel "simple".
+### STEP 4
+En ce moment ...
+
 
 Voilà synthétiquement où j'en suis :
 
@@ -46,6 +47,7 @@ en cours :
 Ce qu'il me reste principalement à faire :
 - [ ] ngModule -> StandAlone
 - [ ] signaux
+
 
 Et selon votre bon vouloir :
 - [ ] Me faire engager chez vous

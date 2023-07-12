@@ -72,6 +72,10 @@
         >{{ buttonValue }}</button>
       </div>
 
+      <div class="error-identifiant">
+        <p *ngIf="errorMessageIdentifiant">Les identifiants ne correspondent pas</p>
+      </div>
+
     </form>
 
   </div>
