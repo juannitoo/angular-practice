@@ -8,11 +8,11 @@ import { confirmEqualValidator } from 'src/app/shared/validators/passwords.valid
 // https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SignUpComponent implements OnInit {    // DoCheck
+export class LoginComponent implements OnInit {    // DoCheck
 
   buttonValue! : string
   signUpForm! : FormGroup
