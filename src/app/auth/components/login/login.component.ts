@@ -61,13 +61,12 @@ export class LoginComponent implements OnInit {    // DoCheck
 
       data['password'] = this.signUpForm.value.connectionPassword
       this.authService.login(data).pipe(
-        tap(() => this.router.navigateByUrl('/NodeJs')), // undefined ici
+        tap(() => this.router.navigateByUrl('nodeJs')), // undefined ici
       ).subscribe()
 
 
-    } else {
-
-      console.log("inscription component")
+    } else { //inscription
+      
       data['password'] = this.signUpForm.value.password
       this.authService.signUp(data).subscribe()
 
