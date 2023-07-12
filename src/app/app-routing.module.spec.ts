@@ -21,8 +21,8 @@ describe('app routing Module', () => {
     expect(module).toBeTruthy()
   })
 
-  it('should have 5 routes', () => {
-    expect(testRoutes.length).toEqual(5)
+  it('should have 6 routes', () => {
+    expect(testRoutes.length).toEqual(6)
   })
   
 })
