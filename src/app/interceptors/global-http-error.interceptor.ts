@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest,HttpErrorResponse} 
 import { Observable, throwError } from "rxjs"
 import { catchError, startWith } from 'rxjs/operators'
 import { Router } from "@angular/router"
-import { ErrorsService } from "../services/errors.service"
+import { ErrorsService } from "../core/services/errors.service"
 
 // error component est dans shared
  
@@ -11,7 +11,9 @@ import { ErrorsService } from "../services/errors.service"
 export class GlobalHttpErrorInterceptor implements HttpInterceptor {
     
   constructor(private router: Router,
-              private errorsService: ErrorsService) { }
+              private errorsService: ErrorsService) { 
+                console.log('inteceptor error:')
+              }
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     

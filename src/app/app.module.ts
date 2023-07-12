@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NodeModule } from './node/node.module';
 import { AuthModule } from './auth/auth.module';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { AuthModule } from './auth/auth.module';
     NodeModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
