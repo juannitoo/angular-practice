@@ -5,7 +5,7 @@ import { JsonServerModule } from './json-server/json-server.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NodeModule } from './node/node.module';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { AuthRoutingModule } from './auth/auth-routing.module';
+import { LoginComponent } from './auth/components/login/login.component';
 
 export const routes: Routes = [
 
@@ -21,9 +21,7 @@ export const routes: Routes = [
                                             .then( m => NodeModule), 
                                             title: 'NodeJs landing page' },
 
-  { path: 'auth', loadChildren: () => import('./auth/auth-routing.module')
-                                            .then( m => AuthRoutingModule), 
-                                            title: 'Connexion / Inscription' },
+  { path: 'auth/login', component: LoginComponent, title: "Se connecter, s'inscrire" },
 
   { path: '', component: LandingPageComponent, title: "Exercices pour m'exercer avec Angular" },
 
