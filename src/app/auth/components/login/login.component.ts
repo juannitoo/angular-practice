@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {    // DoCheck
   hidePassword2!: boolean
 
 
-
-
   constructor( private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
@@ -56,24 +54,20 @@ export class LoginComponent implements OnInit {    // DoCheck
   //   this.testFormValidity()
   // }
 
-  onSubmitForm(){
 
+  onSubmitForm(){
     const data : Data = { email : this.signUpForm.value.email }
 
     if (this.buttonValue === "Se connecter"){
-
       data['password'] = this.signUpForm.value.connectionPassword
       this.authService.login(data).subscribe({
         next : () => { this.router.navigateByUrl('nodeJs') },
         error : () => { this.errorMessageIdentifiant = true }
       })
-
-
     } else { //inscription
-      
-      data['password'] = this.signUpForm.value.password
+      console.log()
+      data['password'] = this.signUpForm.value.password['password']
       this.authService.signUp(data).subscribe()
-
     }
   }
 

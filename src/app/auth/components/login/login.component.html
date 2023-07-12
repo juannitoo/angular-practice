@@ -1,4 +1,14 @@
 <section>
+  <p style="text-align:center;">test@test.fr et mdp 12345</p>
+
+  
+  <p style="text-align:center;">Le service est fonctionnel mais le serveur node n'est pas encore en ligne. 
+    Vous pouvez trouver le code du component 
+    <a href="https://github.com/juannitoo/angular-practice/tree/main/src/app/auth/components/login" 
+      target="_blank">ici</a> et celui du service d'authentification 
+    <a href="https://github.com/juannitoo/angular-practice/blob/main/src/app/core/services/auth.service.ts"
+      target="_blank">là</a>.
+  </p>
   
   <div class="form-card">
     
@@ -9,11 +19,9 @@
     <div class="inscription" (click)="onChooseForm('inscription')"
       [ngClass]="{ white: buttonValue==='S\'inscrire'}"><p>Inscription</p>
     </div>
-
+    
     <form [formGroup]="signUpForm" (submit)="onSubmitForm()">
 
-      <p style="text-align:center;">Validation pas encore opérationnelle</p>
-      <!-- <p style="text-align:center;">test@test.fr  --- 11111</p> -->
 
       <mat-form-field  appearance="fill" class="form-group">
         <mat-label for="email">Email :</mat-label>

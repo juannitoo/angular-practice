@@ -8,16 +8,16 @@ import { Observable, map, tap } from 'rxjs';
 })
 export class AuthService {
 
-  private token! : string | null
-
+  private token! :  string | undefined | null // alors là il me fait ... undefined et null pbme ac angular ?
+                                                    // ca cause des ajustements dans ces méthodes
   constructor( private http: HttpClient ) {  }
 
-  getToken(): string | null {
-    return this.token ? localStorage.getItem('token') : this.token 
+  getToken(): string | undefined | null {
+    return this.token === undefined ? localStorage.getItem('token') : this.token 
   }
 
-  saveToken(token:string): void {
-    localStorage.setItem('token', token)
+  saveToken(token:string | undefined | null): void {
+    if ( typeof token === "string") localStorage.setItem('token', token)
   }
 
   signUp(data: Data): Observable<any> {
@@ -42,7 +42,7 @@ export class AuthService {
       tap((response) => { 
         if (response.status === 200 ) {
           this.token = response.token
-          this.saveToken( response.token ) // this.token marche pas pbme de type string n'est pas null
+          this.saveToken( this.token )
         }
       }),
 
@@ -51,7 +51,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token')
-    this.token = null
+    this.token = undefined
   }
 
 }
