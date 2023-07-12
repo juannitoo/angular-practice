@@ -2,6 +2,7 @@ import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
 import { Observable, map, tap } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { NodeService } from 'src/app/core/services/node.service';
 import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validators';
 
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {    // DoCheck
 
   constructor( private formBuilder: FormBuilder,
               private nodeService: NodeService,
-              private router: Router) {}
+              private router: Router,
+              private auth: AuthService) {}
 
   ngOnInit(): void {
 
@@ -56,12 +58,15 @@ export class LoginComponent implements OnInit {    // DoCheck
 
     if (this.buttonValue === "Se connecter"){
 
-      console.log("connexion component")
-      data['password'] = this.signUpForm.value.connectionPassword
-      this.nodeService.loginUser(data).pipe(
-        tap((param) => console.log('param:', param)),
-        tap( ()=> this.router.navigateByUrl(''))
-      ).subscribe()
+      // console.log("connexion component")
+      // data['password'] = this.signUpForm.value.connectionPassword
+      // this.nodeService.loginUser(data).pipe(
+      //   tap((param) => console.log('param:', param)),
+      //   tap( ()=> this.router.navigateByUrl(''))
+      // ).subscribe()
+
+      this.auth.login()
+      this.router.navigateByUrl('/nodeJs')
 
     } else {
 
@@ -74,6 +79,7 @@ export class LoginComponent implements OnInit {    // DoCheck
 
   onChooseForm(formType: string){
     this.buttonValue = "Se connecter"
+
     if (formType === "inscription"){
       this.buttonValue = "S'inscrire"
       this.signUpForm.removeControl("connectionPassword")
