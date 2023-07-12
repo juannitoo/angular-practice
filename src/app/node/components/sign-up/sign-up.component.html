@@ -2,11 +2,11 @@
   
   <div class="form-card">
     
-    <div class="connexion" (click)="chooseForm('connexion')"
+    <div class="connexion" (click)="onChooseForm('connexion')"
       [ngClass]="{ white: buttonValue==='Se connecter'}"><p>Connexion</p>
     </div>
 
-    <div class="inscription" (click)="chooseForm('inscription')"
+    <div class="inscription" (click)="onChooseForm('inscription')"
       [ngClass]="{ white: buttonValue==='S\'inscrire'}"><p>Inscription</p>
     </div>
 

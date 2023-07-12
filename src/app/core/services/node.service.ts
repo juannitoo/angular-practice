@@ -51,6 +51,9 @@ export class NodeService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
       ).pipe(
       tap(message =>{console.log(`message retour ${message.message}`)}),
-    )
+    ).subscribe({
+      next: (params) => console.log(params),
+      error: (err) => console.log(err)
+    })
   }
 }

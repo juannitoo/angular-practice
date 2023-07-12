@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {    // DoCheck
     const data : Data = { email : this.signUpForm.value.email }
 
     if (this.buttonValue === "Se connecter"){
-      
+
       console.log("connexion component")
       data['password'] = this.signUpForm.value.connectionPassword
       this.nodeService.loginUser(data).pipe(
@@ -72,7 +72,7 @@ export class SignUpComponent implements OnInit {    // DoCheck
     }
   }
 
-  chooseForm(formType: string){
+  onChooseForm(formType: string){
     this.buttonValue = "Se connecter"
     if (formType === "inscription"){
       this.buttonValue = "S'inscrire"
@@ -93,9 +93,9 @@ export class SignUpComponent implements OnInit {    // DoCheck
       )
 
     } else {
-      if ( this.signUpForm.controls['password']) this.signUpForm.removeControl("password")
-      if ( this.signUpForm.controls['confirmPassword']) this.signUpForm.removeControl("confirmPassword")
-      if ( !this.signUpForm.controls['connectionPassword']) {
+      if (this.signUpForm.controls['password']) this.signUpForm.removeControl("password")
+      if (this.signUpForm.controls['confirmPassword']) this.signUpForm.removeControl("confirmPassword")
+      if (!this.signUpForm.controls['connectionPassword']) {
         this.signUpForm.addControl("connectionPassword", this.formBuilder.control('', [Validators.required, Validators.minLength(5)]))
       }
     }
