@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Data } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
 
   signUp(data: Data): Observable<any> {
     console.log('signUpUser service')
-    return this.http.post<any>('http://localhost:3001/api/users/signup', 
+    return this.http.post<any>(`${environment.apiUrl}/api/users/signup`, 
       { "email": data['email'], 
         "password": data["password"]
       },
@@ -33,7 +34,7 @@ export class AuthService {
   }
 
   login(data: Data): Observable<any> {
-    return this.http.post<any>('http://localhost:3001/api/users/login', 
+    return this.http.post<any>(`${environment.apiUrl}/api/users/login`, 
       { "email": data['email'], 
         "password": data["password"]
       },
