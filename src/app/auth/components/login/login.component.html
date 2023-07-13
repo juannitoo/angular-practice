@@ -79,10 +79,18 @@
           [disabled] = "signUpForm.invalid"
         >{{ buttonValue }}</button>
       </div>
-
-      <div class="error-identifiant">
+      
+      <div class="error-message-node">
         <p *ngIf="errorMessageIdentifiant">Les identifiants ne correspondent pas</p>
+        <p *ngIf="errorMessageEmailExistant">Cet adresse email est déjà dans la base.<br />
+        Réinitialiser le mot de passe n'est pas encore réalisable, mais ce serait l'envoi d'un mail 
+        contenant un lien vers ce même formulaire d'inscription avec l'adresse mail bloquée. la CNIL ne veut 
+        plus de mot de passe via mail.
+        </p>
       </div>
+
+      <!-- <div class="error-message-node">
+      </div> -->
 
     </form>
 

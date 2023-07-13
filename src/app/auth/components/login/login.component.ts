@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {    // DoCheck
   passwordForm!: FormGroup
   showPasswordsError$!: Observable<boolean>
   errorMessageIdentifiant!: boolean
+  errorMessageEmailExistant!: boolean
   validForm$!: Observable<boolean>
   hideConnectionPassword!: boolean
   hidePassword!: boolean
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {    // DoCheck
   constructor( private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private auth: AuthService) {}
+            ) {}
 
   ngOnInit(): void {
 
@@ -67,12 +68,17 @@ export class LoginComponent implements OnInit {    // DoCheck
     } else { //inscription
       console.log()
       data['password'] = this.signUpForm.value.password['password']
-      this.authService.signUp(data).subscribe()
+      this.authService.signUp(data).subscribe({
+        next : () => { this.router.navigateByUrl('nodeJs') },
+        error : () => { this.errorMessageEmailExistant = true }
+      })
     }
   }
 
   onChooseForm(formType: string){
     this.buttonValue = "Se connecter"
+    this.errorMessageIdentifiant = false
+    this.errorMessageEmailExistant = false
 
     if (formType === "inscription"){
       this.buttonValue = "S'inscrire"
@@ -98,6 +104,8 @@ export class LoginComponent implements OnInit {    // DoCheck
       if (!this.signUpForm.controls['connectionPassword']) {
         this.signUpForm.addControl("connectionPassword", this.formBuilder.control('', [Validators.required, Validators.minLength(5)]))
       }
+      this.errorMessageIdentifiant = false
+      this.errorMessageEmailExistant = false
     }
 
   }
