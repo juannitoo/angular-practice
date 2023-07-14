@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, map, of, catchError, BehaviorSubject, retry, Subject, delay } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { Router } from '@angular/router';
 import { UserUpdateForm } from '../interfaces/user-update-form.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +16,17 @@ export class UsersService {
 
     constructor( private http : HttpClient,
                  private router : Router ) { }
+
+    getData(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/api/users/data`,
+        { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+        ).pipe(
+            map(response => response.data),
+            catchError( err => { 
+                throw `erreur service getdata(): ${err.message}` 
+            })
+        )
+    }
 
     getUsers(): Observable<User[]>{
         if (this._users$.value.length === 0 ) {

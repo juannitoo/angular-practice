@@ -11,14 +11,13 @@ import { NodeService } from 'src/app/core/services/node.service';
 })
 export class NodeLandingComponent implements OnInit {
 
-  date!: Observable<any>
+  // date!: Observable<any>
 
   constructor( private nodeServ: NodeService,
                 private router: Router,
                 private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.date = this.nodeServ.getDate()
   }
 
   send(){

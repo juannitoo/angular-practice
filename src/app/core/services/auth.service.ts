@@ -23,7 +23,7 @@ export class AuthService {
 
   signUp(data: Data): Observable<any> {
     console.log('signUpUser service')
-    return this.http.post<any>(`http://13.38.84.1:3001/api/users/signup`, 
+    return this.http.post<any>(`${environment.apiUrl}/api/users/signup`, 
       { "email": data['email'], 
         "password": data["password"]
       },
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   login(data: Data): Observable<any> {
-    return this.http.post<any>(`http://13.38.84.1:3001/api/users/login`, 
+    return this.http.post<any>(`${environment.apiUrl}/api/users/login`, 
       { "email": data['email'], 
         "password": data["password"]
       },
