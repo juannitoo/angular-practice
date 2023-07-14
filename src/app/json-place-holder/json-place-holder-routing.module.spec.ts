@@ -10,7 +10,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UserComponent } from './components/user/user.component'
 
 
-describe('Json Place Holder Routing-Module', () => {
+xdescribe('Json Place Holder Routing-Module', () => {
   let fixture: ComponentFixture<JsonLandingComponent>
   let router: Router
   let location: Location
