@@ -11,9 +11,7 @@ import { ErrorsService } from "../core/services/errors.service"
 export class GlobalHttpErrorInterceptor implements HttpInterceptor {
     
   constructor(private router: Router,
-              private errorsService: ErrorsService) { 
-                console.log('inteceptor error:')
-              }
+              private errorsService: ErrorsService) { }
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
