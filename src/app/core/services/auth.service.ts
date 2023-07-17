@@ -38,11 +38,12 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiUrl}/api/users/login`, 
       { "email": data['email'], 
         "password": data["password"],
-        "responseType":"json",
-        "Host" : "15.237.82.86:3001"
       },
       { headers: new HttpHeaders(
-        { 'Content-Type': 'application/json; charset=utf-8'}
+        { 'Content-Type': 'application/json; charset=utf-8',
+          "ResponseType":"json",
+          "Host" : "15.237.82.86:3001"
+        }
       )}
     ).pipe(
       tap((response) => { 
