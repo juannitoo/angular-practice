@@ -36,9 +36,9 @@ describe('Json-Place-Holder Module', () => {
     })
   }))
   
-  xit('should start !', () => {
+  it('should start !', () => {
     fixture = TestBed.createComponent(UserCreateComponent)
-    // component = fixture.componentInstance
-    // expect(component).toBeTruthy()
+    component = fixture.componentInstance
+    expect(component).toBeTruthy()
   })
 })

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { UsersService } from 'src/app/core/services/users.services'
 
-xdescribe('Json-Server landingPageComponent', () => {
+describe('Json-Server landingPageComponent', () => {
   let component: JsonServerLandingComponent
   let fixture : ComponentFixture<JsonServerLandingComponent>
   let title: HTMLElement
@@ -24,15 +24,15 @@ xdescribe('Json-Server landingPageComponent', () => {
     button = fixture.debugElement.query(By.css('button')).nativeElement
   })
 
-  xit('should create component JsonServerLandingComponent', () => {
+  it('should create component JsonServerLandingComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  xit('should return h1', () => {
+  it('should return h1', () => {
     expect(title.textContent).toBe("Json-server")
   })
 
-  xit('should have button to access demo', () => {
+  it('should have button to access demo', () => {
     expect(button.textContent).toBe("Accéder à la démo des Users")
   })
 

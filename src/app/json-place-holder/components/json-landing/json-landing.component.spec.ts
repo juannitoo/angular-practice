@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 
 
-xdescribe('Json-Server landingPageComponent', () => {
+describe('Json place holder landingPageComponent', () => {
   let component: JsonLandingComponent
   let fixture : ComponentFixture<JsonLandingComponent>
   let title: HTMLElement

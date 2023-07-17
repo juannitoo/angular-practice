@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/core/services/users.services';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-json-landing',
   templateUrl: './json-landing.component.html',
   styleUrls: ['./json-landing.component.scss']
 })
-export class JsonLandingComponent implements OnInit{
+export class JsonLandingComponent {
 
-  data!: any
-
-  constructor(private usersService: UsersService,) { }
-
-  ngOnInit(): void {
-    this.data = this.usersService.getData()
-  }
+  constructor() { }
 
 }

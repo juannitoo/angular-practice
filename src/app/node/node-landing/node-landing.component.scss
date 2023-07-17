@@ -15,6 +15,21 @@ img{
   width: 100%
 }
 
+.btn-container{
+  text-align: center;
+}
+
+button{
+  background-color: rgb(214, 33, 33);
+  color: white;
+  font-size: 1.3em;
+  margin: 5em auto;
+  padding: 1.5em;
+  &:hover{
+      background-color: rgb(189, 15, 15);
+  }
+}
+
 @media (max-width: 1500px) { 
   section{
       width: 100%

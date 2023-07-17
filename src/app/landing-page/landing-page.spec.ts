@@ -27,6 +27,6 @@ describe('landing-page Component', () => {
   })
 
   it('should return h1', () => {
-    expect(title.textContent).toBe("Mon initiation avec Angular")
+    expect(title.textContent).toBe("Démo avec Angular")
   })
 })

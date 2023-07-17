@@ -9,8 +9,20 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
 
-  private token! :  string | undefined | null // alors là il me fait ... undefined et null pbme ac angular ?
-                                                    // ca cause des ajustements dans ces méthodes
+  // export async function reTryCatch(callback, times = 1) {
+  //   try {
+  //     return await callback()
+  //   } catch (error) {
+  //     if (times > 0) {
+  //       return await reTryCatch(callback, times - 1)
+  //     } else {
+  //       throw error
+  //     }
+  //   }
+  // }
+
+  private token! :  string | undefined | null // Undefined et null pbme ac typescript ? 
+
   constructor( private http: HttpClient ) {  }
 
   getToken(): string | undefined | null {
@@ -34,7 +46,6 @@ export class AuthService {
   }
 
   login(data: Data): Observable<any> {
-    console.log("login func :", typeof(data["password"]))
     return this.http.post<any>(`${environment.apiUrl}/api/users/login`, 
       { "email": data['email'], 
         "password": data["password"],

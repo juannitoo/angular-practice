@@ -1,14 +1,13 @@
 <section class="intro">
   <article class="art-intro" @slideInitiation>
-    <h1>Mon initiation avec Angular</h1>
-    <p><b>C</b>e repository me permet de m'initier aux concepts d'Angular et en même temps 
-      vous permet d'évaluer un peu mieux mon niveau. Il est déployé sur l'infrastructure serverless AWS S3 
-      pour que vous puissiez l'essayer. 
-      <a href="https://github.com/juannitoo/angular-practice" target="_blank">Ici</a> le lien vers le repository</p>
-    <p><b>J</b>'ai pour l'instant créé 2 features modules,
-      json-place-holder et json-server qui sont des sources de datas distinctes.
-      Et je crée en ce moment un troisième back-end NodeJs pour continuer
-      ma progression.
+    <h1>Démo avec Angular</h1>
+    <p><b>C</b>e repository vous permet d'évaluer un peu mieux mon niveau avec le framework Angular. Ce front-end est déployé sur l'infrastructure serverless AWS S3 
+      via un pipeleine Devops CICD github Actions pour que vous puissiez l'essayer. Le back-end NodeJs est déployé manuellement sur AWS ECS qui permet le déploiement de conteneur 
+      Docker sur une infrastructure serverless, et où il vaut mieux quand même avoir quelque bases en réseaux. Ce n'est pas aussi simple que les lambda !
+      Enfin, la base de données est un base NOSQL Mongo Atlas également déployé sur AWS mais gérée via Mongo-Atlas et non directement sur AWS.
+      Voilà le lien vers <a href="https://github.com/juannitoo/angular-practice" target="_blank">ce repository Angular</a>.</p>
+    <p><b>J</b>'ai pour l'instant créé 3 features modules, jsonPlaceHolder, Json-server, et NodeJs qui sont des sources de datas distinctes.
+      Je suis en ce moment sur la partie NodeJs qui n'est pas terminée, et sur laquelle j'ai pour l'instant mis en place une authentification 0auth2 via jsonWebToken.
     </p>
     <img src="assets/images/angular-100px.png" alt="" class="img-encart" />
   </article>
@@ -35,10 +34,10 @@
       </p>
       <table>
         <tbody>      
-          <tr><td>Statements : 50.24% ( 208/414 )</td></tr>
-          <tr><td>Branches : 17.33% ( 13/75 )</td></tr>
-          <tr><td>Functions : 43.63% ( 72/165 )</td></tr>
-          <tr><td>Lines : 49.48% ( 193/390 )</td></tr>        
+          <tr><td>Statements : 52.61% ( 201/382 )</td></tr>
+          <tr><td>Branches : 20.96% ( 13/62 )</td></tr>
+          <tr><td>Functions : 43.55% ( 71/163 )</td></tr>
+          <tr><td>Lines : 52.22% ( 188/360 )</td></tr>        
         </tbody>
       </table>
       <p><a target="_blank" href="https://github.com/juannitoo/angular-practice-node-backend"><b>A</b>uthentification via NodeJs</a></p> 
@@ -78,9 +77,10 @@
   <article class="encart" routerLink="nodeJs" @slideEncart>
     <img src="assets/images/node-logo.png" alt="" class="img-encart" id="img-node" />
     <hr>
-    <p class="p-encart"><b><i>NodeJs</i></b>  me permettra de réaliser une petite API rest 
-      avec Mongo et Express pour avoir de la persistance dans les datas et où je pourrai 
-      mettre en place une vrai authentification JWT.
+    <p class="p-encart"><b><i>NodeJs</i></b> me permet de réaliser une petite API Rest 
+      avec Mongo et Express pour avoir de la persistance dans les datas, et qui me 
+      permet de justifier du côté full-stack de mon profil, en plus de Python Django PostgreSql durant 3 ans !
+      J'ai commencé à mettre en place ici une authentification JWT.
     </p>
   </article>
 </section>

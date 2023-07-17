@@ -29,6 +29,15 @@ form{
   }
 }
 
+.p-intro{
+  text-align:center;
+  font-weight: bold;
+}
+
+.span{
+  padding: 1em;
+}
+
 .white {
   color: rgb(255, 255, 255);
 }
@@ -52,7 +61,7 @@ button {
 }
 
 .error-text{
-  color: rgb(211, 17, 17);
+  color: rgb(255, 0, 0);
   display: block;
   padding-left: 10%;
   margin-top : -1em,
