@@ -34,11 +34,16 @@ export class AuthService {
   }
 
   login(data: Data): Observable<any> {
+    console.log("login func :", typeof(data["password"]))
     return this.http.post<any>(`${environment.apiUrl}/api/users/login`, 
       { "email": data['email'], 
-        "password": data["password"]
+        "password": data["password"],
+        "responseType":"json",
+        "Host" : "15.237.82.86:3001"
       },
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json' })}
+      { headers: new HttpHeaders(
+        { 'Content-Type': 'application/json; charset=utf-8'}
+      )}
     ).pipe(
       tap((response) => { 
         if (response.status === 200 ) {
