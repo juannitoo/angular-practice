@@ -41,8 +41,9 @@ export class AuthService {
       },
       { headers: new HttpHeaders(
         { 'Content-Type': 'application/json; charset=utf-8',
-          "ResponseType":"json",
-          "Host" : "15.237.82.86:3001"
+          // "ResponseType":"json",
+          "Host" : "15.237.82.86:3001",
+          "Accept" : "*/*"
         }
       )}
     ).pipe(
