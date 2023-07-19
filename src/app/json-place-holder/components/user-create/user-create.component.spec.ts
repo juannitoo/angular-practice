@@ -3,9 +3,8 @@ import { UserCreateComponent } from "./user-create.component"
 import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, DebugElement, NgZone } from "@angular/core"
 import { UsersService } from "src/app/core/services/users.services"
 import { User } from "src/app/core/models/user.model"
-import { Router, RouterEvent, Routes } from "@angular/router"
+import { Router, Routes } from "@angular/router"
 import { UsersListComponent } from "../users-list/users-list.component"
-import { of } from "rxjs"
 import { HttpClientTestingModule } from "@angular/common/http/testing"
 import { RouterTestingModule } from "@angular/router/testing"
 import { ReactiveFormsModule } from "@angular/forms"
@@ -114,23 +113,5 @@ describe('JsonPlaceHolder user-create Component', () => {
     let inputsNumber = 2
     expect(inputs.length).toEqual(inputsNumber)
   })
-
-  xit("should navigate to users-list on close", fakeAsync(() => {
-    button = fixture.debugElement.query(By.css('#retour'))
-    ngZone.run(() => button.triggerEventHandler('click'))
-    tick()
-    fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges()
-    fixture.detectChanges()
-    expect(TestBed.inject(Router).url).toEqual('/json-server/users')
-  }))
-
-  xit('should add user and navigate to users-list on submit button click', fakeAsync(() => {
-    component.userCreateForm.setValue({ ...data })
-    component.userCreateForm.updateValueAndValidity()
-    ngZone.run(() => component.onSubmitForm())
-    tick()
-    fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges()
-    expect(TestBed.inject(Router).url).toEqual('/json-server/users')
-  }))
 
 })

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NodeService } from 'src/app/core/services/node.service';
 
@@ -9,15 +9,17 @@ import { NodeService } from 'src/app/core/services/node.service';
   templateUrl: './node-landing.component.html',
   styleUrls: ['./node-landing.component.scss']
 })
-export class NodeLandingComponent implements OnInit {
+export class NodeLandingComponent implements OnDestroy {
 
-  // date!: Observable<any>
+  private suppressSubscription!: Subscription
 
   constructor( private nodeServ: NodeService,
                 private router: Router,
-                private authService: AuthService) { }
+                private authService: AuthService,
+                ) { }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    if (this.suppressSubscription) this.suppressSubscription.unsubscribe()
   }
 
   send(){
@@ -27,6 +29,16 @@ export class NodeLandingComponent implements OnInit {
   onLogOut(){
     this.authService.logout()
     this.router.navigateByUrl('/')
+  }
+
+  onDeleteAccount(){
+    this.suppressSubscription = this.authService.deleteAccount().subscribe({
+      next : (response) => {
+        console.log(response),
+        this.router.navigateByUrl('/')
+      },
+      error : (err) => {console.log(err)}
+    })
   }
 
 }

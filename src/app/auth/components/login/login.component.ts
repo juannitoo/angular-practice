@@ -60,18 +60,21 @@ export class LoginComponent implements OnInit {    // DoCheck
     const data : Data = { email : this.signUpForm.value.email }
 
     if (this.buttonValue === "Se connecter"){
+
       data['password'] = this.signUpForm.value.connectionPassword
       this.authService.login(data).subscribe({
         next : () => { this.router.navigateByUrl('nodeJs') },
-        error : () => { this.errorMessageIdentifiant = true }
+        error : (err) => { this.errorMessageIdentifiant = true; console.log(err) }
       })
-    } else { //inscription
-      console.log()
+
+    } else { 
+
       data['password'] = this.signUpForm.value.password['password']
       this.authService.signUp(data).subscribe({
         next : () => { this.router.navigateByUrl('nodeJs') },
         error : () => { this.errorMessageEmailExistant = true }
       })
+
     }
   }
 
