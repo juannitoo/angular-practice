@@ -9,9 +9,6 @@ import { ErrorsService } from "src/app/core/services/errors.service";
 import { RouterLink } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 
-// NoopAnimations pour enlever les anims
-// https://stackoverflow.com/questions/55927441/how-can-i-test-a-modals-elements-with-ng-template-and-the-action-that-triggers
-// https://stackoverflow.com/questions/40895855/testing-onpush-components-in-angular-2
 
 describe('jsonPlaceHolder Users-list component', () => {
 
@@ -97,16 +94,6 @@ describe('jsonPlaceHolder Users-list component', () => {
       })
     }) 
   )
-
-  // beforeEach( () => {
-  //   fixture = TestBed.createComponent(UsersListComponent)    
-  //   changeDetector = TestBed.inject(ChangeDetectorRef)      
-  //   component = fixture.componentInstance
-  //   fixture.detectChanges()
-  //   container = fixture.debugElement.query(By.css('.container'))
-  //   article = fixture.debugElement.query(By.css('article'))
-  // })     
-
     
   it("should load the template", () => {
     expect(container).not.toBeNull()   
