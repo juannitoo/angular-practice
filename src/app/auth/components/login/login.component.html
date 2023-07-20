@@ -1,7 +1,12 @@
 <section>
-  
-  <p class="p-intro">Pour l'instant, vous pouvez vous inscrire avec vos propres identifiants et supprimer le compte créé.</p>
-  <p class="p-intro">Vous pouvez également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
+
+  <h1>Connexion / Inscription</h1>
+  <p class="p-footer">J'ai essayé de faire un formulaire de connexion / inscription de qualité professionnelle, il ne manque qu'un validateur asyncrone
+    pour tester la présence du mail saisie dans la base de donnée avant validation lors de l'inscription pour que j'en sois satisfait. 
+    J'aurais pu forcer un mot de passe plus compliqué avec par exemple des caractères spéciaux obligatoires mais j'aurais été ennuyé à chaque saisie 
+    donc pour l'instant je fais sans.
+  </p>
+  <p class="p-intro">Vous pouvez vous inscrire avec vos propres identifiants, et également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
   <p class="p-intro"><span class="span">test@test.fr</span> <span class="span">12345</span></p>
   
   <div class="form-card">
@@ -79,14 +84,11 @@
       <div class="error-message-node">
         <p *ngIf="errorMessageIdentifiant">Les identifiants ne correspondent pas</p>
         <p *ngIf="errorMessageEmailExistant">Cet adresse email est déjà dans la base.<br />
-        Réinitialiser le mot de passe n'est pas encore réalisable, mais ce serait l'envoi d'un mail 
-        contenant un lien vers ce même formulaire d'inscription avec l'adresse mail bloquée. la CNIL ne veut 
-        plus de mot de passe via mail.
+          Réinitialiser le mot de passe n'est pas encore réalisable, mais ce serait l'envoi d'un mail 
+          contenant un lien vers ce même formulaire d'inscription avec l'adresse mail bloquée. la CNIL ne veut 
+          plus de mot de passe via mail.
         </p>
       </div>
-
-      <!-- <div class="error-message-node">
-      </div> -->
 
     </form>
 
@@ -95,9 +97,11 @@
   <p class="p-footer">
     Vous pouvez voir le code du composant 
     <a href="https://github.com/juannitoo/angular-practice/tree/main/src/app/auth/components/login" 
-      target="_blank">ici</a> et celui du service d'authentification 
+      target="_blank">ici</a>, celui du service d'authentification 
     <a href="https://github.com/juannitoo/angular-practice/blob/main/src/app/core/services/auth.service.ts"
-      target="_blank">là</a>.
+      target="_blank">là</a>, et enfin celui du controller Node 
+    <a href="https://github.com/juannitoo/angular-practice-node-backend/blob/master/controllers/users.js"
+      target="_blank">ici</a>.
   </p>
 
 </section>

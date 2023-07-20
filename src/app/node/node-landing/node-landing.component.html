@@ -2,17 +2,16 @@
     <h1>En cours...</h1>
 
     <article>
-        <p>Mais j'avais dû arrêter dans mon élan et faire du Python pour me préparer pour un hypothétique futur client.<br />
+        <p>Mais j'avais dû arrêter dans mon élan et faire un peu de Python pour me préparer pour un hypothétique futur client.<br />
             Je reprends peut-être la maintenance d'un robot scrappeur qui renvoie un pdf via mail synthéthisant les résultats obtenus. 
-            Alors je me prépare, mon robot d'entrainement est déployé sur une lambda AWS avec selenium sur une image docker dans un registre ECR AWS. 
+            Alors je me suis préparé, mon robot d'entrainement est déployé sur une lambda AWS avec Selenium sur une image docker dans un registre ECR AWS. 
             Je crée le PDF avec Reportlab. Pour le mail, je n'insiste pas à créer un serveur SMTP, j'utiliserais le leur, 
             je sais déjà que c'est une app Django.
         </p>
         <p>Lorsque je suis revenu sur ce projet quelques semaines plus tard, j'ai préféré m'initier aux tests
             avec Jasmine plutôt que de me focaliser sur node pour pouvoir postuler à différentes offres d'emplois
             où l'on utilise autant Node que Java mais aussi quelque fois PHP ou encore C#, 
-            mais où l'on fait partout des tests ! J'ai mis en place un pipeline CICD via Github Actions pour ne plus avoir 
-            à me soucier de la mise en prod de cette démo. Je n'ai pas complètement terminé mon apprentissage concernant 
+            mais où l'on fait partout des tests ! Je n'ai pas complètement terminé mon apprentissage concernant 
             les tests mais je reviens par ici pour avancer un peu et mettre en place les guards et l'authentification, 
             sans pour autant les abandonner, parce que j'ai trouvé ça très utile.</p>
     </article>
@@ -28,8 +27,18 @@
         <a target="_blank" href="https://github.com/juannitoo/angular-practice-node-backend">repo github nodeJs associé à ce front-end</a>
     </p>
     <p>Et enfin ci-dessous une capture d'écran de mes 2 premiers utilisateurs enregistrés dans la base de données avec leurs mots de passe hachés.</p>
-    <div id="capture-ecran">
-        <img alt="capture d'écran" src="../../assets/images/capture-mongo-atlas.png" />
+    <div class="users">
+        <article id="capture-ecran">
+            <img alt="capture d'écran" src="../../assets/images/capture-mongo-atlas.png" />
+        </article>
+        <article class="users-list">
+            <h4>Les utilisateurs enregistrés</h4>
+            <ol>
+                <li *ngFor="let user of users$ | async">
+                    {{user.email}}
+                </li>
+            </ol>
+        </article>
     </div>
 </section>
 

@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { NodeUser } from 'src/app/core/interfaces/node-user.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NodeService } from 'src/app/core/services/node.service';
 
@@ -9,21 +10,23 @@ import { NodeService } from 'src/app/core/services/node.service';
   templateUrl: './node-landing.component.html',
   styleUrls: ['./node-landing.component.scss']
 })
-export class NodeLandingComponent implements OnDestroy {
+export class NodeLandingComponent implements OnInit, OnDestroy {
 
-  private suppressSubscription!: Subscription
+  users$! : Observable<NodeUser[]> 
+
+  private deleteSubscription!: Subscription
 
   constructor( private nodeServ: NodeService,
                 private router: Router,
                 private authService: AuthService,
                 ) { }
 
-  ngOnDestroy(): void {
-    if (this.suppressSubscription) this.suppressSubscription.unsubscribe()
+  ngOnInit(): void {
+    this.users$ = this.nodeServ.getUsers()
   }
 
-  send(){
-    this.nodeServ.sendData()
+  ngOnDestroy(): void {
+    if (this.deleteSubscription) this.deleteSubscription.unsubscribe()
   }
 
   onLogOut(){
@@ -32,11 +35,8 @@ export class NodeLandingComponent implements OnDestroy {
   }
 
   onDeleteAccount(){
-    this.suppressSubscription = this.authService.deleteAccount().subscribe({
-      next : (response) => {
-        console.log(response),
-        this.router.navigateByUrl('/')
-      },
+    this.deleteSubscription = this.nodeServ.deleteAccount().subscribe({
+      next : (response) => { this.router.navigateByUrl('/') },
       error : (err) => {console.log(err)}
     })
   }
