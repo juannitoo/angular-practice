@@ -2,10 +2,14 @@
 
   <h1>Connexion / Inscription</h1>
   <p class="p-footer">J'ai essayé de faire un formulaire de connexion / inscription de qualité professionnelle, il ne manque qu'un validateur asyncrone
-    pour tester la présence du mail saisie dans la base de donnée avant validation lors de l'inscription pour que j'en sois satisfait. 
-    J'aurais pu forcer un mot de passe plus compliqué avec par exemple des caractères spéciaux obligatoires mais j'aurais été ennuyé à chaque saisie 
-    donc pour l'instant je fais sans.
+    pour tester la présence du mail saisie dans la base de donnée avant validation lors de l'inscription pour que j'en sois satisfait niveau UX. Niveau dev,
+    il manque aussi des tests. J'aurais aussi pu forcer un mot de passe plus compliqué avec par exemple des caractères spéciaux obligatoires mais j'aurais été ennuyé à chaque saisie 
+    donc pour l'instant je fais sans. 
   </p>
+  <p class="p-footer"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + MAJ + R</span>. Lorsque je déploie
+  un nouveau conteneur Docker pour le backend, il n'est pas toujours pris en compte par AWS et me force à relancer manuellement le conteneur 
+  avec une nouvelle IP. J'ai une config AWS très sommaire sur la partie ECS (elastic contener service) qui prendrait quelques jours à être modifiée et plus encore 
+  si je veux l'automatiser vu l'état actuel de mes connaissances sur ce sujet.</p>
   <p class="p-intro">Vous pouvez vous inscrire avec vos propres identifiants, et également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
   <p class="p-intro"><span class="span">test@test.fr</span> <span class="span">12345</span></p>
   
