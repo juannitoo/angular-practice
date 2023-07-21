@@ -1,7 +1,7 @@
 section{
   width: 70%;
   margin: 0 auto;
-  p{
+  .justify{
     text-align: justify;
   }
 }
@@ -22,7 +22,6 @@ section{
 .users-list{
   margin-left: 3%;
   font-size: 1.2em;
-  // flex: 200px;
 }
 
 img{
@@ -40,11 +39,21 @@ button{
   background-color: rgb(214, 33, 33);
   color: white;
   font-size: 1.3em;
-  margin: 5em auto;
+  margin: 3em auto;
   padding: 1.5em;
   &:hover{
       background-color: rgb(189, 15, 15);
   }
+}
+
+.email-section{
+  margin-top : 4em;
+}
+
+.email-p{
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 @media (max-width: 1760px) { 

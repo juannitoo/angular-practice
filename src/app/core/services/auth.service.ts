@@ -3,7 +3,15 @@ import { Data } from '@angular/router';
 import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import jwt_decode from "jwt-decode";
+import jwt_decode, { JwtDecodeOptions, JwtHeader, JwtPayload } from "jwt-decode"
+
+
+interface jwtTokenPayloadInterface{
+  exp : number,
+  iat : number,
+  userId : string,
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +31,7 @@ export class AuthService {
   // }
 
   private token! :  string | undefined | null 
+  // private userId : string | undefined  // ??? cette version de l'algo n'a pas l'air robuste, setté ds login()
 
   constructor( private http: HttpClient ) {  }
 
@@ -31,12 +40,21 @@ export class AuthService {
   }
 
   saveToken(token:string | undefined | null): void {
-    if ( typeof token === "string") localStorage.setItem('token', token)
+    if (typeof token === "string") localStorage.setItem('token', token)
   }
 
   deleteToken(): void {
     localStorage.removeItem('token')
     this.token = undefined
+  }
+
+  getUserId(): string | null { 
+    // return this.userId === undefined ? localStorage.getItem('userId') : this.userId
+    const token = this.getToken()
+    let decoded : null | jwtTokenPayloadInterface = null  
+    // JwtDecodeOptions | JwtPayload | JSON | JwtHeader | Object, pas de userId ici donc interface
+    if (typeof token === "string") decoded = jwt_decode(token)
+    return decoded ? decoded.userId : null
   }
 
   signUp(data: Data): Observable<any> {
@@ -70,6 +88,8 @@ export class AuthService {
       tap((response) => { 
         if (response.status === 200 ) {
           this.token = response.token
+          // this.userId = response.userId
+          // localStorage.setItem('userId', response.userId )
           this.saveToken( this.token )
         }
       }),
@@ -77,9 +97,11 @@ export class AuthService {
     )
   }
 
-  logout(){
+  logout() : null{
     localStorage.removeItem('token')
     this.token = undefined
+    // this.userId = undefined
+    return null
   }
 
 }

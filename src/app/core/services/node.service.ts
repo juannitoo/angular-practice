@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map, retry, tap, timer } from 'rxjs';
+import { Observable, Subscribable, catchError, map, retry, tap, timer } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 import jwt_decode from "jwt-decode";
@@ -16,19 +16,36 @@ export class NodeService {
 
   getUsers(): Observable<NodeUser[]> {
     return this.http.get<NodeUser[]>(`${environment.apiUrl}/api/users`).pipe(
-        retry({
-            count: 1,
-            delay: () => {
-              console.log('service node getUsers() Fail, retest...')
-              return timer(250)
-            },
-        }),
-        catchError( err => { 
-            throw `erreur service node getUsers(): ${err.message}` 
-        })
+      retry({
+          count: 1,
+          delay: () => {
+            console.log('service node getUsers() Fail, retest...')
+            return timer(250)
+          },
+      }),
+      catchError( err => { 
+          throw `erreur service node getUsers(): ${err.message}` 
+      })
     )
   }
 
+  getUser(): Observable<NodeUser> | null {
+    const userId = this.authService.getUserId()
+    if (!userId) return this.authService.logout()
+    return this.http.get<NodeUser>(`${environment.apiUrl}/api/users/${userId}`).pipe(
+      retry({
+        count: 1,
+        delay: () => {
+          console.log('service node getUser() Fail, retest...')
+          return timer(250)
+        },
+      }),
+      catchError( err => { 
+        throw `erreur service node getUser(): ${err.message}` 
+      })
+    )
+  }
+  
   deleteAccount(){
     let userId: string = ""
     const token = this.authService.getToken()
@@ -42,6 +59,13 @@ export class NodeService {
           })}
       ).pipe(
         tap(() =>{this.authService.deleteToken()}),
+        retry({
+          count: 1,
+          delay: () => {
+            console.log('service node deleteUser() Fail, retest...')
+            return timer(250)
+          },
+        }),
         catchError( err => { 
           throw `erreur service node deleteUser(): ${err.message}` 
         })

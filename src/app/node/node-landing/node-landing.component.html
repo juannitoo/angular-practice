@@ -2,13 +2,13 @@
     <h1>En cours...</h1>
 
     <article>
-        <p>Mais j'avais dû arrêter dans mon élan et faire un peu de Python pour me préparer pour un hypothétique futur client.<br />
+        <p class="justify">Mais j'avais dû arrêter dans mon élan et faire un peu de Python pour me préparer pour un hypothétique futur client.<br />
             Je reprends peut-être la maintenance d'un robot scrappeur qui renvoie un pdf via mail synthéthisant les résultats obtenus. 
             Alors je me suis préparé, mon robot d'entrainement est déployé sur une lambda AWS avec Selenium sur une image docker dans un registre ECR AWS. 
             Je crée le PDF avec Reportlab. Pour le mail, je n'insiste pas à créer un serveur SMTP, j'utiliserais le leur, 
             je sais déjà que c'est une app Django.
         </p>
-        <p>Lorsque je suis revenu sur ce projet quelques semaines plus tard, j'ai préféré m'initier aux tests
+        <p class="justify">Lorsque je suis revenu sur ce projet quelques semaines plus tard, j'ai préféré m'initier aux tests
             avec Jasmine plutôt que de me focaliser sur node pour pouvoir postuler à différentes offres d'emplois
             où l'on utilise autant Node que Java mais aussi quelque fois PHP ou encore C#, 
             mais où l'on fait partout des tests ! Je n'ai pas complètement terminé mon apprentissage concernant 
@@ -19,14 +19,14 @@
 </section>
 
 <section>
-    <h3>Le serveur NodeJs n'etant pas terminé, vous ne pouvez pour l'instant rien faire de plus que vous connecter et vous déconnecter, 
+    <h3 class="justify">Le serveur NodeJs n'etant pas terminé, vous ne pouvez pour l'instant rien faire de plus que vous connecter et vous déconnecter, 
         créer un compte et le supprimer. Cette page est masquée par un guard et les datas sont sauvegardées dans une 
         base NoSQL cloud Mongo Atlas. Enfin le serveur NodeJs est conteneurisé avec Docker et déployé à la main sur AWS.
     </h3>
-    <p>Vous pouvez trouver le repo Node ici : 
+    <p class="justify">Vous pouvez trouver le repo Node ici : 
         <a target="_blank" href="https://github.com/juannitoo/angular-practice-node-backend">repo github nodeJs associé à ce front-end</a>
     </p>
-    <p>Et enfin ci-dessous une capture d'écran de mes 2 premiers utilisateurs enregistrés dans la base de données avec leurs mots de passe hachés.</p>
+    <p class="justify">Et enfin ci-dessous une capture d'écran de mes 2 premiers utilisateurs enregistrés dans la base de données avec leurs mots de passe hachés.</p>
     <div class="users">
         <article id="capture-ecran">
             <img alt="capture d'écran" src="../../assets/images/capture-mongo-atlas.png" />
@@ -40,6 +40,11 @@
             </ol>
         </article>
     </div>
+    
+</section>
+
+<section class="email-section">
+    <p class="email-p" *ngIf="email$ | async as e"> Vous etes connecté avec cette adresse mail : {{ e.email }}</p>
 </section>
 
 <section class="btn-container">

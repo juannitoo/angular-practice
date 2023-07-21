@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscribable, Subscription } from 'rxjs';
 import { NodeUser } from 'src/app/core/interfaces/node-user.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NodeService } from 'src/app/core/services/node.service';
@@ -13,6 +13,7 @@ import { NodeService } from 'src/app/core/services/node.service';
 export class NodeLandingComponent implements OnInit, OnDestroy {
 
   users$! : Observable<NodeUser[]> 
+  email$! : Observable<NodeUser> | null
 
   private deleteSubscription!: Subscription
 
@@ -23,6 +24,7 @@ export class NodeLandingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.users$ = this.nodeServ.getUsers()
+    this.email$ = this.nodeServ.getUser()
   }
 
   ngOnDestroy(): void {
