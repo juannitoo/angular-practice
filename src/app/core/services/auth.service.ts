@@ -65,6 +65,7 @@ export class AuthService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json',
                                     "Accept" : "*/*" })}
       ).pipe(
+        tap((r) => console.log("authservice signup", r)),
         tap((response) => { 
           if (response.status === 200 ) {
             this.token = response.token
