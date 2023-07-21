@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Data, Router } from '@angular/router';
 import { Observable, catchError, map, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validators';
+import { isEmailUsedValidator } from 'src/app/shared/validators/is-email-used.validator';
+import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validator';
 
 // https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
@@ -36,7 +37,10 @@ export class LoginComponent implements OnInit {    // DoCheck
   ngOnInit(): void {
 
     this.signUpForm = this.formBuilder.group({
-      email: [null, [ Validators.required, Validators.email ]],
+      email: [ null, 
+              [ Validators.required, Validators.email ], 
+              // [ isEmailUsedValidator.createValidator(this.authService)]
+      ],
       connectionPassword: [null, [Validators.required, Validators.minLength(5)]],
     }, {
       updateOn: 'change'

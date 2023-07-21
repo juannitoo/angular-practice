@@ -7,7 +7,7 @@ import { UserUpdateForm } from 'src/app/core/interfaces/user-update-form.interfa
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.services';
 import { SlideAndFadeAnimation } from 'src/app/shared/animations/slide-and-fade.animation';
-import { emailValidator } from '../../../shared/validators/email.validators';
+import { emailValidator } from '../../../shared/validators/email.validator';
 
 @Component({
   selector: 'app-user-update',

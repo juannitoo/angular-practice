@@ -104,4 +104,15 @@ export class AuthService {
     return null
   }
 
+  checkIfEmailUsed(data: string): any {
+    // return this.http.post<string>(`${environment.apiUrl}/api/users/ismailused`, 
+    //   { "email": data, 
+    //   },
+    //   { headers: new HttpHeaders({ 'Content-Type': 'application/json',
+    //                                 "Accept" : "*/*" })}
+    //   ).pipe(        
+    // )
+    return true
+  }
+
 }
