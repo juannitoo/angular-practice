@@ -4,7 +4,7 @@ export const FadeInColorAnimation = animation([
     style({
         opacity: 0,
         color: "{{startColor}}",
-        'font-size': "2.3rem",
+        'font-size': "1.6rem", //2.3
         'position' : "relative",
         'top': "-70px",
         'left': '0px'

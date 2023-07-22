@@ -1,19 +1,19 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
-import { Observable, catchError, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { emailValidator } from 'src/app/shared/validators/email.validator';
 import { isEmailUsedValidator } from 'src/app/shared/validators/is-email-used.validator';
 import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validator';
 
-// https://arjunphp.com/angular-2-async-validator-usernameemail-availability-check/
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {    // DoCheck
+export class LoginComponent implements OnInit {    // , DoCheck
 
   buttonValue! : string
   signUpForm! : FormGroup
@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {    // DoCheck
 
     this.signUpForm = this.formBuilder.group({
       email: [ null, 
-              [ Validators.required, Validators.email ], 
-              // [ isEmailUsedValidator.createValidator(this.authService)]
+              [ Validators.required, emailValidator() ], 
+              // [ isEmailUsedValidator(this.authService)], // je ne le veux pas pour la connexion
       ],
       connectionPassword: [null, [Validators.required, Validators.minLength(5)]],
     }, {
-      updateOn: 'change'
-    })
+      updateOn: 'change' // je comprends et j'ai vu le pbme du change mais le checkIfEmailIsUsed demarre qd length > 5    
+    })  // De plus c'est une démo sur aws, ca devrait tenir pr mes 3 utilisateurs ! voir checkIfEmailIsUsed ds authServcie pour la limite
 
     this.buttonValue = "Se connecter"
 
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {    // DoCheck
     this.errorMessageIdentifiant= false
 
   }
-
+  
   // ngDoCheck(){
   //   this.testFormValidity()
   // }
@@ -87,6 +87,8 @@ export class LoginComponent implements OnInit {    // DoCheck
     this.errorMessageIdentifiant = false
     this.errorMessageEmailExistant = false
 
+    const isEmailUsedAsyncValidator = isEmailUsedValidator(this.authService)
+
     if (formType === "inscription"){
       this.buttonValue = "S'inscrire"
       this.signUpForm.removeControl("connectionPassword")
@@ -104,6 +106,8 @@ export class LoginComponent implements OnInit {    // DoCheck
       this.showPasswordsError$ = this.passwordForm.statusChanges.pipe(
         map(status => status === 'INVALID' && this.password.value && this.confirmPassword.value ),
       )
+      this.signUpForm.controls['email'].addAsyncValidators(isEmailUsedAsyncValidator)
+      this.signUpForm.controls['email'].updateValueAndValidity()
 
     } else {
       if (this.signUpForm.controls['password']) this.signUpForm.removeControl("password")
@@ -111,6 +115,9 @@ export class LoginComponent implements OnInit {    // DoCheck
       if (!this.signUpForm.controls['connectionPassword']) {
         this.signUpForm.addControl("connectionPassword", this.formBuilder.control('', [Validators.required, Validators.minLength(5)]))
       }
+      this.signUpForm.controls['email'].clearAsyncValidators()
+      this.signUpForm.controls['email'].removeAsyncValidators(isEmailUsedAsyncValidator)
+      this.signUpForm.controls['email'].updateValueAndValidity()
       this.errorMessageIdentifiant = false
       this.errorMessageEmailExistant = false
     }
@@ -118,9 +125,9 @@ export class LoginComponent implements OnInit {    // DoCheck
   }
 
   testFormValidity(){
-    console.log("signup: ", this.signUpForm.status)
-    console.log("paswword :", this.passwordForm.status)
-    console.log('---', this.confirmPassword.value) // génère erreur, obs pas init
+    console.log("signup email: ", this.signUpForm.get('email')?.status)
+    // console.log("paswword :", this.passwordForm.status)
+    // console.log('---', this.confirmPassword.value) // génère erreur, obs pas init
   }
 
 

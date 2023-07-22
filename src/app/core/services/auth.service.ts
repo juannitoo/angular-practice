@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Data } from '@angular/router';
 import { HttpClient, HttpHeaders,  } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import jwt_decode, { JwtDecodeOptions, JwtHeader, JwtPayload } from "jwt-decode"
 
@@ -31,7 +31,6 @@ export class AuthService {
   // }
 
   private token! :  string | undefined | null 
-  // private userId : string | undefined  // ??? cette version de l'algo n'a pas l'air robuste, setté ds login()
 
   constructor( private http: HttpClient ) {  }
 
@@ -49,7 +48,6 @@ export class AuthService {
   }
 
   getUserId(): string | null { 
-    // return this.userId === undefined ? localStorage.getItem('userId') : this.userId
     const token = this.getToken()
     let decoded : null | jwtTokenPayloadInterface = null  
     // JwtDecodeOptions | JwtPayload | JSON | JwtHeader | Object, pas de userId ici donc interface
@@ -88,8 +86,6 @@ export class AuthService {
       tap((response) => { 
         if (response.status === 200 ) {
           this.token = response.token
-          // this.userId = response.userId
-          // localStorage.setItem('userId', response.userId )
           this.saveToken( this.token )
         }
       }),
@@ -100,19 +96,19 @@ export class AuthService {
   logout() : null{
     localStorage.removeItem('token')
     this.token = undefined
-    // this.userId = undefined
     return null
   }
 
-  checkIfEmailUsed(data: string): any {
-    // return this.http.post<string>(`${environment.apiUrl}/api/users/ismailused`, 
-    //   { "email": data, 
-    //   },
-    //   { headers: new HttpHeaders({ 'Content-Type': 'application/json',
-    //                                 "Accept" : "*/*" })}
-    //   ).pipe(        
-    // )
-    return true
+  checkIfEmailIsUsed(data: string): any {
+    if (data.length > 5) {
+      return this.http.post<string>(`${environment.apiUrl}/api/users/isemailused`, 
+        { "email": data },
+        { headers: new HttpHeaders({ 'Content-Type': 'application/json', "Accept" : "*/*" })}
+      )
+    } else {
+      let resp
+      return of({resp :  false})
+    }
   }
 
 }
