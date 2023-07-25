@@ -1,14 +1,7 @@
 <section>
 
   <h1>Connexion / Inscription</h1>
-  <p class="p-footer"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
-  une nouvelle image du conteneur Docker manuellement pour le backend (via cli), elle n'est pas prise en compte par la tâche AWS 
-  et je dois en redémarrer une avec la nouvelle image qui implique une nouvelle IP. Voilà mon nouveau sujet principal, 
-  et sa solution n'est pas simple à mettre en place : <br />
-  <a href="https://repost.aws/knowledge-center/ecs-fargate-static-elastic-ip-address" alt="lien aws">repost_aws/ecs-fargate-static-elastic-ip-address</a>, 
-  <a href="ttps://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html" alt="lien aws">aws/developerguide/create-service-console-v2.html</a>, 
-  <a href="https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html" alt="lien aws">aws/UserGuide/elastic-ip-addresses-eip.html</a>.
-</p>
+
   <p class="p-intro">Vous pouvez vous inscrire avec vos propres identifiants, et également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
   <p class="p-intro"><span class="span">test@test.fr</span> <span class="span">12345</span></p>
   
@@ -112,4 +105,17 @@
       target="_blank">ici</a>.
   </p>
 
+  <p class="p-footer"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
+    une nouvelle image du conteneur Docker manuellement pour le backend (via cli), elle n'est pas prise en compte par la tâche AWS 
+    et je dois en redémarrer une avec la nouvelle image qui implique une nouvelle IP. Voilà mon nouveau sujet principal, 
+    et sa solution n'est pas simple à mettre en place. <br />
+    EDIT : Bon c'est fait, je laisse ce message qqs jours avant de le supprimer. J'ai du créer un load balancer associé à un service ECS et 
+    paramétrer entre autres routage, groupe de sécurité, et groupe (de ressource) ciblé (target group).
+    Enfin, un pipeline CICD ne sera pas de trop car pour l'utilisation il faut générer l'image docker, la pousser sur AWS, puis se connecter à Aws, 
+    mettre à jour le service manuellement avec quelques paramètres à sélectionner sans se tromper. Enfin, un soupcon de patience, le temps qu'aws 
+    travaille et l'image est disponible en ligne ! Mais là ECS FARGATE s'occupe de la mise à l'échelle, de maintenir le nombre de conteneurs souhaités
+    et de les relancer en cas de problèmes sans rien demander. Donc la disponibilté semble très très importante pour ne pas dire permanente, on verra ça !<br />
+    Avant de continuer angular et node, je vais essayer de créer sur AWS un Virtual Private Cloud (VPC) plûtôt que d'utiliser celui par défaut 
+    pour bien compartimenter mes projets.
+  </p>
 </section>

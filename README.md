@@ -58,6 +58,7 @@ Et selon votre bon vouloir :
 [https://www.npmjs.com/package/json-server#getting-started](https://www.npmjs.com/package/json-server#getting-started)  
 [http://json2ts.com/](http://json2ts.com/)  
 [https://jsoncrack.com/](https://jsoncrack.com/)  
-
+[https://depascalematteo.medium.com/from-spa-to-ssr-on-aws-boost-your-websites-seo-765964a41c05](https://depascalematteo.medium.com/from-spa-to-ssr-on-aws-boost-your-websites-seo-765964a41c05)
+[https://www.ganatan.com/tutorials/server-side-rendering-avec-angular-universal](https://www.ganatan.com/tutorials/server-side-rendering-avec-angular-universal)
 
 
