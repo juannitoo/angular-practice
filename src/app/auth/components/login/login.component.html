@@ -113,14 +113,14 @@
     paramétrer entre autres routage, groupe de sécurité, et groupe (de ressources) ciblé (target group).
     Enfin, un pipeline CICD ne serait pas de trop car pour l'utilisation il faut générer l'image docker, la pousser sur AWS, puis se connecter à Aws, 
     mettre à jour le service manuellement avec quelques paramètres à sélectionner sans se tromper. Enfin, un soupcon de patience, le temps qu'aws 
-    créer les nouveau conteneurs et supprime les vieux et enfin la mise à jour est disponible en ligne ! <br />
+    crée les nouveaux conteneurs et supprime les vieux et enfin la mise à jour est disponible en ligne ! <br />
     Mais là ECS FARGATE s'occupe de la mise à l'échelle en utilsant une métrique d'utilisation du CPU, 
     de maintenir le nombre de conteneurs souhaités et de les relancer en cas de problèmes sans rien demander. Donc la disponibilté semble 
     très très importante pour ne pas dire permanente, on verra ça !<br />
     Avant de continuer Angular et Node, je vais essayer de créer sur AWS un autre Virtual Private Cloud (VPC) plûtôt que d'utiliser celui par défaut 
     pour bien compartimenter mes projets et en augmenter la sécurité. EDIT2: là aussi c'est fait, j'ai un VPC personnalisé pour cette démo sur AWS 
     avec 2 sous-réseaux et des règles de sécurité entrantes et sortantes propres à cette application. Beaucoup de travail reste à faire sur 
-    la partie CICD qui n'était vraiment pas prévu au début, tout comme cette partie node, et qui donne lieu à l'apprentissage de toutes ces 
+    la partie CICD qui n'était vraiment pas prévu au début, tout comme cette partie node liée à aws, et qui donne lieu à l'apprentissage de toutes ces 
     nouvelles connaissances. L'étape suivante serait de regrouper les différents repos front et back pour n'en créer qu'un seul et utiliser docker-compose 
     pour un déploiement de l'ensemble du stack, mais ne sachant que choisir entre Github qui vous permet de lire le code ou Aws qui sera à n'en 
     pas douter l'un des futurs leader vu le ratio tarif/prestation, je mets ceci en stand-by le temps qu'il me faudra pour approfondir et faire mon choix, 

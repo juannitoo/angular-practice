@@ -29,12 +29,12 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
                   const url = this.router.url
                   if (url.startsWith('/json-server')) {
                     this.errorsService.message = `Oups, un problème est survenu.
-                      Le serveur de développement json-server ne peut pas fonctionner en ligne, c'est un module de développement.
+                      Le serveur de développement json-server n'est pas prévu pour fonctionner en ligne, c'est un module de développement.
                       Si vous avez téléchargé le repo en local, json-server doit certainement être absent, éteint ou mal configuré. 
                       Un fichier db.users.init est présent dans le repo angular-practice sous assets/db-json-server.json . 
                       Il faut le placer à la racine du serveur json-server. Ne vous inquiétez pas, vous ne loupez pas grand chose,
                       l'essentiel ici etant le code du service. C'est un CRUD fonctionnel basique. 
-                      Ce message d'erreur est géré par un interceptor http, situé dans core/interceptors. \n
+                      Ce message d'erreur est géré par un interceptor http, situé dans app/interceptors. \n
                       Voilà le message d'erreur :\n 
                       Impossible de récupérer les users. Error status : ${error.status} . Message : ${error.message}`
                   } else if (url.startsWith('/jsonplaceholder')) {
