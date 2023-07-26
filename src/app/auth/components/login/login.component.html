@@ -105,17 +105,35 @@
       target="_blank">ici</a>.
   </p>
 
-  <p class="p-footer"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
+  <p style="text-align: justify;"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
     une nouvelle image du conteneur Docker manuellement pour le backend (via cli), elle n'est pas prise en compte par la tâche AWS 
     et je dois en redémarrer une avec la nouvelle image qui implique une nouvelle IP. Voilà mon nouveau sujet principal, 
     et sa solution n'est pas simple à mettre en place. <br />
-    EDIT : Bon c'est fait, je laisse ce message qqs jours avant de le supprimer. J'ai du créer un load balancer associé à un service ECS et 
-    paramétrer entre autres routage, groupe de sécurité, et groupe (de ressource) ciblé (target group).
-    Enfin, un pipeline CICD ne sera pas de trop car pour l'utilisation il faut générer l'image docker, la pousser sur AWS, puis se connecter à Aws, 
+    EDIT : Bon c'est fait, je laisse ce message qqs jours avant de le supprimer. J'ai dû créer un load balancer associé à un service ECS et 
+    paramétrer entre autres routage, groupe de sécurité, et groupe (de ressources) ciblé (target group).
+    Enfin, un pipeline CICD ne serait pas de trop car pour l'utilisation il faut générer l'image docker, la pousser sur AWS, puis se connecter à Aws, 
     mettre à jour le service manuellement avec quelques paramètres à sélectionner sans se tromper. Enfin, un soupcon de patience, le temps qu'aws 
-    travaille et l'image est disponible en ligne ! Mais là ECS FARGATE s'occupe de la mise à l'échelle, de maintenir le nombre de conteneurs souhaités
-    et de les relancer en cas de problèmes sans rien demander. Donc la disponibilté semble très très importante pour ne pas dire permanente, on verra ça !<br />
-    Avant de continuer angular et node, je vais essayer de créer sur AWS un Virtual Private Cloud (VPC) plûtôt que d'utiliser celui par défaut 
-    pour bien compartimenter mes projets.
+    créer les nouveau conteneurs et supprime les vieux et enfin la mise à jour est disponible en ligne ! <br />
+    Mais là ECS FARGATE s'occupe de la mise à l'échelle en utilsant une métrique d'utilisation du CPU, 
+    de maintenir le nombre de conteneurs souhaités et de les relancer en cas de problèmes sans rien demander. Donc la disponibilté semble 
+    très très importante pour ne pas dire permanente, on verra ça !<br />
+    Avant de continuer Angular et Node, je vais essayer de créer sur AWS un autre Virtual Private Cloud (VPC) plûtôt que d'utiliser celui par défaut 
+    pour bien compartimenter mes projets et en augmenter la sécurité. EDIT2: là aussi c'est fait, j'ai un VPC personnalisé pour cette démo sur AWS 
+    avec 2 sous-réseaux et des règles de sécurité entrantes et sortantes propres à cette application. Beaucoup de travail reste à faire sur 
+    la partie CICD qui n'était vraiment pas prévu au début, tout comme cette partie node, et qui donne lieu à l'apprentissage de toutes ces 
+    nouvelles connaissances. L'étape suivante serait de regrouper les différents repos front et back pour n'en créer qu'un seul et utiliser docker-compose 
+    pour un déploiement de l'ensemble du stack, mais ne sachant que choisir entre Github qui vous permet de lire le code ou Aws qui sera à n'en 
+    pas douter l'un des futurs leader vu le ratio tarif/prestation, je mets ceci en stand-by le temps qu'il me faudra pour approfondir et faire mon choix, 
+    vu que surtout les pipelines ne sont pas comptatibles, et que m'enfermer totalement sur Aws me dérange un peu.
+  </p>
+  <p>Ci-dessous, quelqes images pour justifier de tout ça :
+    <img class="img-aws" src="assets/images/angular-practice-vpc.png" alt="image aws" />
+    <img class="img-aws" src="assets/images/angular-practice-vpc-subnets.png" alt="image aws" />
+    <img class="img-aws" src="assets/images/angular-practice-vpc-rules.png" alt="image aws" />
+    <img class="img-aws" src="assets/images/angular-practice-vpc-lb.png" alt="image aws" />
+    Vous pouvez voir dans cette image ci dessus que c'est ce DNS qui est utilisé 
+    <a href="https://github.com/juannitoo/angular-practice/blob/main/src/environments/environment.prod.ts"
+    target="_blank">dans le code</a> et qui me permet d'interroger le backend.
+    <img class="img-aws" src="assets/images/angular-practice-vpc-task.png" alt="image aws" />
   </p>
 </section>

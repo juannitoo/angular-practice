@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3001',
-  // apiUrl: 'http://LB-angular-practice-110681708.eu-west-3.elb.amazonaws.com', //voir environment.prod
+  // apiUrl: 'http://LB-angular-practice-vpc-perso-1278146278.eu-west-3.elb.amazonaws.com', //voir environment.prod
 };
 
 /*
