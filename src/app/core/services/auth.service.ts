@@ -54,6 +54,7 @@ export class AuthService {
 
   deleteToken(): void {
     localStorage.removeItem('token')
+    this._isLogged$.next(false)
     this.token = undefined
   }
 
