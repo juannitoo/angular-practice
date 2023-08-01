@@ -1,99 +1,111 @@
 <section>
-
   <h1>Connexion / Inscription</h1>
 
-  <p class="p-intro">Vous pouvez vous inscrire avec vos propres identifiants, et également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
-  <p class="p-intro"><span class="span">test@test.fr</span> <span class="span">12345</span></p>
-  
-  <div class="form-card">
+  <ng-container *ngIf="!(isLogged$ | async) else templateLogged" >
+
+    <p class="p-intro">Vous pouvez vous inscrire avec vos propres identifiants, et également vous connecter et vous déconnecter en utilisant les identifiants ci-dessous.</p>
+    <p class="p-intro"><span class="span">test@test.fr</span> <span class="span">12345</span></p>
     
-    <div class="connexion" (click)="onChooseForm('connexion')"
-      [ngClass]="{ white: buttonValue==='Se connecter'}"><p>Connexion</p>
-    </div>
+    <div class="form-card">
+      
+      <div class="connexion" (click)="onChooseForm('connexion')"
+        [ngClass]="{ white: buttonValue==='Se connecter'}"><p>Connexion</p>
+      </div>
 
-    <div class="inscription" (click)="onChooseForm('inscription')"
-      [ngClass]="{ white: buttonValue==='S\'inscrire'}"><p>Inscription</p>
-    </div>
-    
-    <form [formGroup]="signUpForm" (submit)="onSubmitForm()">
-
-
-      <mat-form-field  appearance="fill" class="form-group">
-        <mat-label for="email">Email :</mat-label>
-        <input matInput type="text" class="input-text" id="email" formControlName="email">
-        </mat-form-field>
-        <small class="error-text" *ngIf="signUpForm.get('email')?.hasError('emailValidatorError')">
-          L'adresse email n'a pas la forme requise : x@x.xx
-        </small>
-        <small class="error-text" *ngIf="signUpForm.get('email')?.hasError('isEmailUsed') && buttonValue === 'S\'inscrire'">
-          Adresse email déjà utilisée
-        </small>
-
-      <ng-container *ngIf="buttonValue === 'Se connecter'; else templateB" >
-        <mat-form-field  appearance="fill" class="form-group">
-          <mat-label for="connectionPassword">Mot de passe :</mat-label>
-          <input matInput [type]="hideConnectionPassword ? 'password' : 'text'" 
-            class="input-text" id="connectionPassword" 
-            formControlName="connectionPassword"
-          >
-          <mat-icon matSuffix (click)="hideConnectionPassword = !hideConnectionPassword"
-            >{{hideConnectionPassword ? 'visibility_off' : 'visibility'}}
-          </mat-icon>
-          <mat-error>minimum 5 caractères</mat-error>
-        </mat-form-field>
-      </ng-container>
-
-      <ng-template #templateB>
-        <mat-form-field appearance="fill" class="form-group" [formGroup]="passwordForm">
-          <mat-label for="password">Mot de passe :</mat-label>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" 
-            class="input-text" class="input-text" id="password" 
-            formControlName="password"
-          >
-          <mat-icon matSuffix (click)="hidePassword = !hidePassword">
-            {{hidePassword ? 'visibility_off' : 'visibility'}}
-          </mat-icon>
-          <mat-error>minimum 5 caractères</mat-error>
-        </mat-form-field>
-
-        <mat-form-field  appearance="fill" class="form-group" [formGroup]="passwordForm">
-          <mat-label for="password2">Répétez votre mot de passe :</mat-label>
-          <input matInput [type]="hidePassword2 ? 'password' : 'text'" 
-            class="input-text" id="password2" 
-            formControlName="password2"
-          >
-          <mat-icon matSuffix (click)="hidePassword2 = !hidePassword2">
-            {{hidePassword2 ? 'visibility_off' : 'visibility'}}
-          </mat-icon>
-          <mat-error>Ce champ est requis</mat-error>
-        </mat-form-field>
-        <small class="error-text" *ngIf="showPasswordsError$ | async">
-          Les mots de passe doivent correspondre et respecter les règles
-        </small>
-      </ng-template>
-
-
-
-      <div class="action-buttons">
-        <button mat-raised-button id="submit-btn"
-          color="primary"
-          type="submit" 
-          [disabled] = "signUpForm.invalid"
-        >{{ buttonValue }}</button>
+      <div class="inscription" (click)="onChooseForm('inscription')"
+        [ngClass]="{ white: buttonValue==='S\'inscrire'}"><p>Inscription</p>
       </div>
       
-      <div class="error-message-node">
-        <p *ngIf="errorMessageIdentifiant">Les identifiants ne correspondent pas</p>
-        <p *ngIf="errorMessageEmailExistant">Cet adresse email est déjà dans la base.<br />
-          Réinitialiser le mot de passe n'est pas encore réalisable, mais ce serait l'envoi d'un mail 
-          contenant un lien vers ce même formulaire d'inscription avec l'adresse mail bloquée. la CNIL ne veut 
-          plus de mot de passe via mail.
-        </p>
-      </div>
+      <form [formGroup]="signUpForm" (submit)="onSubmitForm()">
 
-    </form>
 
-  </div>
+        <mat-form-field  appearance="fill" class="form-group">
+          <mat-label for="email">Email :</mat-label>
+          <input matInput type="text" class="input-text" id="email" formControlName="email">
+          </mat-form-field>
+          <small class="error-text" *ngIf="signUpForm.get('email')?.hasError('emailValidatorError')">
+            L'adresse email n'a pas la forme requise : x@x.xx
+          </small>
+          <small class="error-text" *ngIf="signUpForm.get('email')?.hasError('isEmailUsed') && buttonValue === 'S\'inscrire'">
+            Adresse email déjà utilisée
+          </small>
+
+        <ng-container *ngIf="buttonValue === 'Se connecter'; else templateB" >
+          <mat-form-field  appearance="fill" class="form-group">
+            <mat-label for="connectionPassword">Mot de passe :</mat-label>
+            <input matInput [type]="hideConnectionPassword ? 'password' : 'text'" 
+              class="input-text" id="connectionPassword" 
+              formControlName="connectionPassword"
+            >
+            <mat-icon matSuffix (click)="hideConnectionPassword = !hideConnectionPassword"
+              >{{hideConnectionPassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-error>minimum 5 caractères</mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <ng-template #templateB>
+          <mat-form-field appearance="fill" class="form-group" [formGroup]="passwordForm">
+            <mat-label for="password">Mot de passe :</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" 
+              class="input-text" class="input-text" id="password" 
+              formControlName="password"
+            >
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+              {{hidePassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-error>minimum 5 caractères</mat-error>
+          </mat-form-field>
+
+          <mat-form-field  appearance="fill" class="form-group" [formGroup]="passwordForm">
+            <mat-label for="password2">Répétez votre mot de passe :</mat-label>
+            <input matInput [type]="hidePassword2 ? 'password' : 'text'" 
+              class="input-text" id="password2" 
+              formControlName="password2"
+            >
+            <mat-icon matSuffix (click)="hidePassword2 = !hidePassword2">
+              {{hidePassword2 ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-error>Ce champ est requis</mat-error>
+          </mat-form-field>
+          <small class="error-text" *ngIf="showPasswordsError$ | async">
+            Les mots de passe doivent correspondre et respecter les règles
+          </small>
+        </ng-template>
+
+
+
+        <div class="action-buttons">
+          <button mat-raised-button id="submit-btn"
+            color="primary"
+            type="submit" 
+            [disabled] = "signUpForm.invalid"
+          >{{ buttonValue }}</button>
+        </div>
+        
+        <div class="error-message-node">
+          <p *ngIf="errorMessageIdentifiant">Les identifiants ne correspondent pas</p>
+          <p *ngIf="errorMessageEmailExistant">Cet adresse email est déjà dans la base.<br />
+            Réinitialiser le mot de passe n'est pas encore réalisable, mais ce serait l'envoi d'un mail 
+            contenant un lien vers ce même formulaire d'inscription avec l'adresse mail bloquée. la CNIL ne veut 
+            plus de mot de passe via mail.
+          </p>
+        </div>
+
+      </form>
+
+    </div>
+  </ng-container>
+
+
+  <ng-template #templateLogged>
+    <h3>Vous êtes déjà identifié·e ... en plus d'être un·e petit·e malin·e !</h3>
+    <h3 *ngIf="user$ | async as user">
+      Avec cet email : {{user.email}}
+    </h3>
+  </ng-template>
+
+
 
   <p class="p-footer">
     Vous pouvez voir le code du composant 
@@ -105,7 +117,7 @@
       target="_blank">ici</a>.
   </p>
 
-  <p style="text-align: justify;"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
+  <!-- <p style="text-align: justify;"><span style="color: red;">Si le service ne fonctionne plus, rafraichissez la page : CTRL + F5</span>. Lorsque je déploie
     une nouvelle image du conteneur Docker manuellement pour le backend (via cli), elle n'est pas prise en compte par la tâche AWS 
     et je dois en redémarrer une avec la nouvelle image qui implique une nouvelle IP. Voilà mon nouveau sujet principal, 
     et sa solution n'est pas simple à mettre en place. <br />
@@ -120,20 +132,24 @@
     Avant de continuer Angular et Node, je vais essayer de créer sur AWS un autre Virtual Private Cloud (VPC) plûtôt que d'utiliser celui par défaut 
     pour bien compartimenter mes projets et en augmenter la sécurité. EDIT2: là aussi c'est fait, j'ai un VPC personnalisé pour cette démo sur AWS 
     avec 2 sous-réseaux et des règles de sécurité entrantes et sortantes propres à cette application. Beaucoup de travail reste à faire sur 
-    la partie CICD qui n'était vraiment pas prévu au début, tout comme cette partie node liée à aws, et qui donne lieu à l'apprentissage de toutes ces 
+    la partie CICD qui n'était vraiment pas prévu au début, tout comme cette partie Node liée à aws, et qui donne lieu à l'apprentissage de toutes ces 
     nouvelles connaissances. L'étape suivante serait de regrouper les différents repos front et back pour n'en créer qu'un seul et utiliser docker-compose 
     pour un déploiement de l'ensemble du stack, mais ne sachant que choisir entre Github qui vous permet de lire le code ou Aws qui sera à n'en 
     pas douter l'un des futurs leader vu le ratio tarif/prestation, je mets ceci en stand-by le temps qu'il me faudra pour approfondir et faire mon choix, 
     vu que surtout les pipelines ne sont pas comptatibles, et que m'enfermer totalement sur Aws me dérange un peu.
   </p>
-  <p>Ci-dessous, quelqes images pour justifier de tout ça :
+  <p>Ci-dessous, quelques images pour justifier de tout ça :
     <img class="img-aws" src="assets/images/angular-practice-vpc.png" alt="image aws" />
     <img class="img-aws" src="assets/images/angular-practice-vpc-subnets.png" alt="image aws" />
     <img class="img-aws" src="assets/images/angular-practice-vpc-rules.png" alt="image aws" />
+    <img class="img-aws" src="assets/images/angular-practice-vpc-rules-outbound.png" alt="image aws" />
     <img class="img-aws" src="assets/images/angular-practice-vpc-lb.png" alt="image aws" />
     Vous pouvez voir dans cette image ci dessus que c'est ce DNS qui est utilisé 
     <a href="https://github.com/juannitoo/angular-practice/blob/main/src/environments/environment.prod.ts"
     target="_blank">dans le code</a> et qui me permet d'interroger le backend.
     <img class="img-aws" src="assets/images/angular-practice-vpc-task.png" alt="image aws" />
   </p>
+  <p>Vraiment content que ce soit derrière moi cette étape de configuration, parce que la compréhension
+    et la configuration n'étaient vraiment pas simple.
+  </p> -->
 </section>

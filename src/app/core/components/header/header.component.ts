@@ -1,6 +1,9 @@
 import { animateChild, query, stagger, transition, trigger, useAnimation } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FadeInColorAnimation } from 'src/app/shared/animations/fade-in-color.animation';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -36,10 +39,14 @@ export class HeaderComponent implements OnInit {
   // il faut mettre le state pour que l'anim fonctionne !
   slideLetterState: 'hidden' | 'show' = 'hidden'
 
-  constructor() { }
+  isLogged$!: Observable<boolean>
+
+  constructor( private router: Router,
+                private authService: AuthService) { }
 
   ngOnInit(): void {
     this.toggleNavOnResize()
+    this.isLogged$ = this.authService.isLogged$
   }
 
   toggleMenu(){
@@ -51,19 +58,27 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  hideNav(){
-    if (document.getElementsByTagName('html')[0].clientWidth <= 480) {
+  hideNavOnLittleScreen(){
+    if (document.getElementsByTagName('html')[0].clientWidth <= 592) {
       document.getElementsByTagName('nav')[0].style.display = "none"
     } 
   }
 
   toggleNavOnResize(){
     window.addEventListener('resize', () => {
-      if (document.getElementsByTagName('html')[0].clientWidth >= 480) {
+      if (document.getElementsByTagName('html')[0].clientWidth >= 592) {
         document.getElementsByTagName('nav')[0].style.display = "block"
       } else {
         document.getElementsByTagName('nav')[0].style.display = "none"
       }
     })
+  }
+
+  onLogOut(){
+    if (document.getElementsByTagName('html')[0].clientWidth <= 592) {
+      document.getElementsByTagName('nav')[0].style.display = "none"
+    } 
+    localStorage.removeItem('token')
+    this.router.navigateByUrl('/')
   }
 }

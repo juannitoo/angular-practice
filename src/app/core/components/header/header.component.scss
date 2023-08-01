@@ -36,7 +36,7 @@ nav{
     font-style: italic;
 }
 
-a{
+a, #log-out{
     margin: 0px 10px;
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -62,7 +62,7 @@ a{
 }
 
 @media (max-width: 1260px) { 
-    nav a{
+    nav a, #log-out{
         font-size: 1.1rem;
         margin: 0 auto;
         text-align: center;
@@ -107,7 +107,7 @@ a{
         display: none;
     }
 
-    a{
+    a, #log-out{
         display:block;
         margin: 0 auto;
         text-align: center;

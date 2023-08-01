@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Data } from '@angular/router';
-import { HttpClient, HttpHeaders,  } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders,  } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import jwt_decode, { JwtDecodeOptions, JwtHeader, JwtPayload } from "jwt-decode"
 
@@ -32,7 +32,17 @@ export class AuthService {
 
   private token! :  string | undefined | null 
 
-  constructor( private http: HttpClient ) {  }
+
+  private _isLogged$ = new BehaviorSubject<boolean>(false)
+  get isLogged$(): Observable<boolean> {
+      return this._isLogged$.asObservable()
+  }
+
+
+  constructor( private http: HttpClient ) { 
+    // lors du rafraichissement
+    if(localStorage.getItem('token')) this._isLogged$.next(true)
+   }
 
   getToken(): string | undefined | null {
     return this.token === undefined ? localStorage.getItem('token') : this.token 
@@ -67,8 +77,12 @@ export class AuthService {
           if (response.status === 200 ) {
             this.token = response.token
             this.saveToken( this.token )
+            this._isLogged$.next(true)
           }
         }),
+        catchError((err: HttpErrorResponse) => { 
+          throw 'erreur sign up(): ' + err.message 
+        })
       )
   }
 
@@ -87,15 +101,19 @@ export class AuthService {
         if (response.status === 200 ) {
           this.token = response.token
           this.saveToken( this.token )
+          this._isLogged$.next(true)
         }
       }),
-
+      catchError((err: HttpErrorResponse) => { 
+        throw 'erreur login(): ' + err.message 
+      })
     )
   }
 
   logout() : null{
     localStorage.removeItem('token')
     this.token = undefined
+    this._isLogged$.next(false)
     return null
   }
 

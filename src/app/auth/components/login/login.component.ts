@@ -1,8 +1,10 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
+import { NodeUser } from 'src/app/core/interfaces/node-user.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NodeService } from 'src/app/core/services/node.service';
 import { emailValidator } from 'src/app/shared/validators/email.validator';
 import { isEmailUsedValidator } from 'src/app/shared/validators/is-email-used.validator';
 import { confirmEqualValidator } from 'src/app/shared/validators/passwords.validator';
@@ -13,7 +15,7 @@ import { confirmEqualValidator } from 'src/app/shared/validators/passwords.valid
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {    // , DoCheck
+export class LoginComponent implements OnInit, OnDestroy {    // , DoCheck
 
   buttonValue! : string
   signUpForm! : FormGroup
@@ -28,14 +30,21 @@ export class LoginComponent implements OnInit {    // , DoCheck
   hidePassword!: boolean
   hidePassword2!: boolean
 
+  loginSubscrition!: Subscription
+  signUpSubscrition!: Subscription
+
+  isLogged$! : Observable<boolean>
+  user$!: Observable<NodeUser> | null
+
 
   constructor( private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
+              private nodeService: NodeService
             ) {}
 
   ngOnInit(): void {
-
+    
     this.signUpForm = this.formBuilder.group({
       email: [ null, 
               [ Validators.required, emailValidator() ], 
@@ -52,12 +61,18 @@ export class LoginComponent implements OnInit {    // , DoCheck
     this.hidePassword = true
     this.hidePassword2 = true
     this.errorMessageIdentifiant= false
-
+    this.isLogged$ = this.authService.isLogged$
+    this.user$ = this.nodeService.getUser()
   }
   
   // ngDoCheck(){
   //   this.testFormValidity()
   // }
+
+  ngOnDestroy(): void{
+    if (this.loginSubscrition) this.loginSubscrition.unsubscribe()
+    if (this.signUpSubscrition) this.signUpSubscrition.unsubscribe()
+  }
 
 
   onSubmitForm(){
@@ -66,7 +81,7 @@ export class LoginComponent implements OnInit {    // , DoCheck
     if (this.buttonValue === "Se connecter"){
 
       data['password'] = this.signUpForm.value.connectionPassword
-      this.authService.login(data).subscribe({
+      this.loginSubscrition = this.authService.login(data).subscribe({
         next : () => { this.router.navigateByUrl('nodeJs') },
         error : (err) => { this.errorMessageIdentifiant = true; console.log(err) }
       })
@@ -74,7 +89,7 @@ export class LoginComponent implements OnInit {    // , DoCheck
     } else { 
 
       data['password'] = this.signUpForm.value.password['password']
-      this.authService.signUp(data).subscribe({
+      this.signUpSubscrition =  this.authService.signUp(data).subscribe({
         next : () => { this.router.navigateByUrl('nodeJs') },
         error : () => { this.errorMessageEmailExistant = true }
       })
@@ -124,11 +139,11 @@ export class LoginComponent implements OnInit {    // , DoCheck
 
   }
 
-  testFormValidity(){
-    console.log("signup email: ", this.signUpForm.get('email')?.status)
-    // console.log("paswword :", this.passwordForm.status)
-    // console.log('---', this.confirmPassword.value) // génère erreur, obs pas init
-  }
+  // testFormValidity(){
+  //   console.log("signup email: ", this.signUpForm.get('email')?.status)
+  //   console.log("paswword :", this.passwordForm.status)
+  //   console.log('---', this.confirmPassword.value) // génère erreur, obs pas init
+  // }
 
 
 }

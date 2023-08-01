@@ -14,10 +14,15 @@
   </div>
   <mat-icon id="menu" (click)="toggleMenu()">menu</mat-icon>
   <nav>
-    <a routerLink="" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="jsonplaceholder" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder</a>
-    <a routerLink="json-server" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Json-server</a>
-    <a routerLink="nodeJs" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">NodeJs</a>
-    <a routerLink="auth/login" (click)="hideNav()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Connexion</a>
+    <a routerLink="" (click)="hideNavOnLittleScreen()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="jsonplaceholder" (click)="hideNavOnLittleScreen()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">JsonPlaceHolder</a>
+    <a routerLink="json-server" (click)="hideNavOnLittleScreen()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Json-server</a>
+    <a routerLink="nodeJs" (click)="hideNavOnLittleScreen()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">NodeJs</a>
+    <ng-container *ngIf="!(isLogged$ | async) else templateB">
+      <a routerLink="auth/login" (click)="hideNavOnLittleScreen()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">Connexion</a>
+    </ng-container>
+    <ng-template #templateB>
+      <span id="log-out" (click)="onLogOut()">Déconnexion</span>
+    </ng-template>
   </nav>
 </header>
