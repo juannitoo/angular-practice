@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
     if (document.getElementsByTagName('html')[0].clientWidth <= 592) {
       document.getElementsByTagName('nav')[0].style.display = "none"
     } 
-    localStorage.removeItem('token')
+    this.authService.logout()
     this.router.navigateByUrl('/')
   }
 }
