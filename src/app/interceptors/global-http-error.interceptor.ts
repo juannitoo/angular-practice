@@ -28,7 +28,7 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
                 case 0:  // status=0 for a failed XmlHttpRequest, json-server éteint,
                   const url = this.router.url
                   if (url.startsWith('/json-server')) {
-                    this.errorsService.message = `Oups, un problème est survenu.
+                    this.errorsService.message = `Oups, un problème est survenu. Mais c'est le comportement souhaité lorque le site est en ligne.
                       Le serveur de développement json-server n'est pas prévu pour fonctionner en ligne, c'est un module de développement.
                       Si vous avez téléchargé le repo en local, json-server doit certainement être absent, éteint ou mal configuré. 
                       Un fichier db.users.init est présent dans le repo angular-practice sous assets/db-json-server.json . 
