@@ -13,7 +13,7 @@ import { NodeService } from 'src/app/core/services/node.service';
 export class NodeLandingComponent implements OnInit, OnDestroy {
 
   users$! : Observable<NodeUser[]> 
-  email$! : Observable<NodeUser> | null
+  email$! : Observable<NodeUser | null> | null
 
   private deleteSubscription!: Subscription
 
@@ -32,8 +32,13 @@ export class NodeLandingComponent implements OnInit, OnDestroy {
   }
 
   onLogOut(){
-    this.authService.logout()
-    this.router.navigateByUrl('/')
+    const userId = this.authService.getUserId()
+    if (userId) {
+      this.authService.logout(userId)
+      this.router.navigateByUrl('/')
+    } else {
+      console.error("onLogout: pas de userId")
+    }
   }
 
   onDeleteAccount(){
