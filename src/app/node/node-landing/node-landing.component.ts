@@ -34,7 +34,7 @@ export class NodeLandingComponent implements OnInit, OnDestroy {
   onLogOut(){
     const userId = this.authService.getUserId()
     if (userId) {
-      this.authService.logout(userId)
+      this.authService.logout()
       this.router.navigateByUrl('/')
     } else {
       console.error("onLogout: pas de userId")
